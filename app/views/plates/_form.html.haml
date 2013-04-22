@@ -1,0 +1,14 @@
+= simple_form_for(@plate) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :nombre
+    = f.input :calorias
+    -if f.object.new_record?
+      = f.input :tipo, as: :check_boxes, collection: [["Desayuno",1],["Almuerzo",2],["Once", 4],["Cena",8]]
+    -else
+      = f.input :tipo, as: :check_boxes, collection: [["Desayuno",1],["Almuerzo",2],["Once", 4],["Cena",8]], :checked => @plate.obtener_tipos
+
+
+  .form-actions
+    = f.button :submit

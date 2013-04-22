@@ -11,7 +11,41 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130410150730) do
+ActiveRecord::Schema.define(:version => 20130422141013) do
+
+  create_table "ingredients", :force => true do |t|
+    t.string   "nombre"
+    t.integer  "precio"
+    t.string   "unidad"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "plate_ingredients", :force => true do |t|
+    t.integer  "cantidad"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "plates", :force => true do |t|
+    t.string   "nombre"
+    t.integer  "calorias"
+    t.integer  "tipo"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "regime_plates", :force => true do |t|
+    t.integer  "dia"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "regimes", :force => true do |t|
+    t.string   "nombre"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "roles", :force => true do |t|
     t.string   "name"
