@@ -5,17 +5,16 @@ class Plate < ActiveRecord::Base
   POSTRE = 3
   LIQUIDOS = 4 
 
-
-  attr_accessible :calorias, :nombre, :tipo, :regime_ids
+  attr_accessible :calorias, :nombre, :tipo, :regime_ids, :horario, :plate_ingredients_attributes
   has_many :plate_ingredients
   has_many :ingredients, :through => :plate_ingredients
-  
-  has_many :regime_plates
-  has_many :regimes, :through => :regime_plates
 
-  def obtener_tipos
+  accepts_nested_attributes_for :plate_ingredients, :allow_destroy => true
+
+
+  def obtener_horarios
   	array = []
-  	num = self.tipo
+  	num = self.horario
     count = 0
   	while num > 0
   		array.append(num%2 * 2**count)

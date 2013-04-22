@@ -35,6 +35,7 @@ class PlatesController < ApplicationController
   # GET /plates/1/edit
   def edit
     @plate = Plate.find(params[:id])
+    @plate.plate_ingredients.build
   end
 
   # POST /plates
@@ -42,10 +43,10 @@ class PlatesController < ApplicationController
   def create
     @plate = Plate.new(params[:plate])
     count = 0
-    params[:plate][:tipo].each do |x|
+    params[:plate][:horario].each do |x|
       count += x.to_i
     end
-    @plate.tipo = count
+    @plate.horario = count
 
     respond_to do |format|
       if @plate.save
@@ -63,13 +64,13 @@ class PlatesController < ApplicationController
   def update
     @plate = Plate.find(params[:id])
     count = 0
-    params[:plate][:tipo].each do |x|
+    params[:plate][:horario].each do |x|
       count += x.to_i
     end
 
     respond_to do |format|
       if @plate.update_attributes(params[:plate])
-        @plate.tipo = count
+        @plate.horario = count
         @plate.save
         format.html { redirect_to @plate, notice: 'Plate was successfully updated.' }
         format.json { head :no_content }
