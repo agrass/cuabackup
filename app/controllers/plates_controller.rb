@@ -35,6 +35,7 @@ class PlatesController < ApplicationController
   # GET /plates/1/edit
   def edit
     @plate = Plate.find(params[:id])
+    @plate.plate_ingredients.build
   end
 
   # POST /plates
