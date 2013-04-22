@@ -1,8 +1,10 @@
 class Plate < ActiveRecord::Base
-  attr_accessible :calorias, :nombre, :tipo
+  attr_accessible :calorias, :nombre, :tipo, :regime_ids
 
   has_many :plate_ingredients
   has_many :ingredients, :through => :plate_ingredients
+
+  
   has_many :regime_plates
   has_many :regimes, :through => :regime_plates
 
