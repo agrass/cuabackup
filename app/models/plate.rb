@@ -8,9 +8,9 @@ class Plate < ActiveRecord::Base
   has_many :regime_plates
   has_many :regimes, :through => :regime_plates
 
-  def obtener_tipos
+  def obtener_horarios
   	array = []
-  	num = self.tipo
+  	num = self.horario
     count = 0
   	while num > 0
   		array.append(num%2 * 2**count)
