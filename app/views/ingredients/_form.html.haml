@@ -1,0 +1,10 @@
+= simple_form_for(@ingredient) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :nombre
+    = f.input :precio
+    = f.input :unidad, as: :radio_buttons, collection: [["gramos","gr"],["ml","ml"]]
+
+  .form-actions
+    = f.button :submit

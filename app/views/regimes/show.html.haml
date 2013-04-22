@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Nombre:
+  = @regime.nombre
+
+= link_to 'Edit', edit_regime_path(@regime)
+\|
+= link_to 'Back', regimes_path
