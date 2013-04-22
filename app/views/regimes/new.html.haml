@@ -1,5 +1,20 @@
 %h1 New regime
 
-= render 'form'
+= simple_form_for(@regime) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :nombre
+  = f.fields_for :regime_plates do |g|
+    = g.collection_select(:plate_id, Plate.all, :id, :nombre)
+    
+    
+
+
+  .form-actions
+    = f.button :submit
+
+
+
 
 = link_to 'Back', regimes_path

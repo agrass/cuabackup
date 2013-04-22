@@ -24,8 +24,10 @@ class RegimesController < ApplicationController
   # GET /regimes/new
   # GET /regimes/new.json
   def new
-    @regime = Regime.new
+    @regime = Regime.new    
+    @regime.regime_plates.new  
 
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @regime }
