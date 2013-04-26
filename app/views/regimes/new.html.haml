@@ -1,14 +1,47 @@
 %h1 New regime
 
-= simple_form_for(@regime) do |f|
+= simple_nested_form_for @regime do |f|
   = f.error_notification
 
   .form-inputs
-    = f.input :nombre
-  = f.fields_for :regime_plates do |g|
-    = g.collection_select(:plate_id, Plate.all, :id, :nombre)
-    
-    
+    = f.input :nombre  
+
+  
+  #accordion2.accordion
+  .accordion-group
+    .accordion-heading
+      %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseDesayuno"}
+        Desayuno
+    #collapseDesayuno.accordion-body.collapse.in
+      .accordion-inner
+        = f.fields_for :regime_plates do |g|
+          = g.collection_select(:plate_id, Plate.all, :id, :nombre )
+          = g.link_to_remove "Borrar"
+          = g.hidden_field :dia , :value => 1
+        =f.link_to_add "+", :regime_plates 
+  .accordion-group
+    .accordion-heading
+      %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseAlmuerzo"}
+        Almuerzo
+    #collapseAlmuerzo.accordion-body.collapse
+      .accordion-inner
+        = f.fields_for :regime_plates do |h|
+          = h.collection_select(:plate_id, Plate.all, :id, :nombre)
+          = h.link_to_remove "Borrar"
+          = h.hidden_field :dia , :value => 2
+        =f.link_to_add "+", :regime_plates
+  .accordion-group
+    .accordion-heading
+      %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseCena"}
+        Cena
+    #collapseCena.accordion-body.collapse
+      .accordion-inner
+        = f.fields_for :regime_plates do |i|
+          = i.collection_select(:plate_id, Plate.all, :id, :nombre)
+          = i.link_to_remove "Borrar"
+          = i.hidden_field :dia , :value => 1
+        =f.link_to_add "+", :regime_plates
+
 
 
   .form-actions
