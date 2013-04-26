@@ -1,4 +1,7 @@
 CUA::Application.routes.draw do
+  resources :patients
+
+
   resources :regimes
 
 
