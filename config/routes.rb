@@ -20,4 +20,7 @@ CUA::Application.routes.draw do
   root :to => "home#index"
   devise_for :users
   resources :users
+
+
+  match 'get_plates', :to => 'regimes#get_plates', :as => :regime_plates
 end

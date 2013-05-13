@@ -2,10 +2,13 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :patient , label: 'Pieza'
+    = select(:order, :patient, Patient.all.collect {|p| [ p.num_pieza, p.id ] }, {:prompt => 'Seleccione Pieza'})
     = f.input :esPaciente , label: 'Acompañante'
     = f.input :horario
-    = select("regime", "1", Regime.all.collect {|p| [ p.nombre, p.id ] }, {:prompt => 'Seleccione Régimen'})
+    = select("regime", "", Regime.all.collect {|p| [ p.nombre, p.id ] }, {:prompt => 'Seleccione Régimen'})
+
+    #plates
+
     = f.input :comentarios
 
   .form-actions
