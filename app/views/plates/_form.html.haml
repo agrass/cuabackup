@@ -4,7 +4,7 @@
   .form-inputs
     = f.input :nombre
     = f.input :calorias
-    = f.association :regimes, label_method: :nombre,  as: :check_boxes
+    //= f.association :regimes, label_method: :nombre,  as: :check_boxes
     -if f.object.new_record?
       = f.input :horario, as: :check_boxes, collection: [["Desayuno",1],["Almuerzo",2],["Once", 4],["Cena",8]]
     -else

@@ -1,0 +1,12 @@
+= simple_form_for(@order) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :patient , label: 'Pieza'
+    = f.input :esPaciente , label: 'Acompañante'
+    = f.input :horario
+    = select("regime", "1", Regime.all.collect {|p| [ p.nombre, p.id ] }, {:prompt => 'Seleccione Régimen'})
+    = f.input :comentarios
+
+  .form-actions
+    = f.button :submit
