@@ -1,6 +1,91 @@
-%h1 Editing regime
+%h2 Editar Regimen
 
-= render 'form'
+.pagination.well
+  .alert.alert-info
+    %strong Selecione dia del regimen a modificar
+  %ul
+    %li
+      %a{:href => "?dia=1"}
+        %span{ :class => "#{Regime.isActive(1, @dia.to_i)}"}
+          1
+    %li
+      %a{:href => "?dia=2"} 
+        %span{ :class => "#{Regime.isActive(2, @dia.to_i)}"}
+          2
+    %li
+      %a{:href => "?dia=3"} 
+        %span{ :class => "#{Regime.isActive(3, @dia.to_i)}"}
+          3
+    %li
+      %a{:href => "?dia=4" } 
+        %span{ :class => "#{Regime.isActive(4, @dia.to_i)}"}
+          4
+    %li
+      %a{:href => "?dia=5"}
+        %span{ :class => "#{Regime.isActive(5, @dia.to_i)}"}
+          5
+    %li
+      %a{:href => "?dia=6"}
+        %span{ :class => "#{Regime.isActive(6, @dia.to_i)}"}
+          6
+    %li
+      %a{:href => "?dia=7"}
+        %span{ :class => "#{Regime.isActive(7, @dia.to_i)}"}
+          7
+    %li
+      %a{:href => "?dia=8"}
+        %span{ :class => "#{Regime.isActive(8, @dia.to_i)}"}
+          8
+   
+
+= simple_nested_form_for @regime do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :nombre  
+
+  #accordion2.accordion
+  .accordion-group
+    .accordion-heading
+      %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseDesayuno"}
+        %h4 Desayuno
+    #collapseDesayuno.accordion-body.collapse.in
+      .accordion-inner
+        = f.fields_for :regime_plates, Regime.obtenerPlatos(@dia, 1, @regime.id ) do |g|
+          = g.collection_select(:plate_id, Plate.all, :id, :nombre )
+          = g.link_to_remove "Borrar"
+          = g.hidden_field :horario , :value => 1, :class => "horario_val"
+          = g.hidden_field :dia , :value => @dia
+        =f.link_to_add "+", :regime_plates 
+  .accordion-group
+    .accordion-heading
+      %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseAlmuerzo"}
+        %h4 Almuerzo
+    #collapseAlmuerzo.accordion-body.collapse.in
+      .accordion-inner
+        = f.fields_for :regime_plates, Regime.obtenerPlatos(@dia, 2, @regime.id ) do |h|
+          = h.collection_select(:plate_id, Plate.all, :id, :nombre)
+          = h.link_to_remove "Borrar"
+          = h.hidden_field :horario , :value => 2, :class => "horario_val"
+          = h.hidden_field :dia , :value => @dia
+        =f.link_to_add "+", :regime_plates
+  .accordion-group
+    .accordion-heading
+      %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseCena"}
+        %h4 Cena
+    #collapseCena.accordion-body.collapse.in
+      .accordion-inner
+        = f.fields_for :regime_plates, Regime.obtenerPlatos(@dia, 3, @regime.id ) do |i|
+          = i.collection_select(:plate_id, Plate.all, :id, :nombre)
+          = i.link_to_remove "Borrar"
+          = i.hidden_field :horario , :value => 3, :class => "horario_val"
+          = i.hidden_field :dia , :value => @dia
+        =f.link_to_add "+", :regime_plates
+
+
+
+  .form-actions
+    %a.btn.btn-primary#send_regimen Actualizar
 
 = link_to 'Show', @regime
 \|
