@@ -22,6 +22,8 @@
     - if current_user.has_role? :nutricionista
       %li
         = link_to 'Pacientes', patients_path
+      %li
+        = link_to 'Pedidos', orders_path
   - else
     %li
       = link_to 'Sign up', new_user_registration_path

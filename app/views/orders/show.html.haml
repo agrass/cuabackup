@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Patient:
+  = @order.patient
+%p
+  %b Espaciente:
+  = @order.esPaciente
+%p
+  %b Horario:
+  = @order.horario
+%p
+  %b Comentarios:
+  = @order.comentarios
+
+= link_to 'Edit', edit_order_path(@order)
+\|
+= link_to 'Back', orders_path
