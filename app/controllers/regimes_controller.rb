@@ -38,6 +38,13 @@ class RegimesController < ApplicationController
   # GET /regimes/1/edit
   def edit
     @regime = Regime.find(params[:id])
+
+    if params[:dia] != nil
+      @dia = params[:dia]
+    else
+      @dia = 1
+    end
+
   end
 
   # POST /regimes
@@ -47,7 +54,7 @@ class RegimesController < ApplicationController
 
     respond_to do |format|
       if @regime.save
-        format.html { redirect_to @regime, notice: 'Regime was successfully created.' }
+        format.html { redirect_to edit_regime_path(@regime), notice: 'Regime was successfully created.' }
         format.json { render json: @regime, status: :created, location: @regime }
       else
         format.html { render action: "new" }
@@ -63,7 +70,7 @@ class RegimesController < ApplicationController
 
     respond_to do |format|
       if @regime.update_attributes(params[:regime])
-        format.html { redirect_to @regime, notice: 'Regime was successfully updated.' }
+        format.html { redirect_to edit_regime_path(@regime), notice: 'Regime was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
