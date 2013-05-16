@@ -6,8 +6,8 @@ class Regime < ActiveRecord::Base
   accepts_nested_attributes_for :regime_plates, :allow_destroy => true
 
 
-  def get_plates_by_horario(horario)
-    plates = self.plates
+  def get_plates_by_horario_and_dia(horario, dia)
+    plates = self.plates.where(:regime_plates => {:dia => dia}).order(:tipo)
     plates.select {|plate| plate.obtener_horarios.include?(horario) }
     plates
   end
