@@ -1,9 +1,4 @@
 class Plate < ActiveRecord::Base
-  #TIPO
-  PLATO_FONDO = 1
-  ENTRADA = 2
-  POSTRE = 3
-  LIQUIDOS = 4 
 
   attr_accessible :calorias, :nombre, :tipo, :regime_ids, :horario, :plate_ingredients_attributes
   has_many :plate_ingredients

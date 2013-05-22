@@ -41,6 +41,7 @@ $('#send_regimen').click(function(){
     
   });
 
+
   $('.edit_regime').submit();
 
 
