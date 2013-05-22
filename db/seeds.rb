@@ -40,3 +40,19 @@ Plate.create(:nombre => "2 Palmeritas" , :tipo => 6 , :horario => 1)
 Plate.create(:nombre => "Bollo" , :tipo => 6 , :horario => 1)
 Plate.create(:nombre => "Galletas" , :tipo => 6 , :horario => 1)
 
+Plate.create(:nombre => "Consome" , :tipo => 7 , :horario => 2)
+Plate.create(:nombre => "Albahaca y dados de tomate, palta, queso fresco" , :tipo => 7 , :horario => 2)
+Plate.create(:nombre => "Quiche loreine" , :tipo => 7 , :horario => 2)
+
+Plate.create(:nombre => "Reineta al horno" , :tipo => 8 , :horario => 2)
+Plate.create(:nombre => "Bistec de lomo c/ salsa champiñon" , :tipo => 8 , :horario => 2)
+
+Plate.create(:nombre => "Verduras a la mantequilla: Zapallito, zanahoria, champiñones" , :tipo => 9 , :horario => 2)
+Plate.create(:nombre => "Arroz" , :tipo => 9 , :horario => 2)
+Plate.create(:nombre => "Pure" , :tipo => 9 , :horario => 2)
+Plate.create(:nombre => "Verduras a la mantequilla: Zapallito, zanahoria, champiñones" , :tipo => 9 , :horario => 2)
+
+Plate.create(:nombre => "Helado" , :tipo => 10 , :horario => 2)
+Plate.create(:nombre => "Fruta" , :tipo => 10 , :horario => 2)
+
+
