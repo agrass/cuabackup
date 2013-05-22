@@ -2,6 +2,12 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
+    if params[:date]
+      @date = params[:date]
+    else
+      @date = Time.now.strftime("%d/%m/%Y")
+    end
+    # @orders = Order.where(:created_at => @date)
     @orders = Order.all
 
     respond_to do |format|
@@ -25,6 +31,7 @@ class OrdersController < ApplicationController
   # GET /orders/new.json
   def new
     @order = Order.new
+    @patients_info = Patient.patients_group_by_num_pieza.to_json
 
     respond_to do |format|
       format.html # new.html.erb
