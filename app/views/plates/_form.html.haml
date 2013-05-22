@@ -3,6 +3,7 @@
 
   .form-inputs
     = f.input :nombre
+    = f.input :description
     = f.input :calorias
     //= f.association :regimes, label_method: :nombre,  as: :check_boxes
     -if f.object.new_record?

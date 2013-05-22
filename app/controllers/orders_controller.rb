@@ -25,6 +25,7 @@ class OrdersController < ApplicationController
   # GET /orders/new.json
   def new
     @order = Order.new
+    @patients_info = Patient.patients_group_by_num_pieza.to_json
 
     respond_to do |format|
       format.html # new.html.erb

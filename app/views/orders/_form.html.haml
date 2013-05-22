@@ -3,6 +3,8 @@
 
   .form-inputs
     = select(:order, :patient, Patient.all.collect {|p| [ p.num_pieza, p.id ] }, {:prompt => 'Seleccione Pieza'})
+    %label Nombre Paciente:
+    %p#nombre_paciente
     = f.input :esPaciente , label: 'Acompañante'
     = text_field(:dia, :dia)
     = f.input :horario
