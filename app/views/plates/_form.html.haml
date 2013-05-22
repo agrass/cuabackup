@@ -9,6 +9,7 @@
       = f.input :horario, as: :check_boxes, collection: [["Desayuno",1],["Almuerzo",2],["Once", 4],["Cena",8]]
     -else
       = f.input :horario, as: :check_boxes, collection: [["Desayuno",1],["Almuerzo",2],["Once", 4],["Cena",8]], :checked => @plate.obtener_horarios
+    = f.input :tipo, as: :radio_buttons, collection: Plate.obtener_tipos(0)
     =f.fields_for :plate_ingredients do |plate_ingredients_form|
       = plate_ingredients_form.select :ingredient_id, Ingredient.all.map {|i| [i.nombre + " (" + i.unidad + ")", i.id]}
       = plate_ingredients_form.input :cantidad

@@ -1,4 +1,5 @@
 class RegimesController < ApplicationController
+  respond_to :html
   # GET /regimes
   # GET /regimes.json
   def index
@@ -88,5 +89,11 @@ class RegimesController < ApplicationController
       format.html { redirect_to regimes_url }
       format.json { head :no_content }
     end
+  end
+
+  def get_plates
+    @plates = Regime.find(params[:regime_id]).get_plates_by_horario_and_dia(params[:horario], params[:dia])
+    @horario = params[:horario]
+    respond_with @plates, :layout => nil
   end
 end

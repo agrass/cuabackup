@@ -1,0 +1,4 @@
+= select(:regime, :plates, @plates.collect {|p| [ p.nombre, p.id ] }, {:prompt => 'Seleccione un Plato'})
+- Plate.obtener_tipos(@horario.to_i).each do |tipo|
+  %p=tipo[0]
+  = select(:regime, :plates, @plates.where(:tipo => tipo).collect {|p| [ p.nombre, p.id ] }, {:prompt => 'Seleccione un Plato'})
