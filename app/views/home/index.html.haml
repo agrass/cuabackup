@@ -1,4 +1,22 @@
-%h3 Home
-- @users.each do |user|
-  %p
-    User: #{link_to user.name, user}
+#myCarousel.carousel.slide
+  %ol.carousel-indicators
+    %li.active{"data-slide-to" => "0", "data-target" => "#myCarousel"}
+    %li{"data-slide-to" => "1", "data-target" => "#myCarousel"}
+    %li{"data-slide-to" => "2", "data-target" => "#myCarousel"}
+  / Carousel items
+  .carousel-inner
+    .item
+      = image_tag "images/banners/banner2.jpg"
+      .carousel-caption        
+    .item
+      = image_tag "images/banners/banner3.jpg"
+      .carousel-caption         
+    .item
+      = image_tag "images/banners/banner4.jpg"
+      .carousel-caption
+    .item
+      = image_tag "images/banners/banner5.jpg"
+      .carousel-caption
+        
+  %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
+  %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
