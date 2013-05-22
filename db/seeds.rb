@@ -17,3 +17,26 @@ user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => EN
 puts 'user: ' << user.name
 user.add_role :admin
 
+Plate.create(:nombre => "Cafe" , :tipo => 1 , :horario => 1)
+Plate.create(:nombre => "Te" , :tipo => 1 , :horario => 1)
+Plate.create(:nombre => "Pan" , :tipo => 2 , :horario => 1)
+
+Plate.create(:nombre => "Jamon" , :tipo => 3 , :horario => 1)
+Plate.create(:nombre => "Palta" , :tipo => 3 , :horario => 1)
+Plate.create(:nombre => "Tortilla Francesa" , :tipo => 3 , :horario => 1)
+Plate.create(:nombre => "Queso" , :tipo => 3 , :horario => 1)
+
+Plate.create(:nombre => "Mantequilla" , :tipo => 4 , :horario => 1)
+Plate.create(:nombre => "Mermelada" , :tipo => 4 , :horario => 1)
+Plate.create(:nombre => "Manjar" , :tipo => 4 , :horario => 1)
+Plate.create(:nombre => "Miel" , :tipo => 4 , :horario => 1)
+
+Plate.create(:nombre => "Jugo naranja" , :tipo => 5 , :horario => 1)
+Plate.create(:nombre => "Yogurt" , :tipo => 5 , :horario => 1)
+Plate.create(:nombre => "Yogurt" , :tipo => 5 , :horario => 1)
+
+Plate.create(:nombre => "Pie de limon" , :tipo => 6 , :horario => 1)
+Plate.create(:nombre => "2 Palmeritas" , :tipo => 6 , :horario => 1)
+Plate.create(:nombre => "Bollo" , :tipo => 6 , :horario => 1)
+Plate.create(:nombre => "Galletas" , :tipo => 6 , :horario => 1)
+

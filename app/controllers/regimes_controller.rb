@@ -41,8 +41,13 @@ class RegimesController < ApplicationController
 
     if params[:dia] != nil
       @dia = params[:dia]
+      session[:dia] = params[:dia]
     else
-      @dia = 1
+      if session[:dia] != nil
+        @dia = session[:dia]
+      else
+        @dia = 1
+      end
     end
 
   end
@@ -95,5 +100,9 @@ class RegimesController < ApplicationController
     @plates = Regime.find(params[:regime_id]).get_plates_by_horario_and_dia(params[:horario], params[:dia])
     @horario = params[:horario]
     respond_with @plates, :layout => nil
+  end
+
+  def get_form_select
+    render "select_plate", :layout => false
   end
 end

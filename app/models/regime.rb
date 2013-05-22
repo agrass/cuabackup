@@ -12,9 +12,14 @@ class Regime < ActiveRecord::Base
     plates
   end
 
-  def self.obtenerPlatos(dia, horario, regimen_id)
-    return RegimePlate.find_all_by_dia_and_horario_and_regime_id(dia, horario, regimen_id)
+  def self.obtenerPlatos(dia, horario, regimen_id, tipo)
+    ids = Array.new
+    Plate.find_all_by_tipo(tipo).each do |plt|
+      ids << plt.id
+    end
+    return RegimePlate.find_all_by_dia_and_horario_and_regime_id_and_plate_id(dia, horario, regimen_id, ids )
   end
+
 
   def self.isActive(param, boton)
     if param == boton
