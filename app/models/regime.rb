@@ -7,8 +7,8 @@ class Regime < ActiveRecord::Base
 
 
   def get_plates_by_horario_and_dia(horario, dia)
-    plates = self.plates.where(:regime_plates => {:dia => dia}).order(:tipo)
-    plates.select {|plate| plate.obtener_horarios.include?(horario) }
+    plates = self.plates.where(:regime_plates => {:dia => dia, :horario=> horario}).order(:tipo)
+    #plates.select {|plate| plate.obtener_horarios.include?(horario) }
     plates
   end
 
