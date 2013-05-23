@@ -42,13 +42,18 @@ class OrdersController < ApplicationController
   # GET /orders/1/edit
   def edit
     @order = Order.find(params[:id])
+    @patients_info = Patient.patients_group_by_num_pieza.to_json
   end
 
   # POST /orders
   # POST /orders.json
   def create
     @order = Order.new(params[:order])
-
+    params[:regPlates].each do |plate|
+      if(!plate[1].empty?)
+        @order.plates << Plate.find(plate[1].to_i)
+      end
+    end
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -64,6 +69,13 @@ class OrdersController < ApplicationController
   # PUT /orders/1.json
   def update
     @order = Order.find(params[:id])
+    @order.plates.delete_all
+
+    params[:regPlates].each do |plate|
+      if(!plate[1].empty?)
+        @order.plates << Plate.find(plate[1].to_i)
+      end
+    end
 
     respond_to do |format|
       if @order.update_attributes(params[:order])

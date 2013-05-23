@@ -12,8 +12,8 @@
         %li{:style => "display: inline-table"}
           = f.input :esPaciente , label: 'Acompañante'
 
-    = text_field(:dia, :dia)
-    = f.input :horario
+    = hidden_field_tag 'dia[dia]', '1'
+    = hidden_field_tag 'order[horario]', '1'
     = select("regime", "", Regime.all.collect {|p| [ p.nombre, p.id ] }, {:prompt => 'Seleccione Régimen'})
     #plates
 

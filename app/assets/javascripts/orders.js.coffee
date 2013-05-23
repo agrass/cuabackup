@@ -3,10 +3,13 @@ $ ->
 		url = $(this).attr('data_url') + '?date=' + $(this).val()
 		window.location = url
 
-	($ 'select#order_patient').change ->
+	($ 'select#order_patient_id').change ->
 		($ '#lista_persona').css("display", "block")
 		($ 'input#nombre').attr("checked",true)
 		change_name()
+
+	($ 'select#regime_').change ->
+		get_plates_from_regime()
 
 	($ 'input#nombre').change ->
 		if this.checked
@@ -23,7 +26,7 @@ $ ->
 	($ 'select#order_patient').change ->
 
 	change_name = (id) ->
-		id = ($ 'select#order_patient').val()
+		id = ($ 'select#order_patient_id').val()
 		($ 'label#nombre_paciente').html(patient_mapper[id])
 
 	get_plates_from_regime = () ->
