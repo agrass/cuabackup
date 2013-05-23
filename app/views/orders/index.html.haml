@@ -1,5 +1,16 @@
 %h1 Listing orders
 
+= label_tag(:fecha, "Fecha:")
+%input{"data-behaviour" => "datepicker", :type => "text", :data_url => "#{orders_path}"}/
+
+:javascript
+  $('[data-behaviour~=datepicker]').val("#{@date}")
+  $('[data-behaviour~=datepicker]').datepicker({
+    format: 'dd-mm-yyyy'
+  })
+
+
+
 %table
   %tr
     %th Patient

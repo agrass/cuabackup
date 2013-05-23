@@ -1,11 +1,6 @@
 class Plate < ActiveRecord::Base
-  #TIPO
-  PLATO_FONDO = 1
-  ENTRADA = 2
-  POSTRE = 3
-  LIQUIDOS = 4 
 
-  attr_accessible :calorias, :nombre, :tipo, :regime_ids, :horario, :plate_ingredients_attributes
+  attr_accessible :calorias, :nombre, :tipo, :regime_ids, :horario, :plate_ingredients_attributes, :description
   has_many :plate_ingredients
   has_many :ingredients, :through => :plate_ingredients
   accepts_nested_attributes_for :plate_ingredients, :allow_destroy => true

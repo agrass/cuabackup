@@ -1,6 +1,6 @@
 %h1 Listing regimes
 
-%table
+%table.table-hover
   %tr
     %th Nombre
     %th
@@ -9,11 +9,22 @@
 
   - @regimes.each do |regime|
     %tr
-      %td= regime.nombre
-      %td= link_to 'Show', regime
-      %td= link_to 'Edit', edit_regime_path(regime)
-      %td= link_to 'Destroy', regime, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= regime.nombre      
+      %td
+        %a.btn{ :href => "#{regime_path(regime)}"}
+          Detalles
+      %td
+        %a.btn{ :href => "#{edit_regime_path(regime)}"}
+          %i.icon-edit
+          Editar      
+      %td
+        %a.btn.btn-danger{ :href => "#{regime_path(regime)}", "data-method" => :delete, :data => { :confirm => 'Are you sure?' }}
+          %i.icon-remove   
 
-%br
 
-= link_to 'New Regime', new_regime_path
+%hr
+
+%a.btn.btn-primary{ :href => "#{new_regime_path}" }
+  %i.icon-plus
+  Nuevo Regimen
+
