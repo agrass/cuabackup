@@ -1,0 +1,30 @@
+%h1 Listing order_lists
+
+= label_tag(:fecha, "Fecha:")
+%input{"data-behaviour" => "datepicker", :type => "text", :data_url => "#{order_lists_path}"}/
+
+:javascript
+  $('[data-behaviour~=datepicker]').val("#{@date}")
+  $('[data-behaviour~=datepicker]').datepicker({
+    format: 'dd-mm-yyyy'
+  })
+
+%table
+  %tr
+    %th Patient
+    %th Acompañante
+    %th
+    %th
+    %th
+
+  - @order_lists.each do |order_list|
+    %tr
+      %td= order_list.patient
+      %td= order_list.esPaciente
+      %td= link_to 'Show', order_list
+      %td= link_to 'Edit', edit_order_list_path(order_list)
+      %td= link_to 'Destroy', order_list, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Order list', new_order_list_path

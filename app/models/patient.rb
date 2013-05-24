@@ -1,6 +1,6 @@
 class Patient < ActiveRecord::Base
   attr_accessible :nombre, :num_pieza
-  has_many :orders
+  has_many :order_lists
 
   def self.patients_group_by_num_pieza
       patient_info = Hash.new { |h, k| h[k] = [] }

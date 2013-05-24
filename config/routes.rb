@@ -14,6 +14,9 @@ CUA::Application.routes.draw do
   resources :ingredients
 
 
+  resources :order_lists
+
+
   authenticated :user do
     root :to => 'home#index'
   end

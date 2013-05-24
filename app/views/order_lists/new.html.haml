@@ -1,0 +1,8 @@
+%h1 New order_list
+
+= render 'form'
+    
+:javascript
+  patient_mapper = #{@patients_info};
+
+= link_to 'Back', order_lists_path

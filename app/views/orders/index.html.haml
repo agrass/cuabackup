@@ -1,20 +1,7 @@
 %h1 Listing orders
 
-= label_tag(:fecha, "Fecha:")
-%input{"data-behaviour" => "datepicker", :type => "text", :data_url => "#{orders_path}"}/
-
-:javascript
-  $('[data-behaviour~=datepicker]').val("#{@date}")
-  $('[data-behaviour~=datepicker]').datepicker({
-    format: 'dd-mm-yyyy'
-  })
-
-
-
 %table
   %tr
-    %th Patient
-    %th Espaciente
     %th Horario
     %th Comentarios
     %th
@@ -23,8 +10,6 @@
 
   - @orders.each do |order|
     %tr
-      %td= order.patient
-      %td= order.esPaciente
       %td= order.horario
       %td= order.comentarios
       %td= link_to 'Show', order
