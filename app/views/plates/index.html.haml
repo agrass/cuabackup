@@ -4,8 +4,6 @@
   %tr
     %th Nombre
     %th Calorias
-    %th Tipo
-    %th
     %th
     %th
 
@@ -13,11 +11,9 @@
     %tr
       %td= plate.nombre
       %td= plate.calorias
-      %td= plate.tipo
-      %td= link_to 'Show', plate
-      %td= link_to 'Edit', edit_plate_path(plate)
-      %td= link_to 'Destroy', plate, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to 'Editar', edit_plate_path(plate)
+      %td= link_to 'Borrar', plate, :method => :delete, :data => { :confirm => '¿Esta seguro?' }
 
 %br
 
-= link_to 'New Plate', new_plate_path
+= link_to 'Nuevo Plato', new_plate_path

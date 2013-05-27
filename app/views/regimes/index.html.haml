@@ -5,14 +5,10 @@
     %th Nombre
     %th
     %th
-    %th
 
   - @regimes.each do |regime|
     %tr
-      %td= regime.nombre      
-      %td
-        %a.btn{ :href => "#{regime_path(regime)}"}
-          Detalles
+      %td= regime.nombre
       %td
         %a.btn{ :href => "#{edit_regime_path(regime)}"}
           %i.icon-edit

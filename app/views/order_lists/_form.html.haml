@@ -30,6 +30,6 @@
             = f.input :esPaciente , label: 'Acompañante'
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, label: 'Siguiente'
     -if @horario && @horario!='8'
       = link_to 'Saltar', {:controller => "order_lists", :action => "edit", :id => @order_list.id,  :horario => (@horario.to_i * 2).to_s }
