@@ -36,3 +36,18 @@ $ ->
 		url = '/get_plates?regime_id='+regime_id+'&horario='+horario+'&dia='+dia
 		$.get url, (data) ->
         	$('#plates').html data
+        	setTimeout(set_images_event, 1000)
+
+	set_images_event = () ->
+		$('li.span4').each ->
+			$(this).children().last().hide()
+			$(this).click ->
+				flag = true
+				if $(this).children().last().is(':checked')
+					flag = false
+				$(this).parent().children().each ->
+					$(this).removeClass("select")
+					$(this).children().last().prop("checked",false)
+				if flag
+					$(this).addClass("select")
+					$(this).children().last().prop("checked", true)

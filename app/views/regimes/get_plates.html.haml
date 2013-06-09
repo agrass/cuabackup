@@ -1,4 +1,14 @@
 - Plate.obtener_tipos(@horario.to_i).each do |tipo|
-  %p=tipo[0]
+  %p
+    %h3=tipo[0]
   - a = tipo[1].to_s
-  = select(:regPlates, a, @plates.where(:tipo => tipo).collect {|p| [ p.nombre, p.id ] }, {:prompt => 'Seleccione un Plato'})
+  //= select(:regPlates, a, @plates.where(:tipo => tipo).collect {|p| [ p.nombre, p.id ] }, {:prompt => 'Seleccione un Plato'})
+  .row-fluid
+    %ul.thumbnails
+      - @plates.where(:tipo => tipo[1]).each do |plate|
+        %li.span4
+          .thumbnail
+            %img{:alt => "300x300", :src => "http://www.clker.com/cliparts/d/a/1/f/11949858101575416323hotel_icon_restaurant_ge_01.svg.med.png", :style => "width: 300px; height: 300px; margin-top: 30px"}/
+            .caption{:style => "padding: 0px"}
+              %h4{:style => "text-align: center"}= plate.nombre
+          = radio_button(:regPlates, a, plate.id)
