@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130523143448) do
+ActiveRecord::Schema.define(:version => 20130606144453) do
+
+  create_table "day_regimes", :force => true do |t|
+    t.date     "date"
+    t.integer  "regime_day"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "ingredients", :force => true do |t|
     t.string   "nombre"
@@ -46,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20130523143448) do
     t.string   "num_pieza"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "rut"
   end
 
   create_table "plate_ingredients", :force => true do |t|
@@ -106,6 +114,7 @@ ActiveRecord::Schema.define(:version => 20130523143448) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "name"
+    t.string   "rut"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

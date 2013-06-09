@@ -1,5 +1,5 @@
 class Patient < ActiveRecord::Base
-  attr_accessible :nombre, :num_pieza
+  attr_accessible :nombre, :num_pieza, :rut
   has_many :order_lists
 
   def self.patients_group_by_num_pieza
