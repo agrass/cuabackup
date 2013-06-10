@@ -1,32 +1,32 @@
-= link_to image_tag("images/logo2.jpg"), root_path, :class => 'brand2'
+= link_to (image_tag "images/logo2.png", :class=>'logo'), root_path, :class => 'brand2'
 
 %ul.nav
   - if user_signed_in?
     %li
-      = link_to 'Logout', destroy_user_session_path, :method=>'delete'
+      = link_to 'Logout', destroy_user_session_path, :method=>'delete', :class => 'navbar-text'
   - else
     %li
-      = link_to 'Login', new_user_session_path
+      = link_to 'Login', new_user_session_path, :class => 'navbar-text'
   - if user_signed_in?
     %li
-      = link_to 'Editar Cuenta', edit_user_registration_path
+      = link_to 'Editar Cuenta', edit_user_registration_path, :class => 'navbar-text'
     - if current_user.has_role? :admin
       %li
-        = link_to 'Admin', users_path
+        = link_to 'Admin', users_path, :class => 'navbar-text'
       %li
-        = link_to 'Regimenes', regimes_path
+        = link_to 'Regimenes', regimes_path, :class => 'navbar-text'
       %li
-        = link_to 'Platos', plates_path
+        = link_to 'Platos', plates_path, :class => 'navbar-text'
       %li
-        = link_to 'Ingredientes', ingredients_path
+        = link_to 'Ingredientes', ingredients_path, :class => 'navbar-text'
 
     - if current_user.has_role? :nutricionista
       %li
-        = link_to 'Pacientes', patients_path
+        = link_to 'Pacientes', patients_path, :class => 'navbar-text'
       %li
-        = link_to 'Nuevo Pedido', new_order_list_path
+        = link_to 'Nuevo Pedido', new_order_list_path, :class => 'navbar-text'
       %li
-        = link_to 'Pedidos', order_lists_path
+        = link_to 'Pedidos', order_lists_path, :class => 'navbar-text'
   - else
     %li
-      = link_to 'Sign up', new_user_registration_path
+      = link_to 'Sign up', new_user_registration_path, :class => 'navbar-text'
