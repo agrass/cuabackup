@@ -14,7 +14,7 @@
 
   .tab-content{ :style => "overflow: hidden;"}
     #tab1.tab-pane.active
-      %h2 Platos
+      %legend Platos
       %table.table.table-condensed
         %tr
           %th Nombre
@@ -38,9 +38,9 @@
 
       = link_to 'Nuevo Plato', new_plate_path
     #tab2.tab-pane
-      %h2 Lista Ingredientes
+      %legend Lista Ingredientes
 
-      %table
+      %table.table.table-condensed
         %tr
           %th Nombre
           %th Precio
@@ -63,7 +63,7 @@
 
       = link_to 'New Ingredient', new_ingredient_path
     #tab3.tab-pane.active
-      %h2 Regímenes
+      %legend Regímenes
 
       %table.table.table-condensed
         %tr
@@ -87,7 +87,7 @@
         Nuevo Regimen
 
     #tab4.tab-pane.active
-      %h3 Users
+      %legend Users
       .span8
         %table.table.table-condensed
           %thead

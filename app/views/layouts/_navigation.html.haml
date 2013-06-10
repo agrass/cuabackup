@@ -1,6 +1,6 @@
-= link_to image_tag("images/logo2.jpg"), root_path, :class => 'brand2'
-
+= link_to (image_tag "images/logo2.png", :class=>'logo'), root_path, :class => 'brand2'
 %ul.nav
+
   - if user_signed_in?    
     - if current_user.has_role? :nutricionista
       %li
@@ -41,3 +41,4 @@
       #nav_account
         %li
           = link_to 'Login', new_user_session_path
+
