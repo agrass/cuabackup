@@ -1,4 +1,7 @@
 CUA::Application.routes.draw do
+  resources :areas
+
+
   resources :reports
 
 
