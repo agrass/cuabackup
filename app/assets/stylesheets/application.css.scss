@@ -88,20 +88,18 @@ background-color: rgb(58, 170, 15);
 }
 
 #nav_account{
-  float:right;
-
+  margin-left: 69%;
 }
 
 .nav{
-  
   -webkit-border-radius: 15px 55px 5px;
-background-color: rgb(253, 253, 253);
-border: 1px rgb(22, 20, 20);
-margin-top: 15px;
-margin-left: 20px;
-
+  background-color: rgb(253, 253, 253);
+  border: 1px rgb(22, 20, 20);
+  margin-top: 15px !important;
+  margin-left: 20px !important;
+  width: 80%;
 }
 
-
-
-
+.nav.acc{
+  margin-top: 0px !important;
+}
