@@ -26,5 +26,6 @@ CUA::Application.routes.draw do
 
 
   match 'get_plates', :to => 'regimes#get_plates', :as => :regime_plates
+  match 'cuapanel', :to => 'home#cuaPanel'
   match 'get_form_select_plates', :to => 'regimes#get_form_select', :as => :regime_plates
 end

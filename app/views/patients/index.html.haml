@@ -1,6 +1,6 @@
-%h1 Listing patients
+%legend Pacientes
 
-%table
+%table.table.table-condensed
   %tr
     %th Nombre
     %th Num pieza
@@ -12,9 +12,15 @@
     %tr
       %td= patient.nombre
       %td= patient.num_pieza
-      %td= link_to 'Show', patient
-      %td= link_to 'Edit', edit_patient_path(patient)
-      %td= link_to 'Destroy', patient, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td
+        = link_to(patient, "data-toggle" => "tooltip", :title => "Ver") do
+          %i.icon-hand-up
+      %td
+        = link_to(edit_patient_path(patient), "data-toggle" => "tooltip", :title => "Editar") do
+          %i.icon-pencil
+      %td
+        = link_to(patient, "data-toggle" => "tooltip", :title => "Eliminar", :method => :delete, :data => { :confirm => 'Are you sure?' }) do
+          %i.icon-trash
 
 %br
 

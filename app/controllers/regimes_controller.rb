@@ -1,14 +1,21 @@
 class RegimesController < ApplicationController
   respond_to :html
+  require "prawn"
   # GET /regimes
   # GET /regimes.json
   def index
     @regimes = Regime.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @regimes }
-    end
+    # respond_to do |format|
+    #   format.html # index.html.erb
+    #   format.json { render json: @regimes }
+    # end
+
+  Prawn::Document.generate("public/pdf/hello.pdf") do
+    text "Hello World!"
+  end
+
+
   end
 
   # GET /regimes/1
