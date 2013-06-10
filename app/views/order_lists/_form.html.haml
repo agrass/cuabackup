@@ -24,10 +24,10 @@
       #persona
         %ul#lista_persona{:style =>"display: none"}
           %li{:style => "display: inline-table; padding-right: 50px"}
-            = label_tag(:nombre_paciente, "Nombre Paciente", :id =>"nombre_paciente")
-            = check_box_tag(:nombre)
+            = f.input :esPaciente, :id =>"nombre_paciente"
           %li{:style => "display: inline-table"}
-            = f.input :esPaciente , label: 'Acompañante'
+            = label_tag(:acompanante, "Acompañante")
+            = check_box_tag(:acompanante)
 
   .form-actions
     = f.button :submit, label: 'Siguiente'
