@@ -31,6 +31,7 @@ $ ->
 
 	get_plates_from_regime = () ->
 		regime_id = ($ 'select#regime_').val()
+		$('#regime_order_id').attr("value", regime_id)
 		horario = ($ '#order_list_orders_attributes_0_horario').val()
 		dia = ($ '#dia_dia').val()
 		url = '/get_plates?regime_id='+regime_id+'&horario='+horario+'&dia='+dia

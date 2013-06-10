@@ -2,7 +2,8 @@
   = f.error_notification
 
   .form-inputs
-    = hidden_field_tag 'dia[dia]', DayRegime.getCurrentDay()
+    = hidden_field_tag 'dia[dia]', @order_list.dia
+    = hidden_field_tag 'regime_order[id]'
     -if @horario
       = label_tag(:nombre_paciente, @order_list.patient.nombre , :id =>"nombre_paciente")
       = f.simple_fields_for :orders, @order_list.orders.build do |orders_form|
@@ -20,6 +21,8 @@
         #plates
         = orders_form.input :comentarios
     -else
+      = hidden_field_tag 'order_list[dia]', DayRegime.getCurrentDay()
+      = hidden_field_tag 'order_list[fecha]', Date.today
       = select(:order_list, :patient_id, Patient.all.collect {|p| [ p.num_pieza, p.id ] }, {:prompt => 'Seleccione Pieza'})
       #persona
         %ul#lista_persona{:style =>"display: none"}

@@ -83,6 +83,7 @@ class OrderListsController < ApplicationController
                   order.plates << Plate.find(plate[1].to_i)
                 end
               end
+              order.regime_id = params[:regime_order][:id]
               order.save
             end
           end
