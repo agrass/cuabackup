@@ -10,4 +10,8 @@ class HomeController < ApplicationController
     @ingredients = Ingredient.all
     render "panel"
   end
+
+  def admin
+
+  end
 end

@@ -13,6 +13,10 @@
           Ordenes
     - if current_user.has_role? :admin
       %li
+        = link_to(admin_path) do
+          %i.icon-cog
+          Admin
+      %li
         = link_to cuapanel_path do
           %i.icon-wrench
           Configuración
