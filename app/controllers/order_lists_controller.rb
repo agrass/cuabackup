@@ -71,23 +71,28 @@ class OrderListsController < ApplicationController
     
     respond_to do |format|
       if @order_list.update_attributes(params[:order_list])
-        if !params[:order_list][:orders_attributes]['0'][:horario].empty?
-          order = @order_list.orders.where(:horario => params[:order_list][:orders_attributes]['0'][:horario].to_i).first
-          order.plates.destroy_all
-          params[:regPlates].each do |plate|
-            if(!plate[1].empty?)
-              order.plates << Plate.find(plate[1].to_i)
+        if params[:order_list][:orders_attributes].nil?
+          format.html { redirect_to :controller => 'order_lists', :action => 'edit', :id => @order_list.id, :horario => '1'}
+        else
+          if !params[:order_list][:orders_attributes]['0'][:horario].empty?
+            order = @order_list.orders.where(:horario => params[:order_list][:orders_attributes]['0'][:horario].to_i).first
+            order.plates.destroy_all
+            if params[:regPlates]
+              params[:regPlates].each do |plate|
+                if(!plate[1].empty?)
+                  order.plates << Plate.find(plate[1].to_i)
+                end
+              end
+              order.save
             end
           end
-          order.save
-        end
 
-        if params[:order_list][:orders_attributes]['0'][:horario].empty? || params[:order_list][:orders_attributes]['0'][:horario] == '8'
-          format.html { redirect_to @order_list, notice: 'Order list was successfully updated.' }
-        else
-          format.html { redirect_to :controller => 'order_lists', :action => 'edit', :id => @order_list.id, :horario => (params[:order_list][:orders_attributes]['0'][:horario].to_i * 2).to_s}
+          if params[:order_list][:orders_attributes]['0'][:horario].empty? || params[:order_list][:orders_attributes]['0'][:horario] == '8'
+            format.html { redirect_to @order_list, notice: 'Order list was successfully updated.' }
+          else
+            format.html { redirect_to :controller => 'order_lists', :action => 'edit', :id => @order_list.id, :horario => (params[:order_list][:orders_attributes]['0'][:horario].to_i * 2).to_s}
+          end
         end
-        format.json { head :no_content }
       else
         format.html { render action: "edit" }
         format.json { render json: @order_list.errors, status: :unprocessable_entity }

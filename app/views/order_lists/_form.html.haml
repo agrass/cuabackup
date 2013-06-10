@@ -2,7 +2,7 @@
   = f.error_notification
 
   .form-inputs
-    = hidden_field_tag 'dia[dia]', '1'
+    = hidden_field_tag 'dia[dia]', DayRegime.getCurrentDay()
     -if @horario
       = label_tag(:nombre_paciente, @order_list.patient.nombre , :id =>"nombre_paciente")
       = f.simple_fields_for :orders, @order_list.orders.build do |orders_form|
