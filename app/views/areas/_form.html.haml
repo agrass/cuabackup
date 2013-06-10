@@ -1,0 +1,9 @@
+= simple_form_for(@area) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :nombre
+    = f.input :descripcion
+
+  .form-actions
+    = f.button :submit

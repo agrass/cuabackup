@@ -8,6 +8,7 @@ class HomeController < ApplicationController
     @plates = Plate.all
     @regimes = Regime.all
     @ingredients = Ingredient.all
+    @areas = Area.all
     render "panel"
   end
 
