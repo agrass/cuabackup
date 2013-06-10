@@ -62,7 +62,7 @@
       %br
 
       = link_to 'New Ingredient', new_ingredient_path
-    #tab3.tab-pane.active
+    #tab3.tab-pane
       %legend Regímenes
 
       %table.table.table-condensed
@@ -86,7 +86,7 @@
         %i.icon-plus
         Nuevo Regimen
 
-    #tab4.tab-pane.active
+    #tab4.tab-pane
       %legend Users
       .span8
         %table.table.table-condensed
@@ -110,7 +110,7 @@
                   = render user
                 %td= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') unless user == current_user
 
-    #tab5.tab-pane.active
+    #tab5.tab-pane
       %h3
         Hoy es el día 
         = DayRegime.getCurrentDay()

@@ -1,1 +1,21 @@
-hola
+.tabbable
+  / Only required for left/right tabs
+  %ul.nav.nav-tabs
+    %li.active
+      %a{"data-toggle" => "tab", :href => "#tab1"} Ordenes
+    %li
+      %a{"data-toggle" => "tab", :href => "#tab2"} Vouchers
+    %li
+      %a{"data-toggle" => "tab", :href => "#tab3"} Compras
+    %li
+      %a{"data-toggle" => "tab", :href => "#tab4"} Estadisticas
+
+  .tab-content{ :style => "overflow: hidden;"}
+    #tab1.tab-pane.active
+      Pedidos
+    #tab2.tab-pane
+      Vouchers
+    #tab3.tab-pane
+      Compras
+    #tab4.tab-pane
+      Estadisticas
