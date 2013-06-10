@@ -24,25 +24,6 @@ $(function() {
 $('#send_regimen').click(function(){
 
   
-  $('.horario_val').each( function(){
-
-    var id = $(this).parents(".accordion-body").attr('id');
-
-    if(id == "collapseDesayuno"){
-      $(this).val(1);
-
-    }
-
-    else if( id == "collapseAlmuerzo" ){
-      $(this).val(2);
-    }
-
-    else{
-      $(this).val(3);
-
-    }
-    
-  });
 
 
   $('.edit_regime').submit();

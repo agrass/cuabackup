@@ -11,9 +11,7 @@ class RegimesController < ApplicationController
     #   format.json { render json: @regimes }
     # end
 
-  Prawn::Document.generate("public/pdf/hello.pdf") do
-    text "Hello World!"
-  end
+
 
 
   end

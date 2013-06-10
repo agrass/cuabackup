@@ -103,7 +103,7 @@
             = f.fields_for :regime_plates, Regime.obtenerPlatos(@dia, 4, @regime.id, tipo_cena[1] ) do |g|
               = g.collection_select(:plate_id, Plate.find_all_by_tipo(tipo_cena[1]), :id, :nombre )
               = g.link_to_remove "Borrar"
-              = g.hidden_field :horario , :value => 3, :class => "horario_val"
+              = g.hidden_field :horario , :value => 4, :class => "horario_val"
               = g.hidden_field :dia , :value => @dia
           =f.link_to_add "+", :regime_plates, :tipo => tipo_cena[1], :dia => @dia, :horario => 4
 

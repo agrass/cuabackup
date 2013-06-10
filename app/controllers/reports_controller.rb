@@ -26,6 +26,10 @@ class ReportsController < ApplicationController
   def new
     @report = Report.new
 
+  Prawn::Document.generate("public/pdf/hello.pdf") do
+    text "Hello World!"
+  end
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @report }
