@@ -5,13 +5,13 @@ $ ->
 
 	($ 'select#order_list_patient_id').change ->
 		($ '#lista_persona').css("display", "block")
-		($ 'input#nombre').attr("checked",true)
+		($ 'input#order_list_esPaciente').attr("checked",true)
 		change_name()
 
 	($ 'select#regime_').change ->
 		get_plates_from_regime()
 
-	($ 'input#nombre').change ->
+	($ 'input#acompanante').change ->
 		if this.checked
 			($ 'input#order_list_esPaciente').attr("checked",false)
 		else
@@ -19,15 +19,15 @@ $ ->
 
 	($ 'input#order_list_esPaciente').change ->
 		if this.checked
-			($ 'input#nombre').attr("checked",false)
+			($ 'input#acompanante').attr("checked",false)
 		else
-			($ 'input#nombre').attr("checked",true)
+			($ 'input#acompanante').attr("checked",true)
 
 	($ 'select#order_patient').change ->
 
 	change_name = (id) ->
 		id = ($ 'select#order_list_patient_id').val()
-		($ 'label#nombre_paciente').html(patient_mapper[id])
+		($ 'label.boolean').html(patient_mapper[id])
 
 	get_plates_from_regime = () ->
 		regime_id = ($ 'select#regime_').val()

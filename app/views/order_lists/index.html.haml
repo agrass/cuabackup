@@ -1,42 +1,105 @@
 %legend Lista Ordenes
-
 = label_tag(:fecha, "Fecha:")
 %input{"data-behaviour" => "datepicker", :type => "text", :data_url => "#{order_lists_path}", :value => Date.today}/
-
 :javascript
   $(function() {
   $('[data-behaviour~=datepicker]').datepicker({
     format: 'dd-mm-yyyy'
   })
   $('[data-behaviour~=datepicker]').val("#{@date}")
-  
 
   });
-
-%table.table.table-condensed
-  %tr
-    %th Patient
-    %th Acompañante
-    %th
-    %th
-    %th
-
-  - @order_lists.each do |order_list|
-    %tr
-      %td= order_list.patient.nombre
-      %td
-        =  if order_list.esPaciente
-          x
-      %td
-        = link_to(order_list, "data-toggle" => "tooltip", :title => "Ver") do
-          %i.icon-hand-up
-      %td
-        = link_to(edit_order_list_path(order_list), "data-toggle" => "tooltip", :title => "Editar") do
-          %i.icon-pencil
-      %td
-        = link_to(order_list, "data-toggle" => "tooltip", :title => "Eliminar", :method => :delete, :data => { :confirm => 'Are you sure?' }) do
-          %i.icon-trash
-
-%br
-
+#accordion2.accordion
+  .accordion-group
+    .accordion-heading
+      %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseDesayuno"}
+        %h4 Desayuno
+    #collapseDesayuno.accordion-body.collapse.in
+      .accordion-inner
+      %table.table
+        %th Pieza
+        %th Paciente
+        %th
+        %th
+        - @order_lists.each do |order_list|
+          - order_list.orders.each do |order|
+            - if order.horario == 1
+              %tr
+                %td= order_list.patient.num_pieza
+                %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
+                %td
+                  = link_to(edit_order_path(order), "data-toggle" => "tooltip", :title => "Editar") do
+                    %i.icon-pencil
+                %td
+                  = link_to(order, "data-toggle" => "tooltip", :title => "Eliminar", :method => :delete, :data => { :confirm => 'Are you sure?' }) do
+                    %i.icon-trash
+  .accordion-group
+    .accordion-heading
+      %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseAlmuerzo"}
+        %h4 Almuerzo
+    #collapseAlmuerzo.accordion-body.collapse.in
+      .accordion-inner
+      %table.table
+        %th Pieza
+        %th Paciente
+        %th
+        %th
+        - @order_lists.each do |order_list|
+          - order_list.orders.each do |order|
+            - if order.horario == 2
+              %tr
+                %td= order_list.patient.num_pieza
+                %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
+                %td
+                  = link_to(edit_order_path(order), "data-toggle" => "tooltip", :title => "Editar") do
+                    %i.icon-pencil
+                %td
+                  = link_to(order, "data-toggle" => "tooltip", :title => "Eliminar", :method => :delete, :data => { :confirm => 'Are you sure?' }) do
+                    %i.icon-trash
+  .accordion-group
+    .accordion-heading
+      %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseOnce"}
+        %h4 Once
+    #collapseOnce.accordion-body.collapse.in
+      .accordion-inner
+      %table.table
+        %th Pieza
+        %th Paciente
+        %th
+        %th
+        - @order_lists.each do |order_list|
+          - order_list.orders.each do |order|
+            - if order.horario == 3
+              %tr
+                %td= order_list.patient.num_pieza
+                %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
+                %td
+                  = link_to(edit_order_path(order), "data-toggle" => "tooltip", :title => "Editar") do
+                    %i.icon-pencil
+                %td
+                  = link_to(order, "data-toggle" => "tooltip", :title => "Eliminar", :method => :delete, :data => { :confirm => 'Are you sure?' }) do
+                    %i.icon-trash
+  .accordion-group
+    .accordion-heading
+      %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseCena"}
+        %h4 Cena
+    #collapseCena.accordion-body.collapse.in
+      .accordion-inner
+      %table.table
+        %th Pieza
+        %th Paciente
+        %th
+        %th
+        - @order_lists.each do |order_list|
+          - order_list.orders.each do |order|
+            - if order.horario == 4
+              %tr
+                %td= order_list.patient.num_pieza
+                %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
+                %td
+                  = link_to(edit_order_path(order), "data-toggle" => "tooltip", :title => "Editar") do
+                    %i.icon-pencil
+                %td
+                  = link_to(order, "data-toggle" => "tooltip", :title => "Eliminar", :method => :delete, :data => { :confirm => 'Are you sure?' }) do
+                    %i.icon-trash
 = link_to 'Nueva Orden', new_order_list_path
