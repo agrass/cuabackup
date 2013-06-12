@@ -22,44 +22,45 @@ user.add_role :cocina
 
 Plate.destroy_all
 Ingredient.destroy_all
+RegimePlate.destroy_all
 Patient.destroy_all
 DayRegime.destroy_all
 
 puts 'Platos'
-plate1 = Plate.create(:nombre => "Cafe" , :tipo => 1 , :horario => 1)
-plate2 = Plate.create(:nombre => "Te" , :tipo => 1 , :horario => 1)
-plate3 = Plate.create(:nombre => "Pan" , :tipo => 2 , :horario => 1)
+plate1 = Plate.create(:nombre => "Cafe" , :tipo => 1 , :horario => 5)
+plate2 = Plate.create(:nombre => "Te" , :tipo => 1 , :horario => 5)
+plate3 = Plate.create(:nombre => "Pan" , :tipo => 2 , :horario => 5)
 
-plate4 = Plate.create(:nombre => "Jamon" , :tipo => 3 , :horario => 1)
-plate5 = Plate.create(:nombre => "Palta" , :tipo => 3 , :horario => 1)
-plate6 = Plate.create(:nombre => "Tortilla Francesa" , :tipo => 3 , :horario => 1)
-plate7 = Plate.create(:nombre => "Queso" , :tipo => 3 , :horario => 1)
+plate4 = Plate.create(:nombre => "Jamon" , :tipo => 3 , :horario => 5)
+plate5 = Plate.create(:nombre => "Palta" , :tipo => 3 , :horario => 5)
+plate6 = Plate.create(:nombre => "Tortilla Francesa" , :tipo => 3 , :horario => 5)
+plate7 = Plate.create(:nombre => "Queso" , :tipo => 3 , :horario => 5)
 
-plate8 =Plate.create(:nombre => "Mantequilla" , :tipo => 4 , :horario => 1)
-plate9 = Plate.create(:nombre => "Mermelada" , :tipo => 4 , :horario => 1)
-plate10 = Plate.create(:nombre => "Manjar" , :tipo => 4 , :horario => 1)
-plate11 = Plate.create(:nombre => "Miel" , :tipo => 4 , :horario => 1)
+plate8 =Plate.create(:nombre => "Mantequilla" , :tipo => 4 , :horario => 5)
+plate9 = Plate.create(:nombre => "Mermelada" , :tipo => 4 , :horario => 5)
+plate10 = Plate.create(:nombre => "Manjar" , :tipo => 4 , :horario => 5)
+plate11 = Plate.create(:nombre => "Miel" , :tipo => 4 , :horario => 5)
 
-plate12 = Plate.create(:nombre => "Jugo naranja" , :tipo => 5 , :horario => 1)
-plate13 = Plate.create(:nombre => "Yogurt" , :tipo => 5 , :horario => 1)
-plate14 = Plate.create(:nombre => "Yogurt" , :tipo => 5 , :horario => 1)
+plate12 = Plate.create(:nombre => "Jugo naranja" , :tipo => 5 , :horario => 5)
+plate13 = Plate.create(:nombre => "Yogurt" , :tipo => 5 , :horario => 5)
+plate14 = Plate.create(:nombre => "Yogurt" , :tipo => 5 , :horario => 5)
 
-plate15 = Plate.create(:nombre => "Pie de limon" , :tipo => 6 , :horario => 1)
-plate16 = Plate.create(:nombre => "2 Palmeritas" , :tipo => 6 , :horario => 1)
-plate17 = Plate.create(:nombre => "Bollo" , :tipo => 6 , :horario => 1)
-plate18 = Plate.create(:nombre => "Galletas" , :tipo => 6 , :horario => 1)
+plate15 = Plate.create(:nombre => "Pie de limon" , :tipo => 6 , :horario => 5)
+plate16 = Plate.create(:nombre => "2 Palmeritas" , :tipo => 6 , :horario => 5)
+plate17 = Plate.create(:nombre => "Bollo" , :tipo => 6 , :horario => 5)
+plate18 = Plate.create(:nombre => "Galletas" , :tipo => 6 , :horario => 5)
 
-plate19 = Plate.create(:nombre => "Consome" , :tipo => 7 , :horario => 2)
-plate20 = Plate.create(:nombre => "Albahaca y dados de tomate, palta, queso fresco" , :tipo => 7 , :horario => 2)
-plate21 = Plate.create(:nombre => "Quiche loreine" , :tipo => 7 , :horario => 2)
+plate19 = Plate.create(:nombre => "Consome" , :tipo => 7 , :horario => 10)
+plate20 = Plate.create(:nombre => "Albahaca y dados de tomate, palta, queso fresco" , :tipo => 7 , :horario => 10)
+plate21 = Plate.create(:nombre => "Quiche loreine" , :tipo => 7 , :horario => 10)
 
-plate22 = Plate.create(:nombre => "Reineta al horno" , :tipo => 8 , :horario => 2)
-plate23 = Plate.create(:nombre => "Bistec de lomo c/ salsa champiñon" , :tipo => 8 , :horario => 2)
+plate22 = Plate.create(:nombre => "Reineta al horno" , :tipo => 8 , :horario => 10)
+plate23 = Plate.create(:nombre => "Bistec de lomo c/ salsa champiñon" , :tipo => 8 , :horario => 10)
 
-plate24 = Plate.create(:nombre => "Verduras a la mantequilla: Zapallito, zanahoria, champiñones" , :tipo => 9 , :horario => 2)
-plate25 = Plate.create(:nombre => "Arroz" , :tipo => 9 , :horario => 2)
-plate26 = Plate.create(:nombre => "Pure" , :tipo => 9 , :horario => 2)
-plate27 = Plate.create(:nombre => "Verduras a la mantequilla: Zapallito, zanahoria, champiñones" , :tipo => 9 , :horario => 2)
+plate24 = Plate.create(:nombre => "Verduras a la mantequilla: Zapallito, zanahoria, champiñones" , :tipo => 9 , :horario => 10)
+plate25 = Plate.create(:nombre => "Arroz" , :tipo => 9 , :horario => 10)
+plate26 = Plate.create(:nombre => "Pure" , :tipo => 9 , :horario => 10)
+plate27 = Plate.create(:nombre => "Verduras a la mantequilla: Zapallito, zanahoria, champiñones" , :tipo => 9 , :horario => 10)
 
 Plate.create(:nombre => "Helado" , :tipo => 10 , :horario => 2)
 Plate.create(:nombre => "Fruta" , :tipo => 10 , :horario => 2)

@@ -1,13 +1,44 @@
 = simple_form_for(@order) do |f|
   = f.error_notification
-
-  .form-inputs
-    = hidden_field_tag 'dia[dia]', '1'
-    = hidden_field_tag 'order[horario]', '1'
-    = select("regime", "", Regime.all.collect {|p| [ p.nombre, p.id ] }, {:prompt => 'Seleccione Régimen'})
-    #plates
-
-    = f.input :comentarios
+  - Plate.obtener_tipos(@order.horario).each do |tipo|
+    %p
+      %h3=tipo[0]
+    - a = tipo[1].to_s
+    .row-fluid
+      %ul.thumbnails
+        - @plates.where(:tipo => tipo[1]).each do |plate|
+          - if @order.plates.exists?(plate)
+            %li.span4.select
+              .thumbnail
+                %img{:alt => "300x300", :src => "http://www.clker.com/cliparts/d/a/1/f/11949858101575416323hotel_icon_restaurant_ge_01.svg.med.png", :style => "width: 300px; height: 300px; margin-top: 30px"}/
+                .caption{:style => "padding: 0px"}
+                  %h4{:style => "text-align: center"}= plate.nombre
+              = radio_button(:regPlates, a, plate.id, :checked => true)
+          -else
+            %li.span4
+              .thumbnail
+                %img{:alt => "300x300", :src => "http://www.clker.com/cliparts/d/a/1/f/11949858101575416323hotel_icon_restaurant_ge_01.svg.med.png", :style => "width: 300px; height: 300px; margin-top: 30px"}/
+                .caption{:style => "padding: 0px"}
+                  %h4{:style => "text-align: center"}= plate.nombre
+              = radio_button(:regPlates, a, plate.id)
 
   .form-actions
-    = f.button :submit, label: 'Siguiente'
+    = f.button :submit, label: 'Actualizar'
+:javascript
+  $('li.span4').each(function(){
+    $(this).children().last().hide();
+    $(this).click(function(){
+      var flag = true;
+      if ($(this).children().last().is(':checked')){
+        flag = false;
+      }
+      $(this).parent().children().each(function(){
+        $(this).removeClass("select");
+        $(this).children().last().prop("checked",false);
+      });
+      if(flag){
+        $(this).addClass("select");
+        $(this).children().last().prop("checked", true);
+      }
+    });
+  });

@@ -10,6 +10,8 @@
     %li
       %a{"data-toggle" => "tab", :href => "#tab4"} Usuarios
     %li
+      %a{"data-toggle" => "tab", :href => "#tab6"} Areas Cocina
+    %li
       %a{"data-toggle" => "tab", :href => "#tab5"} Configuración
 
   .tab-content{ :style => "overflow: hidden;"}
@@ -54,7 +56,7 @@
             %td= ingredient.precio
             %td= ingredient.unidad
             %td
-              = link_to(edit_regime_path(ingredient),:class => 'btn btn-mini', "data-toggle" => "tooltip", :title => "Editar") do
+              = link_to(edit_ingredient_path(ingredient),:class => 'btn btn-mini', "data-toggle" => "tooltip", :title => "Editar") do
                 %i.icon-pencil
               = link_to(ingredient, :method => :delete, :data => { :confirm => '¿Seguro que desea eliminar al paciente?' },:class => 'btn btn-mini', "data-toggle" => "tooltip", :title => "Eliminar") do
                 %i.icon-trash    
@@ -74,10 +76,10 @@
             %td= regime.nombre
             %td
               = link_to(edit_regime_path(regime),:class => 'btn btn-mini', "data-toggle" => "tooltip", :title => "Editar") do
-                %i.icon-pencil           
+                %i.icon-pencil
 
               = link_to(regime, :method => :delete, :data => { :confirm => '¿Seguro que desea eliminar al paciente?' },:class => 'btn btn-mini', "data-toggle" => "tooltip", :title => "Eliminar") do
-                %i.icon-trash   
+                %i.icon-trash
 
 
       %hr
@@ -119,3 +121,23 @@
           %i.icon-arrow-up
         %a.btn.btn-mini{:href => "#", :type => "button", "data-toggle" => "tooltip", :title => "Restar día"}
           %i.icon-arrow-down
+
+    #tab6.tab-pane
+      %legend Areas Cocina
+      %table.table.table-condensed
+        %thead
+          %tr
+            %th Nombre
+            %th
+            %th
+        %tbody
+          - @areas.each do |area|
+            %tr
+              %td= link_to area.nombre, area
+              %td
+                = link_to(edit_area_path(area),:class => 'btn btn-mini', "data-toggle" => "tooltip", :title => "Editar") do
+                  %i.icon-pencil
+                = link_to(area, :method => :delete, :data => { :confirm => '¿Seguro que desea eliminar al paciente?' },:class => 'btn btn-mini', "data-toggle" => "tooltip", :title => "Eliminar") do
+                  %i.icon-trash
+      %br
+      = link_to 'Nueva Area', new_area_path
