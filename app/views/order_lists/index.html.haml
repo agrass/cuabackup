@@ -19,58 +19,63 @@
         %h4 Desayuno
     #collapseDesayuno.accordion-body.collapse.in
       .accordion-inner
+      %a.btn{ :href => "../reports/new?tipo=1"}
+        %i.icon-download-alt
       %table.table
         %th Pieza
         %th Paciente
         %th
         %th
         - @order_lists.each do |order_list|
-          - order_list.orders.each do |order|
-            - if order.horario == 1
-              %tr
-                %td= order_list.patient.num_pieza
-                %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
-                %td
-                  = link_to(edit_order_path(order), "data-toggle" => "tooltip", :title => "Editar") do
-                    %i.icon-pencil
-                %td
-                  = link_to(order, "data-toggle" => "tooltip", :title => "Eliminar", :method => :delete, :data => { :confirm => 'Are you sure?' }) do
-                    %i.icon-trash
+          - order_list.orders.find_all_by_horario(1).each do |order|
+            %tr
+              %td= order_list.patient.num_pieza
+              %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
+              %td
+                = link_to(edit_order_path(order), "data-toggle" => "tooltip", :title => "Editar") do
+                  %i.icon-pencil
+              %td
+                = link_to(order, "data-toggle" => "tooltip", :title => "Eliminar", :method => :delete, :data => { :confirm => 'Are you sure?' }) do
+                  %i.icon-trash
   .accordion-group
     .accordion-heading
       %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseAlmuerzo"}
         %h4 Almuerzo
     #collapseAlmuerzo.accordion-body.collapse.in
       .accordion-inner
+      %a.btn{ :href => "../reports/new?tipo=2"}
+        %i.icon-download-alt
       %table.table
         %th Pieza
         %th Paciente
         %th
         %th
         - @order_lists.each do |order_list|
-          - order_list.orders.each do |order|
-            - if order.horario == 2
-              %tr
-                %td= order_list.patient.num_pieza
-                %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
-                %td
-                  = link_to(edit_order_path(order), "data-toggle" => "tooltip", :title => "Editar") do
-                    %i.icon-pencil
-                %td
-                  = link_to(order, "data-toggle" => "tooltip", :title => "Eliminar", :method => :delete, :data => { :confirm => 'Are you sure?' }) do
-                    %i.icon-trash
+          - order_list.orders.find_all_by_horario(2).each do |order|            
+            %tr
+              %td= order_list.patient.num_pieza
+              %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
+              %td
+                = link_to(edit_order_path(order), "data-toggle" => "tooltip", :title => "Editar") do
+                  %i.icon-pencil
+              %td
+                = link_to(order, "data-toggle" => "tooltip", :title => "Eliminar", :method => :delete, :data => { :confirm => 'Are you sure?' }) do
+                  %i.icon-trash
   .accordion-group
     .accordion-heading
       %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseOnce"}
         %h4 Once
     #collapseOnce.accordion-body.collapse.in
       .accordion-inner
+      %a.btn{ :href => "../reports/new?tipo=4"}
+        %i.icon-download-alt
       %table.table
         %th Pieza
         %th Paciente
         %th
         %th
         - @order_lists.each do |order_list|
+
           - order_list.orders.each do |order|
             - if order.horario == 4
               %tr
@@ -88,6 +93,8 @@
         %h4 Cena
     #collapseCena.accordion-body.collapse.in
       .accordion-inner
+      %a.btn{ :href => "../reports/new?tipo=8"}
+        %i.icon-download-alt
       %table.table
         %th Pieza
         %th Paciente

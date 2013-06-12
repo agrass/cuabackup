@@ -25,15 +25,17 @@ class ReportsController < ApplicationController
   # GET /reports/new.json
   def new
     @report = Report.new
-
-  Prawn::Document.generate("public/pdf/hello.pdf") do
-    text "Hello World!"
-  end
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @report }
+    @fecha = Time.now - 2.days
+    if params[:fecha_in] != nil
+      @fecha = params[:fecha_in]
     end
+
+    @report.name = Report.plates(params[:tipo], @fecha)
+    @report.tipo = params[:tipo]
+    @report.save
+    redirect_to @report
+
+
   end
 
   # GET /reports/1/edit

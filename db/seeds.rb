@@ -87,7 +87,7 @@ PlateIngredient.create(:cantidad => 2, :plate_id => plate23.id, :ingredient_id =
 
 puts 'Pacientes'
 Patient.create(:nombre => "Pedro A", :rut => "17753853-4" , :num_pieza => "1A" )
-Patient.create(:nombre => "Rodrigo S", :rut => "177533453-8" , :num_pieza => "2A" )
+Patient.create(:nombre => "Rodrigo A", :rut => "177533453-8" , :num_pieza => "2A" )
 Patient.create(:nombre => "Fernando E", :rut => "13753853-3" , :num_pieza => "3A" )
 Patient.create(:nombre => "Joaquin F", :rut => "16753853-2" , :num_pieza => "4A" )
 Patient.create(:nombre => "Vicente V", :rut => "13753853-1" , :num_pieza => "5A" )

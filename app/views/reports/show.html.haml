@@ -1,17 +1,6 @@
 %p#notice= notice
 
-%p
-  %b Name:
-  = @report.name
-%p
-  %b Type:
-  = @report.type
-%p
-  %b Description:
-  = @report.description
-%p
-  %b Start:
-  = @report.start
+%iframe{ :src =>"../pdf/#{@report.name}", :style=> "width:90%; height:1000px;", :frameborder=> "0" }
 
 = link_to 'Edit', edit_report_path(@report)
 \|
