@@ -1,8 +1,4 @@
 $ ->
-	$('[data-behaviour~=datepicker]').change ->
-		url = $(this).attr('data_url') + '?date=' + $(this).val()
-		window.location = url
-
 	($ 'select#order_list_patient_id').change ->
 		($ '#lista_persona').css("display", "block")
 		($ 'input#order_list_esPaciente').attr("checked",true)

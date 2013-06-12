@@ -2,13 +2,15 @@ class OrderListsController < ApplicationController
   # GET /order_lists
   # GET /order_lists.json
   def index
-    @order_lists = OrderList.all
 
     if params[:date]
       @date = params[:date]
     else
       @date = Time.now.strftime("%d/%m/%Y")
     end
+
+    date2 = @date.split('/')
+    @order_lists = OrderList.where(:fecha => date2[2]+'-'+date2[1]+'-'+date2[0])
 
     respond_to do |format|
       format.html # index.html.erb

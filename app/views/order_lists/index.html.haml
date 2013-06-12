@@ -1,11 +1,14 @@
 %legend Lista Ordenes
 = label_tag(:fecha, "Fecha:")
-%input{"data-behaviour" => "datepicker", :type => "text", :data_url => "#{order_lists_path}", :value => Date.today}/
+%input{"data-behaviour" => "datepicker", :type => "text", :data_url => "#{order_lists_path}"}/
 :javascript
   $(function() {
   $('[data-behaviour~=datepicker]').datepicker({
-    format: 'dd-mm-yyyy'
-  })
+    format: 'dd/mm/yyyy'
+  }).on('changeDate', function(ev) {
+    url = $(this).attr('data_url') + '?date=' + $(this).val();
+    window.location = url;
+  });
   $('[data-behaviour~=datepicker]').val("#{@date}")
 
   });
@@ -69,7 +72,7 @@
         %th
         - @order_lists.each do |order_list|
           - order_list.orders.each do |order|
-            - if order.horario == 3
+            - if order.horario == 4
               %tr
                 %td= order_list.patient.num_pieza
                 %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
@@ -92,7 +95,7 @@
         %th
         - @order_lists.each do |order_list|
           - order_list.orders.each do |order|
-            - if order.horario == 4
+            - if order.horario == 8
               %tr
                 %td= order_list.patient.num_pieza
                 %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
