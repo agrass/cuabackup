@@ -16,6 +16,7 @@
       = plate_ingredients_form.input :cantidad
       = plate_ingredients_form.link_to_remove "Borrar ingrediente"
     =f.link_to_add "Agregar Ingrediente", :plate_ingredients
+    =f.association :areas,label_method: :nombre, value_method: :id, as: :check_boxes
 
   .form-actions
     = f.button :submit

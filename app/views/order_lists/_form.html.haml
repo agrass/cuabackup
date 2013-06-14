@@ -22,7 +22,7 @@
         = orders_form.input :comentarios
     -else
       = hidden_field_tag 'order_list[dia]', DayRegime.getDayByDate(@order_list.fecha)
-      = select(:order_list, :patient_id, Patient.all.collect {|p| [ p.num_pieza, p.id ] }, {:prompt => 'Seleccione Pieza'})
+      = select(:order_list, :patient_id, Patient.all.collect {|p| [ p.num_pieza, p.id ] }, {:prompt => 'Seleccione Pieza'}, { class: 'chzn-select' })
       #persona
         %ul#lista_persona{:style =>"display: none"}
           %li{:style => "display: inline-table; padding-right: 50px"}
