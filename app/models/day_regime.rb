@@ -16,4 +16,12 @@ class DayRegime < ActiveRecord::Base
     a.regime_day = var
     a.save
    end
+
+   def self.getDayByDate(date)
+    DayRegime.getCurrentDay()
+    a = DayRegime.last
+    n = (date - a.date).to_i
+    regime_day = (n -1 +a.regime_day)%8 + 1
+    return regime_day 
+   end
 end

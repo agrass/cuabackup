@@ -6,7 +6,7 @@ class OrderListsController < ApplicationController
     if params[:date]
       @date = params[:date]
     else
-      @date = Time.now.strftime("%d/%m/%Y")
+      @date = Date.tomorrow.strftime("%d/%m/%Y")
     end
 
     date2 = @date.split('/')
@@ -34,6 +34,12 @@ class OrderListsController < ApplicationController
   def new
     @order_list = OrderList.new
     @patients_info = Patient.patients_group_by_num_pieza.to_json
+    if params[:date]
+      @order_list.fecha = params[:date]
+    else
+      @order_list.fecha = Date.tomorrow
+    end
+    @order_list.save
 
     respond_to do |format|
       format.html # new.html.erb

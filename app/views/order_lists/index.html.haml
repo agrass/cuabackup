@@ -112,4 +112,4 @@
                 %td
                   = link_to(order, "data-toggle" => "tooltip", :title => "Eliminar", :method => :delete, :data => { :confirm => 'Are you sure?' }) do
                     %i.icon-trash
-= link_to 'Nueva Orden', new_order_list_path
+= link_to 'Nueva Orden', new_order_list_path({:date => @date})
