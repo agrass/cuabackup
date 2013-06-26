@@ -16,4 +16,6 @@
 :javascript
   patient_mapper = #{@patients_info};
 
-= link_to 'Back', order_lists_path
+%a.btn{ :href => "#{order_lists_path}" }
+  %i.icon-arrow-left
+  Regresar

@@ -50,7 +50,7 @@ class PlatesController < ApplicationController
 
     respond_to do |format|
       if @plate.save
-        format.html { redirect_to @plate, notice: 'Plate was successfully created.' }
+        format.html { redirect_to cuapanel_path, notice: 'Plate was successfully created.' }
         format.json { render json: @plate, status: :created, location: @plate }
       else
         format.html { render action: "new" }
@@ -72,7 +72,7 @@ class PlatesController < ApplicationController
       if @plate.update_attributes(params[:plate])
         @plate.horario = count
         @plate.save
-        format.html { redirect_to @plate, notice: 'Plate was successfully updated.' }
+        format.html { redirect_to cuapanel_path, notice: 'Plate was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -88,7 +88,7 @@ class PlatesController < ApplicationController
     @plate.destroy
 
     respond_to do |format|
-      format.html { redirect_to plates_url }
+      format.html { redirect_to cuapanel_path }
       format.json { head :no_content }
     end
   end

@@ -6,4 +6,4 @@
     = f.input :descripcion
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, @area.new_record? ? "Crear Área" : "Actualizar Área"

@@ -35,6 +35,10 @@
             = check_box_tag(:acompanante)
 
   .form-actions
-    = f.button :submit, label: 'Siguiente'
+    = f.button :submit, 'Guardar'
     -if @horario && @horario!='8'
-      = link_to 'Saltar', {:controller => "order_lists", :action => "edit", :id => @order_list.id,  :horario => (@horario.to_i * 2).to_s }
+      %a.btn{ :href => url_for(:controller => "order_lists", :action => "edit", :id => @order_list.id,  :horario => (@horario.to_i * 2).to_s) }
+        Saltar
+    -elsif @horario=='8'
+      %a.btn{ :href => "#{order_lists_path}" }
+        Saltar

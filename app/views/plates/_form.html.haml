@@ -19,4 +19,4 @@
     =f.association :areas,label_method: :nombre, value_method: :id, as: :check_boxes
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, @plate.new_record? ? "Crear Plato" : "Actualizar Plato"

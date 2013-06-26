@@ -1,7 +1,7 @@
-%h1 Editing order
+%h1 Editar Orden
 
 = render 'form'
 
-= link_to 'Show', @order
-\|
-= link_to 'Back', orders_path
+%a.btn{ :href => "#{order_lists_path}" }
+  %i.icon-arrow-left
+  Regresar

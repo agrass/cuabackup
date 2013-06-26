@@ -1,7 +1,7 @@
-%h1 Editing plate
+%h1 Editar Plato
 
 = render 'form'
 
-= link_to 'Show', @plate
-\|
-= link_to 'Back', plates_path
+%a.btn{ :href => "#{cuapanel_path}" }
+  %i.icon-arrow-left
+  Regresar
