@@ -2,7 +2,7 @@ class PatientsController < ApplicationController
   # GET /patients
   # GET /patients.json
   def index
-    @patients = Patient.all
+    @patients = Patient.where('num_pieza is not null')
 
     respond_to do |format|
       format.html # index.html.erb
