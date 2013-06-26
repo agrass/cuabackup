@@ -20,6 +20,7 @@
 //= require bootstrap-tooltip
 //= require bootstrap-popover
 //= require chosen-jquery
+//= require highcharts
 
 
 $(function() {

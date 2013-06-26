@@ -23,6 +23,7 @@
       %table.table
         %th Pieza
         %th Paciente
+        %th Regimen
         %th
         %th
         - @order_lists.each do |order_list|
@@ -30,6 +31,7 @@
             %tr
               %td= order_list.patient.num_pieza
               %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
+              %td= order.regime_id
               %td
                 = link_to(edit_order_path(order), "data-toggle" => "tooltip", :title => "Editar") do
                   %i.icon-pencil
@@ -47,6 +49,7 @@
       %table.table
         %th Pieza
         %th Paciente
+        %th Regimen
         %th
         %th
         - @order_lists.each do |order_list|
@@ -54,6 +57,7 @@
             %tr
               %td= order_list.patient.num_pieza
               %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
+              %td= order.regime_id
               %td
                 = link_to(edit_order_path(order), "data-toggle" => "tooltip", :title => "Editar") do
                   %i.icon-pencil
@@ -71,6 +75,7 @@
       %table.table
         %th Pieza
         %th Paciente
+        %th Regimen
         %th
         %th
         - @order_lists.each do |order_list|
@@ -80,6 +85,7 @@
               %tr
                 %td= order_list.patient.num_pieza
                 %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
+                %td= order.regime_id
                 %td
                   = link_to(edit_order_path(order), "data-toggle" => "tooltip", :title => "Editar") do
                     %i.icon-pencil
@@ -97,6 +103,7 @@
       %table.table
         %th Pieza
         %th Paciente
+        %th Regimen
         %th
         %th
         - @order_lists.each do |order_list|
@@ -105,6 +112,7 @@
               %tr
                 %td= order_list.patient.num_pieza
                 %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
+                %td= order.regime_id
                 %td
                   = link_to(edit_order_path(order), "data-toggle" => "tooltip", :title => "Editar") do
                     %i.icon-pencil

@@ -13,7 +13,7 @@ class HomeController < ApplicationController
   end
 
   def admin
-
+    @date = Date.today.strftime("%d/%m/%Y")
   end
 
   def upDay

@@ -14,6 +14,7 @@ CUA::Application.routes.draw do
 
 
   resources :regimes
+  match 'regime/stats', :to => 'regimes#stats', :as => :regime_stats
 
 
   resources :plates

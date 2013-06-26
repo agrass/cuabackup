@@ -30,10 +30,10 @@ class RegimesController < ApplicationController
   # GET /regimes/new
   # GET /regimes/new.json
   def new
-    @regime = Regime.new    
-    @regime.regime_plates.new  
+    @regime = Regime.new
+    @regime.regime_plates.new
 
-    
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @regime }
@@ -109,5 +109,31 @@ class RegimesController < ApplicationController
 
   def get_form_select
     render "select_plate", :layout => false
+  end
+
+  def stats
+    if params[:date]
+      date = params[:date]
+    else
+      date = Date.today.strftime("%d/%m/%Y")
+    end
+    @bar = LazyHighCharts::HighChart.new('column') do |f|
+      f.xAxis(:categories => ['Desayuno', 'Almuerzo', 'Once', 'Cena'])
+      Regime.data_for_stats(date).each do |data|
+        f.series(data)
+      end
+      # f.series(:name=>'John',:data=> [3, 20, 3, 5, 4])
+      # f.series(:name=>'Jane',:data=>[1, 3, 4, 3, 3] )
+      f.title({ :text=>"Ordenes por Regimen"})
+
+      ###  Options for Bar
+      ### f.options[:chart][:defaultSeriesType] = "bar"
+      ### f.plot_options({:series=>{:stacking=>"normal"}})
+
+      ## or options for column
+      f.options[:chart][:defaultSeriesType] = "column"
+      f.plot_options({:column=>{:stacking=>"normal"}})
+    end
+    render layout: false
   end
 end
