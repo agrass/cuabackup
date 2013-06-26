@@ -18,4 +18,20 @@
     #tab3.tab-pane
       Compras
     #tab4.tab-pane
-      Estadisticas
+      = label_tag(:fecha, "Fecha:")
+      %input{"data-behaviour" => "datepicker", :type => "text", :data_url => "#{regime_stats_path}"}/
+      :javascript
+        $(function() {
+        $('[data-behaviour~=datepicker]').datepicker({
+          format: 'dd/mm/yyyy'
+        }).on('changeDate', function(ev) {
+          url = '#{regime_stats_path}?date=' + $(this).val();
+          $.get(url, function(data) {
+            $('#estadistica').html(data);
+            });
+          return true;
+        });
+        // $('[data-behaviour~=datepicker]').val("#{@date}")
+
+        });
+      %div#estadistica

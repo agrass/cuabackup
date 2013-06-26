@@ -1,0 +1,4 @@
+<div id="grafico"></div>
+<%= high_chart("my_id4", @bar) do |c| %>
+<%= raw "options.tooltip.formatter = function() { return (100*this.y/this.point.stackTotal).toFixed(2) + '%' +'<br/>'+'Total:'+ this.y;}"  %>
+<% end %>

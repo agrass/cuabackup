@@ -18,6 +18,7 @@
 //= require jquery_nested_form
 //= require bootstrap-datepicker
 //= require chosen-jquery
+//= require highcharts
 
 
 $(function() {
