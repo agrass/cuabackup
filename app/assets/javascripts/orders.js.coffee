@@ -1,7 +1,9 @@
 $ ->
-	$('[data-behaviour~=datepicker]').change ->
-		url = $(this).attr('data_url') + '?date=' + $(this).val()
-		window.location = url
+	# enable chosen js
+	$('.chzn-select').chosen
+	    allow_single_deselect: true
+	    no_results_text: 'No results matched'
+	    width: '200px'
 
 	($ 'select#order_list_patient_id').change ->
 		($ '#lista_persona').css("display", "block")
