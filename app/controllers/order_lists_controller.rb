@@ -34,10 +34,13 @@ class OrderListsController < ApplicationController
   def new
     @order_list = OrderList.new
     @patients_info = Patient.patients_group_by_num_pieza.to_json
+    @date
     if params[:date]
       @order_list.fecha = params[:date]
+      @date = params[:date]
     else
       @order_list.fecha = Date.tomorrow
+      @date= Date.tomorrow
     end
     @order_list.save
 
@@ -51,6 +54,9 @@ class OrderListsController < ApplicationController
   def edit
     if params[:horario] 
       @horario = params[:horario]
+    end
+    if params[:regime] 
+      @regime_id = params[:regime]
     end
     @order_list = OrderList.find(params[:id])
     @patients_info = Patient.patients_group_by_num_pieza.to_json
@@ -103,7 +109,7 @@ class OrderListsController < ApplicationController
           if params[:order_list][:orders_attributes]['0'][:horario].empty? || params[:order_list][:orders_attributes]['0'][:horario] == '8'
             format.html { redirect_to order_lists_path, notice: 'Las ordenes fueron ingresadas exitosamente!' }
           else
-            format.html { redirect_to :controller => 'order_lists', :action => 'edit', :id => @order_list.id, :horario => (params[:order_list][:orders_attributes]['0'][:horario].to_i * 2).to_s}
+            format.html { redirect_to :controller => 'order_lists', :action => 'edit', :id => @order_list.id, :horario => (params[:order_list][:orders_attributes]['0'][:horario].to_i * 2).to_s, :regime => order.regime_id}
           end
         end
       else

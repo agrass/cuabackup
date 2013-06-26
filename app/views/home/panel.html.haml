@@ -113,15 +113,32 @@
                 %td= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') unless user == current_user
 
     #tab5.tab-pane
-      %h3
-        Hoy es el día 
-        = DayRegime.getCurrentDay()
-        del regimen
-        %a.btn.btn-mini{:href => "#", :type => "button", "data-toggle" => "tooltip", :title => "Sumar día"}
+      #day
+        %h3#currentDay
+          Hoy es el día 
+          = DayRegime.getCurrentDay()
+          del regimen
+        %a.btn.btn-mini#upDay{:href => "#", :type => "button", "data-toggle" => "tooltip", :title => "Sumar día"}
           %i.icon-arrow-up
-        %a.btn.btn-mini{:href => "#", :type => "button", "data-toggle" => "tooltip", :title => "Restar día"}
+        %a.btn.btn-mini#downDay{:href => "#", :type => "button", "data-toggle" => "tooltip", :title => "Restar día"}
           %i.icon-arrow-down
-
+        :javascript
+          $(function() {
+          $('#upDay').click(function() {
+            $.ajax({
+              url: "#{url_for :upDay}"
+            }).done(function(data) {
+              $('#currentDay').text("Hoy es el día "+data+ " del regimen");
+            });
+          });
+          $('#downDay').click(function() {
+            $.ajax({
+              url: "#{url_for :downDay}"
+            }).done(function(data) {
+              $('#currentDay').text("Hoy es el día "+data+ " del regimen");
+            });
+          });
+          });
     #tab6.tab-pane
       %legend Areas Cocina
       %table.table.table-condensed

@@ -15,6 +15,7 @@ class DayRegime < ActiveRecord::Base
     a.date = Date.today
     a.regime_day = var
     a.save
+    return var
    end
 
    def self.getDayByDate(date)
