@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-
-ActiveRecord::Schema.define(:version => 20130610191619) do
+ActiveRecord::Schema.define(:version => 20130611004322) do
 
   create_table "areas", :force => true do |t|
     t.string   "nombre"
@@ -20,7 +19,6 @@ ActiveRecord::Schema.define(:version => 20130610191619) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
-
 
   create_table "day_regimes", :force => true do |t|
     t.date     "date"
@@ -35,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20130610191619) do
     t.string   "unidad"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "area_id"
   end
 
   create_table "order_lists", :force => true do |t|
@@ -42,6 +41,8 @@ ActiveRecord::Schema.define(:version => 20130610191619) do
     t.boolean  "esPaciente"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.date     "fecha"
+    t.integer  "dia"
   end
 
   create_table "orders", :force => true do |t|
@@ -50,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20130610191619) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "order_list_id"
+    t.integer  "regime_id"
   end
 
   create_table "orders_plates", :force => true do |t|
