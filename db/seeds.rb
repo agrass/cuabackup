@@ -25,6 +25,16 @@ Ingredient.destroy_all
 RegimePlate.destroy_all
 Patient.destroy_all
 DayRegime.destroy_all
+Area.destroy_all
+OrderList.destroy_all
+
+puts 'areas cocina'
+
+reposteria = Area.create(:nombre => "reposteria")
+cocina_fria = Area.create(:nombre => "Cocina fria")
+carnes = Area.create(:nombre => "Carnes")
+verduras = Area.create(:nombre => "Verduras")
+otros = Area.create(:nombre => "Otros")
 
 puts 'Platos'
 plate1 = Plate.create(:nombre => "Cafe" , :tipo => 1 , :horario => 5)
@@ -66,14 +76,14 @@ Plate.create(:nombre => "Helado" , :tipo => 10 , :horario => 2)
 Plate.create(:nombre => "Fruta" , :tipo => 10 , :horario => 2)
 
 puts 'Ingredientes'
-ingrediente1 = Ingredient.create(:nombre => "carne", :precio => 250, :unidad => "gramos" )
-ingrediente2 = Ingredient.create(:nombre => "arroz", :precio => 100, :unidad => "gramos" )
-ingrediente3 = Ingredient.create(:nombre => "lechuga", :precio => 100, :unidad => "gramos" )
-ingrediente4 = Ingredient.create(:nombre => "papas", :precio => 200, :unidad => "gramos" )
-ingrediente5 = Ingredient.create(:nombre => "cebolla", :precio => 150, :unidad => "gramos" )
-ingrediente6 = Ingredient.create(:nombre => "pollo", :precio => 450, :unidad => "gramos" )
-ingrediente7 = Ingredient.create(:nombre => "champiñones", :precio => 450, :unidad => "gramos" )
-ingrediente8 = Ingredient.create(:nombre => "reineta", :precio => 450, :unidad => "gramos" )
+ingrediente1 = Ingredient.create(:nombre => "carne", :precio => 250, :unidad => "gramos", :area_id => carnes.id )
+ingrediente2 = Ingredient.create(:nombre => "arroz", :precio => 100, :unidad => "gramos", :area_id => otros.id )
+ingrediente3 = Ingredient.create(:nombre => "lechuga", :precio => 100, :unidad => "gramos", :area_id => verduras.id )
+ingrediente4 = Ingredient.create(:nombre => "papas", :precio => 200, :unidad => "gramos", :area_id => verduras.id )
+ingrediente5 = Ingredient.create(:nombre => "cebolla", :precio => 150, :unidad => "gramos", :area_id => verduras.id )
+ingrediente6 = Ingredient.create(:nombre => "pollo", :precio => 450, :unidad => "gramos", :area_id => carnes.id )
+ingrediente7 = Ingredient.create(:nombre => "champiñones", :precio => 450, :unidad => "gramos", :area_id => verduras.id )
+ingrediente8 = Ingredient.create(:nombre => "reineta", :precio => 450, :unidad => "gramos", :area_id => carnes.id )
 ingrediente9 = Ingredient.create(:nombre => "aceite", :precio => 10, :unidad => "ml" )
 ingrediente10 = Ingredient.create(:nombre => "sal", :precio => 5, :unidad => "gramos" )
 
@@ -86,15 +96,67 @@ PlateIngredient.create(:cantidad => 2, :plate_id => plate23.id, :ingredient_id =
 
 
 puts 'Pacientes'
-Patient.create(:nombre => "Pedro A", :rut => "17753853-4" , :num_pieza => "1A" )
-Patient.create(:nombre => "Rodrigo A", :rut => "177533453-8" , :num_pieza => "2A" )
-Patient.create(:nombre => "Fernando E", :rut => "13753853-3" , :num_pieza => "3A" )
-Patient.create(:nombre => "Joaquin F", :rut => "16753853-2" , :num_pieza => "4A" )
-Patient.create(:nombre => "Vicente V", :rut => "13753853-1" , :num_pieza => "5A" )
+paciente1 = Patient.create(:nombre => "Pedro A", :rut => "17753853-4" , :num_pieza => "1A" )
+paciente2 = Patient.create(:nombre => "Rodrigo A", :rut => "177533453-8" , :num_pieza => "2A" )
+paciente3 = Patient.create(:nombre => "Fernando E", :rut => "13753853-3" , :num_pieza => "3A" )
+paciente4 = Patient.create(:nombre => "Joaquin F", :rut => "16753853-2" , :num_pieza => "4A" )
+paciente5 = Patient.create(:nombre => "Vicente V", :rut => "13753853-1" , :num_pieza => "5A" )
 
 
 puts 'dia regimen'
 
 DayRegime.create(:date => Date.new(2013, 4, 20), :regime_day => 1)
+
+
+puts 'Ordenes'
+
+ol1 = OrderList.create(:patient_id => paciente1.id, :esPaciente => true, :fecha => Date.today, :dia => DayRegime.getCurrentDay())
+ol2 = OrderList.create(:patient_id => paciente2.id, :esPaciente => true, :fecha => Date.today, :dia => DayRegime.getCurrentDay())
+ol3 = OrderList.create(:patient_id => paciente3.id, :esPaciente => true, :fecha => Date.today, :dia => DayRegime.getCurrentDay())
+ol4 = OrderList.create(:patient_id => paciente4.id, :esPaciente => true, :fecha => Date.today, :dia => DayRegime.getCurrentDay())
+ol5 = OrderList.create(:patient_id => paciente1.id, :esPaciente => false, :fecha => Date.today, :dia => DayRegime.getCurrentDay())
+ol6 = OrderList.create(:patient_id => paciente2.id, :esPaciente => false, :fecha => Date.today, :dia => DayRegime.getCurrentDay())
+
+or1 = Order.create(:horario => 1, :order_list_id => ol1.id, :regime_id => 1 )
+or2 = Order.create(:horario => 2, :order_list_id => ol2.id, :regime_id => 1 )
+or3 = Order.create(:horario => 4, :order_list_id => ol3.id, :regime_id => 1 )
+or4 = Order.create(:horario => 8, :order_list_id => ol4.id, :regime_id => 1 )
+or5 = Order.create(:horario => 1, :order_list_id => ol5.id, :regime_id => 1 )
+or6 = Order.create(:horario => 2, :order_list_id => ol6.id, :regime_id => 1 )
+
+puts 'Platos'
+
+or1.plates << plate1
+or2.plates << plate2
+or3.plates << plate3
+or4.plates << plate4
+or5.plates << plate5
+or6.plates << plate6
+or1.plates << plate7
+or2.plates << plate8
+or3.plates << plate9
+or4.plates << plate10
+or5.plates << plate11
+or6.plates << plate12
+or1.plates << plate13
+or2.plates << plate14
+or3.plates << plate15
+or4.plates << plate16
+or5.plates << plate17
+or6.plates << plate18
+or1.plates << plate19
+or2.plates << plate20
+or3.plates << plate21
+or4.plates << plate22
+or5.plates << plate23
+or6.plates << plate24
+or1.plates << plate25
+or2.plates << plate26
+or3.plates << plate27
+
+
+
+
+
 
 

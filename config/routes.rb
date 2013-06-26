@@ -8,7 +8,9 @@ CUA::Application.routes.draw do
   resources :orders
 
 
-  resources :patients
+  resources :patients do
+    collection { post :import }
+  end
 
 
   resources :regimes

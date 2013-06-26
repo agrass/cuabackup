@@ -1,43 +1,76 @@
-= link_to (image_tag "images/logo2.png", :class=>'logo'), root_path, :class => 'brand2'
-%ul.nav
-
-  - if user_signed_in?    
-    - if current_user.has_role? :nutricionista
-      %li
-        = link_to(patients_path) do
-          %i.icon-user
-          Pacientes
-      %li
-        = link_to order_lists_path do
-          %i.icon-tasks
-          Ordenes
-    - if current_user.has_role? :admin
-      %li
-        = link_to(admin_path) do
-          %i.icon-cog
-          Admin
-      %li
-        = link_to cuapanel_path do
-          %i.icon-wrench
-          Configuración
-  - else
-    %li
-      = link_to new_user_registration_path, :class => "nav_reg" do
-        %i.icon-circle-arrow-right
-        Registrarse
-    %li
-      = link_to new_user_session_path do 
-        %i.icon-user
-        Ingresar
-
-  - if user_signed_in?
-    #nav_account
-      %ul.nav.acc
-        %li    
-          = link_to edit_user_registration_path do
-            %i.icon-pencil
-            Editar Cuenta
-        %li
-          = link_to destroy_user_session_path, :method=>'delete' do
-            %i.icon-off
-            Logout
+#header{:style => ""}
+  #head
+    .logo_head
+      %a{:href => "/", :title => "Ir al home"} Clínica Universidad de Los Andes
+    #menu_sec
+      #menu_sec_content
+        %ul.rtsUL
+          - if user_signed_in? 
+            %li.rtsLI.rtsFirst
+              %a.rtsLink{:href => "#{edit_user_registration_path}"}
+                %span.rtsOut
+                  %span.rtsIn
+                    %span.rtsTxt Editar Cuenta
+            %li.rtsLI
+              %a.rtsLink{:href => "#{destroy_user_session_path}", :method=>'delete'}
+                %span.rtsOut
+                  %span.rtsIn
+                    %span.rtsTxt Cerrar Sesion
+          - else
+            %li.rtsLI
+              %a.rtsLink{:href => "#{new_user_registration_path}"}
+                %span.rtsOut
+                  %span.rtsIn
+                    %span.rtsTxt Registrarse                    
+            %li.rtsLI
+              %a.rtsLink{:href => "#{new_user_session_path}"}
+                %span.rtsOut
+                  %span.rtsIn
+                    %span.rtsTxt Ingresar
+          %li.rtsLI.rtsLast
+            %a.rtsLink{:href => "/shortcuts/contacto"}
+              %span.rtsOut
+                %span.rtsIn
+                  %span.rtsTxt Contacto
+      #search
+        
+    #menu_ppl
+      %ul.rtsUL
+        %li.rtsLI.rtsFirst.rtsLI_Selected
+          %a.rtsLink.rtsSelected{:href => "/home"}
+            %span.rtsOut
+              %span.rtsIn
+                %span.rtsTxt Home
+        - if user_signed_in?    
+          - if current_user.has_role? :nutricionista
+            %li.rtsLI.rtsLIMid
+              %a.rtsLink{:href => "#{patients_path}"}
+                %span.rtsOut
+                  %span.rtsIn
+                    %span.rtsTxt Pacientes
+            %li.rtsLI.rtsLIMid
+              %a.rtsLink{:href => "#{order_lists_path}"}
+                %span.rtsOut
+                  %span.rtsIn
+                    %span.rtsTxt Ordenes
+          - if current_user.has_role? :admin        
+            %li.rtsLI.rtsLIMid
+              %a.rtsLink{:href => "#{admin_path}"}
+                %span.rtsOut
+                  %span.rtsIn
+                    %span.rtsTxt Administrar Odenes
+            %li.rtsLI.rtsLIMid
+              %a.rtsLink{:href => "#{cuapanel_path}"}
+                %span.rtsOut
+                  %span.rtsIn
+                    %span.rtsTxt Configurar
+        %li.rtsLI.rtsLIMid
+          %a.rtsLink{:href => "http://www.clinicauandes.cl/conoce-la-clinica/cumpliendo-estandares-exigentes"}
+            %span.rtsOut
+              %span.rtsIn
+                %span.rtsTxt Conócenos
+        %li.rtsLI.rtsLast
+          %a.rtsLink{:href => "http://www.clinicauandes.cl/nuestra-inspiracion/mision"}
+            %span.rtsOut
+              %span.rtsIn
+                %span.rtsTxt Nuestra inspiración

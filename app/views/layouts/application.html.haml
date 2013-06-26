@@ -8,11 +8,8 @@
         = javascript_include_tag "application"
         = csrf_meta_tags
         = yield(:head)
-  %body{:class => "#{controller_name} #{action_name}"}
-    .navbar.navbar-fixed-top
-      %nav.navbar-inner
-        .container
-          = render 'layouts/navigation'
+  %body{:class => "#{controller_name} #{action_name} main-body"}
+    = render 'layouts/navigation'
     #main{:role => "main"}
       .container
         .content
@@ -20,6 +17,49 @@
             .span12
               = render 'layouts/messages'
               = yield
-          %footer
+    #footer{:style => ""}
+      #foot
+        .Foot_Left
+          .Foot_Left_Info
+            %ul
+              %li
+                %a{:href => "http://www.clinicauandes.cl/conoce-la-clinica", :title => "Conoce la Clínica"} Conoce la Clínica
+              %li
+                %a{:href => "http://www.clinicauandes.cl/nuestra-inspiracion", :title => "Nuestra Inspiración"} Nuestra Inspiración
+              %li
+                %a{:href => "http://www.clinicauandes.cl/grupo-humano", :title => "Grupo Humano"} Grupo Humano
+              %li
+                %a{:href => "http://www.clinicauandes.cl/servicios-y-equipamiento", :title => "Servicios y Equipamiento"} Servicios y Equipamiento
+            %ul
+              %li
+                %a{:href => "http://www.clinicauandes.cl/deja-tu-huella", :title => "Deja tu Huella"} Deja tu Huella
+              %li
+                %a{:href => "http://www.clinicauandes.cl/shortcuts/contacto", :title => "Contacto"} Contacto
+              %li
+                %a{:href => "http://www.clinicauandes.cl/shortcuts/preguntas-frecuentes", :title => "Preguntas Frecuentes"} Preguntas Frecuentes
+              
+            %ul
+          .politicas
+            %a.inicio{:href => "/terminos-y-condiciones", :title => ""} Términos y condiciones
+            %a{:href => "/privacidad-y-seguridad", :title => ""} Privacidad y seguridad
+          %p.derechos Clínica Universidad de los Andes © Copyright 2013 - Todos los derechos reservados
+        .Foot_Right
+          %img.logo_foot{:alt => "Clinica Los Andes", :src => "../assets/images/logo_footer.png"}/
+          .info_foot
+            %p Av. San Carlos de Apoquindo 2500
+            %p Tel: +56 2 2618 1920
+            %p.mail contacto@clinicauandes.cl
+            .redes
+      :javascript
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-39424470-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
       / ! end of .container
     / ! end of #main
