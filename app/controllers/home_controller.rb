@@ -15,4 +15,14 @@ class HomeController < ApplicationController
   def admin
 
   end
+
+  def upDay
+    @day = DayRegime.setCurrentDay(DayRegime.getCurrentDay() + 1)
+    render json: @day 
+  end
+
+  def downDay
+    @day =  DayRegime.setCurrentDay(DayRegime.getCurrentDay() - 1)
+    render json: @day 
+  end
 end

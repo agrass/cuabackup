@@ -34,10 +34,13 @@ class OrderListsController < ApplicationController
   def new
     @order_list = OrderList.new
     @patients_info = Patient.patients_group_by_num_pieza.to_json
+    @date
     if params[:date]
       @order_list.fecha = params[:date]
+      @date = params[:date]
     else
       @order_list.fecha = Date.tomorrow
+      @date= Date.tomorrow
     end
     @order_list.save
 

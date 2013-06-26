@@ -42,15 +42,16 @@ $ ->
         	setTimeout(set_images_event, 1000)
 
 	set_images_event = () ->
-		$('li.span4').each ->
+		$('li.span2').each ->
 			$(this).children().last().hide()
-			$(this).click ->
+			$(this).find("a").first().popover()
+			$(this).children().first().click ->
 				flag = true
-				if $(this).children().last().is(':checked')
+				if $(this).parent().children().last().is(':checked')
 					flag = false
-				$(this).parent().children().each ->
-					$(this).removeClass("select")
+				$(this).parent().parent().children().each ->
+					$(this).children().first().removeClass("select")
 					$(this).children().last().prop("checked",false)
 				if flag
 					$(this).addClass("select")
-					$(this).children().last().prop("checked", true)
+					$(this).parent().children().last().prop("checked", true)

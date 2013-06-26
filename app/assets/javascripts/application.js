@@ -17,6 +17,8 @@
 //= require_tree .
 //= require jquery_nested_form
 //= require bootstrap-datepicker
+//= require bootstrap-tooltip
+//= require bootstrap-popover
 //= require chosen-jquery
 
 
