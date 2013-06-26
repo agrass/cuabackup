@@ -33,3 +33,4 @@ gem "binding_of_caller", ">= 0.7.1", :group => :development, :platforms => [:mri
 gem 'bootstrap-datepicker-rails'
 gem 'prawn'
 gem 'chosen-rails'
+gem 'roo'

@@ -1,27 +1,22 @@
 %legend Pacientes
 
+%h2 Importar Pacientes
+= form_tag import_patients_path, multipart: true do
+  = file_field_tag :file
+  = submit_tag "Importar"
+
+%br
+
 %table.table.table-condensed
   %tr
     %th Nombre
+    %th RUT
     %th Num pieza
-    %th
-    %th
-    %th
 
   - @patients.each do |patient|
     %tr
       %td= patient.nombre
+      %td= patient.rut
       %td= patient.num_pieza
-      %td
-        = link_to(patient, "data-toggle" => "tooltip", :title => "Ver") do
-          %i.icon-hand-up
-      %td
-        = link_to(edit_patient_path(patient), "data-toggle" => "tooltip", :title => "Editar") do
-          %i.icon-pencil
-      %td
-        = link_to(patient, "data-toggle" => "tooltip", :title => "Eliminar", :method => :delete, :data => { :confirm => 'Are you sure?' }) do
-          %i.icon-trash
 
 %br
-
-= link_to 'New Patient', new_patient_path
