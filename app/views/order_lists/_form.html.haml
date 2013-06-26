@@ -3,7 +3,7 @@
 
   .form-inputs
     = hidden_field_tag 'dia[dia]', @order_list.dia
-    = hidden_field_tag 'regime_order[id]'
+    = hidden_field_tag 'regime_order[id]', @regime_id
     -if @horario
       -if @order_list.esPaciente
         %div#detalles

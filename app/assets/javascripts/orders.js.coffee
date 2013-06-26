@@ -55,3 +55,7 @@ $ ->
 				if flag
 					$(this).addClass("select")
 					$(this).parent().children().last().prop("checked", true)
+
+	if $('#regime_order_id').val() != ""
+		$('select#regime_').val($('#regime_order_id').val())
+		get_plates_from_regime()
