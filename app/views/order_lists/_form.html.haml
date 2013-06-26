@@ -5,7 +5,10 @@
     = hidden_field_tag 'dia[dia]', @order_list.dia
     = hidden_field_tag 'regime_order[id]'
     -if @horario
-      = label_tag(:nombre_paciente, @order_list.patient.nombre , :id =>"nombre_paciente")
+      -if @order_list.esPaciente
+        %div#detalles
+          = label_tag(:nombre_paciente, 'Comentarios sobre '+@order_list.patient.nombre+':' , :id =>"nombre_paciente")
+          = text_area_tag 'patient_detalles', @order_list.patient.detalles, :rows => "5"
       = f.simple_fields_for :orders, @order_list.orders.build do |orders_form|
         -case @horario.to_i
         -when 1
@@ -19,7 +22,7 @@
         = hidden_field_tag 'order_list[orders_attributes][0][horario]', @horario
         = select("regime", "", Regime.all.collect {|p| [ p.nombre, p.id ] }, {:prompt => 'Seleccione Régimen'})
         #plates
-        = orders_form.input :comentarios
+        = orders_form.input :comentarios, as: :text, :input_html => { :rows => 5 }
     -else
       = hidden_field_tag 'order_list[dia]', DayRegime.getDayByDate(@order_list.fecha)
       = select(:order_list, :patient_id, Patient.all.collect {|p| [ p.num_pieza, p.id ] }, {:prompt => 'Seleccione Pieza'}, { class: 'chzn-select' })
