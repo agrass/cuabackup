@@ -79,7 +79,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.update_attributes(params[:order])
-        format.html { redirect_to @order, notice: 'La Orden fue actualizada' }
+        format.html { redirect_to order_lists_path, notice: 'La Orden fue actualizada' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

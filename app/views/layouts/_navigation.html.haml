@@ -57,18 +57,18 @@
                 %span.rtsOut
                   %span.rtsIn
                     %span.rtsTxt Ordenes
-          - if current_user.has_role? :admin         
+          - if current_user.has_role? :cocina
+            %li.rtsLI.rtsLIMid
+              %a.rtsLink{:href => "#{reporte_areas_path}"}
+                %span.rtsOut
+                  %span.rtsIn
+                    %span.rtsTxt Áreas Cocina
+          - if current_user.has_role? :admin
             %li.rtsLI.rtsLIMid
               %a.rtsLink{:href => "#{admin_path}"}
                 %span.rtsOut
                   %span.rtsIn
                     %span.rtsTxt Estadisticas
-
-            %li.rtsLI.rtsLIMid
-              %a.rtsLink{:href => "#{reporte_areas_path}"}
-                %span.rtsOut
-                  %span.rtsIn
-                    %span.rtsTxt Áreas
             %li.rtsLI.rtsLast
               %a.rtsLink{:href => "#{cuapanel_path}"}
                 %span.rtsOut
