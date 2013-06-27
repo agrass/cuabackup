@@ -1,0 +1,22 @@
+!!!
+%html
+  %head
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+      %title= content_for?(:title) ? yield(:title) : "Cua"
+      %meta{:content => content_for?(:description) ? yield(:description) : "Cua", :name => "description"}
+        = stylesheet_link_tag "application", :media => "all"
+        = stylesheet_link_tag "../assets/jquery.mobile-1.3.1.css"
+        = javascript_include_tag "application"
+        = javascript_include_tag "../assets/jquery.mobile-1.3.1.js"
+        = csrf_meta_tags
+        = yield(:head)
+  %body{:class => "#{controller_name} #{action_name} main-body"}
+    #header{:style => ""}
+      #head
+        .logo_head
+          %a{:href => "/", :title => "Ir al home"} Clínica Universidad de Los Andes
+    = render 'layouts/messages'
+    = yield
+
+    / /navbar
+  / /footer

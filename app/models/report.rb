@@ -68,7 +68,7 @@ class Report < ActiveRecord::Base
         AreasPlates.find_all_by_area_id(area.id).each do |ap|        
             count =  OrderList.joins(orders: :plates).where(:fecha => fecha, plates: {id: ap.plate_id}, orders: { horario: tipo }).count          
             if count > 0
-             platos_info << "<b>#{Plate.find(ap.plate_id).nombre}</b>                    " + count.to_s
+             platos_info << "<b>#{Plate.find(ap.plate_id).nombre}</b> " + count.to_s
             end        
         end
         if platos_info.count > 0

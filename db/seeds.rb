@@ -26,7 +26,7 @@ RegimePlate.destroy_all
 Patient.destroy_all
 DayRegime.destroy_all
 Area.destroy_all
-OrderList.destroy_all
+#OrderList.destroy_all
 
 puts 'areas cocina'
 

@@ -24,8 +24,9 @@
                   - @areas_id[area.id].each do |plates_id|
                     - count =  OrderList.joins(orders: :plates).where(:fecha => @date, plates: {id: plates_id}, orders: { horario: horario[1] }).count          
                     - if count > 0
-                      = Plate.find(plates_id).nombre 
-                      = count
+                      %p
+                        = Plate.find(plates_id).nombre 
+                        = count
 
 :javascript
   $(function() {

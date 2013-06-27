@@ -6,8 +6,10 @@
     = hidden_field_tag 'regime_order[id]', @regime_id
     -if @horario
       -if @order_list.esPaciente
-        %div#detalles
+        %div#detalles.half.right.alert.fixed_comment
+          %button.close{"data-dismiss" => "alert", :type => "button"} ×
           = label_tag(:nombre_paciente, 'Comentarios sobre '+@order_list.patient.nombre+':' , :id =>"nombre_paciente")
+          %br
           = text_area_tag 'patient_detalles', @order_list.patient.detalles, :rows => "5"
       = f.simple_fields_for :orders, @order_list.orders.build do |orders_form|
         -case @horario.to_i
