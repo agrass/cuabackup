@@ -13,6 +13,7 @@ class HomeController < ApplicationController
   end
 
   def admin
+
    
 
   end
@@ -35,5 +36,17 @@ class HomeController < ApplicationController
       @areas_id[area.id] = @ids
     end
 
+    @date = Date.today.strftime("%d/%m/%Y")
+  end
+
+  def upDay
+    @day = DayRegime.setCurrentDay(DayRegime.getCurrentDay() + 1)
+    render json: @day 
+  end
+
+
+  def downDay
+    @day =  DayRegime.setCurrentDay(DayRegime.getCurrentDay() - 1)
+    render json: @day 
   end
 end

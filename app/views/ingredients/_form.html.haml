@@ -5,8 +5,6 @@
     = f.input :nombre
     = f.input :precio
     = f.input :unidad, as: :radio_buttons, collection: [["gramos","gr"],["ml","ml"]]
-    = f.label :area_label, 'Area'
-    = f.select :area_id, Area.all.collect {|p| [ p.nombre, p.id ] }, {:prompt => 'Seleccione un Area'}
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, @ingredient.new_record? ? "Crear Ingrediente" : "Actualizar Ingrediente"

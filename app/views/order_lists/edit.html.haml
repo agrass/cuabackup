@@ -1,10 +1,10 @@
-%h1 Editing order_list
+%h1 Nueva Orden
 
 = render 'form'
 
 :javascript
   patient_mapper = #{@patients_info};
 
-= link_to 'Show', @order_list
-\|
-= link_to 'Back', order_lists_path
+%a.btn{ :href => "#{order_lists_path}" }
+  %i.icon-arrow-left
+  Regresar

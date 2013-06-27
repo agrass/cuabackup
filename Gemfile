@@ -35,3 +35,5 @@ gem 'prawn'
 gem 'chosen-rails'
 gem 'roo'
 gem "seed_dump"
+gem 'lazy_high_charts'
+

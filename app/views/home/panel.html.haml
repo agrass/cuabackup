@@ -37,8 +37,10 @@
 
 
       %br
+      %a.btn{ :href => "#{new_plate_path}" }
+        %i.icon-plus
+        Nuevo Plato
 
-      = link_to 'Nuevo Plato', new_plate_path
     #tab2.tab-pane
       %legend Lista Ingredientes
 
@@ -62,8 +64,10 @@
                 %i.icon-trash    
 
       %br
+      %a.btn{ :href => "#{new_ingredient_path}" }
+        %i.icon-plus
+        Nuevo Ingrediente
 
-      = link_to 'New Ingredient', new_ingredient_path
     #tab3.tab-pane
       %legend Regímenes
 
@@ -94,10 +98,10 @@
         %table.table.table-condensed
           %thead
             %tr
-              %th Username
+              %th Nombre de Usuario
               %th Email
-              %th Registered
-              %th Role
+              %th Fecha de Regístro
+              %th Rol
               %th
               %th
           %tbody
@@ -113,15 +117,32 @@
                 %td= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') unless user == current_user
 
     #tab5.tab-pane
-      %h3
-        Hoy es el día 
-        = DayRegime.getCurrentDay()
-        del regimen
-        %a.btn.btn-mini{:href => "#", :type => "button", "data-toggle" => "tooltip", :title => "Sumar día"}
+      #day
+        %h3#currentDay
+          Hoy es el día 
+          = DayRegime.getCurrentDay()
+          del regimen
+        %a.btn.btn-mini#upDay{:href => "#", :type => "button", "data-toggle" => "tooltip", :title => "Sumar día"}
           %i.icon-arrow-up
-        %a.btn.btn-mini{:href => "#", :type => "button", "data-toggle" => "tooltip", :title => "Restar día"}
+        %a.btn.btn-mini#downDay{:href => "#", :type => "button", "data-toggle" => "tooltip", :title => "Restar día"}
           %i.icon-arrow-down
-
+        :javascript
+          $(function() {
+          $('#upDay').click(function() {
+            $.ajax({
+              url: "#{url_for :upDay}"
+            }).done(function(data) {
+              $('#currentDay').text("Hoy es el día "+data+ " del regimen");
+            });
+          });
+          $('#downDay').click(function() {
+            $.ajax({
+              url: "#{url_for :downDay}"
+            }).done(function(data) {
+              $('#currentDay').text("Hoy es el día "+data+ " del regimen");
+            });
+          });
+          });
     #tab6.tab-pane
       %legend Areas Cocina
       %table.table.table-condensed
@@ -140,4 +161,6 @@
                 = link_to(area, :method => :delete, :data => { :confirm => '¿Seguro que desea eliminar al paciente?' },:class => 'btn btn-mini', "data-toggle" => "tooltip", :title => "Eliminar") do
                   %i.icon-trash
       %br
-      = link_to 'Nueva Area', new_area_path
+      %a.btn{ :href => "#{new_area_path}" }
+        %i.icon-plus
+        Nueva Area

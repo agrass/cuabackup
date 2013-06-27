@@ -3,7 +3,7 @@
 
   .form-inputs
     = f.input :nombre
-    = f.input :description
+    = f.input :description, label: 'Descripción'
     = f.input :calorias
     //= f.association :regimes, label_method: :nombre,  as: :check_boxes
     -if f.object.new_record?
@@ -19,4 +19,4 @@
     =f.association :areas,label_method: :nombre, value_method: :id, as: :check_boxes
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, @plate.new_record? ? "Crear Plato" : "Actualizar Plato"

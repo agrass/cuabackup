@@ -1,9 +1,21 @@
 %legend Nueva Orden
 %br
-
+%input{"data-behaviour" => "datepicker", :type => "text", :data_url => "#{order_lists_path}"}/
+:javascript
+  $(function() {
+  $('[data-behaviour~=datepicker]').datepicker({
+    format: 'dd/mm/yyyy'
+  }).on('changeDate', function(ev) {
+    url = $(this).attr('data_url') + '/new?date=' + $(this).val();
+    window.location = url;
+  });
+  $('[data-behaviour~=datepicker]').val("#{@date}");
+  });
 = render 'form'
     
 :javascript
   patient_mapper = #{@patients_info};
 
-= link_to 'Back', order_lists_path
+%a.btn{ :href => "#{order_lists_path}" }
+  %i.icon-arrow-left
+  Regresar

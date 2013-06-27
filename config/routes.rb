@@ -14,6 +14,7 @@ CUA::Application.routes.draw do
 
 
   resources :regimes
+  match 'regime/stats', :to => 'regimes#stats', :as => :regime_stats
 
 
   resources :plates
@@ -38,4 +39,7 @@ CUA::Application.routes.draw do
   match 'admin', :to => 'home#admin'
   match 'reporte_areas', :to => 'home#area', :as => "reporte_areas"
   match 'get_form_select_plates', :to => 'regimes#get_form_select', :as => :regime_plates
+  match 'upDay', :to => 'home#upDay', :as => :upDay
+  match 'downDay', :to => 'home#downDay', :as => :downDay
+
 end

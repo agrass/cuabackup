@@ -103,6 +103,7 @@ GEM
       activesupport (>= 3.1, < 4.1)
       haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
+    hash-deep-merge (0.1.1)
     hashery (2.1.0)
     hike (1.2.2)
     hpricot (0.8.6)
@@ -119,6 +120,9 @@ GEM
     json (1.7.7)
     launchy (2.2.0)
       addressable (~> 2.3)
+    lazy_high_charts (1.4.2)
+      bundler (>= 1.0)
+      hash-deep-merge
     mail (2.5.3)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -242,6 +246,7 @@ DEPENDENCIES
   html2haml (>= 1.0.1)
   jquery-rails
   launchy (>= 2.2.0)
+  lazy_high_charts
   nested_form
   pg
   prawn
