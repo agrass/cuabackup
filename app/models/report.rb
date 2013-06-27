@@ -79,7 +79,7 @@ class Report < ActiveRecord::Base
           text("______________________________________________________________ ")
           platos_info.each do |plato_string|
             text(plato_string, :align => :left, :inline_format=>true) 
-          end 
+          end           
           start_new_page
         end
       end

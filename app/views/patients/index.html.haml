@@ -1,9 +1,23 @@
-%legend Pacientes
+%legend Importar Pacientes
 
-%h2 Importar Pacientes
-= form_tag import_patients_path, multipart: true do
-  = file_field_tag :file
-  = submit_tag "Importar"
+= form_tag import_patients_path, multipart: true, :id => "import_patients" do
+  .fileupload.fileupload-new{"data-provides" => "fileupload"}
+    .input-append
+      .uneditable-input.span3
+        %i.icon-file.fileupload-exists
+        %span.fileupload-preview
+      %span.btn.btn-file
+        %span.fileupload-new Selecionar 
+        %span.fileupload-exists Cambiar      
+        %input#file{:type => "file", :name => "file"}/
+      %a.btn.fileupload-exists{"data-dismiss" => "fileupload", :href => "#"} Eliminar
+      %a.btn.btn-success#document_upload Subir  
+
+
+:javascript
+  $('#document_upload').click(function(){
+    $('#import_patients').submit();
+  })  
 
 %br
 
