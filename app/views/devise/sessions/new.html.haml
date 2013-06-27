@@ -1,6 +1,6 @@
 %h2 Ingresar
 = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f|
-  = f.input :email, :autofocus => true
+  = f.input :rut, autofocus: true, placeholder: 'Rut (Ej: 12345678-9)', label: false
   = f.input :password
   = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
   = f.button :submit, "Sign in", :class => 'btn-primary'

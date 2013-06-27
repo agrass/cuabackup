@@ -10,12 +10,16 @@
               %a.rtsLink{:href => "#{edit_user_registration_path}"}
                 %span.rtsOut
                   %span.rtsIn
-                    %span.rtsTxt Editar Cuenta
+                    %span.rtsTxt
+                      %i.icon-pencil
+                      Editar Cuenta
             %li.rtsLI
-              %a.rtsLink{:href => "#{destroy_user_session_path}", :method=>'delete'}
+              %a.rtsLink{:href => "#{destroy_user_session_path}", "data-method"=>'delete'}
                 %span.rtsOut
                   %span.rtsIn
-                    %span.rtsTxt Cerrar Sesion
+                    %span.rtsTxt
+                    %i.icon-off
+                    Cerrar Sesion
           - else
             %li.rtsLI
               %a.rtsLink{:href => "#{new_user_registration_path}"}
@@ -28,7 +32,7 @@
                   %span.rtsIn
                     %span.rtsTxt Ingresar
           %li.rtsLI.rtsLast
-            %a.rtsLink{:href => "/shortcuts/contacto"}
+            %a.rtsLink{:href => "http://www.clinicauandes.cl/shortcuts/contacto"}
               %span.rtsOut
                 %span.rtsIn
                   %span.rtsTxt Contacto
@@ -37,7 +41,7 @@
     #menu_ppl
       %ul.rtsUL
         %li.rtsLI.rtsFirst.rtsLI_Selected
-          %a.rtsLink.rtsSelected{:href => "/home"}
+          %a.rtsLink.rtsSelected{:href => "#{root_path}"}
             %span.rtsOut
               %span.rtsIn
                 %span.rtsTxt Home
@@ -60,17 +64,30 @@
                   %span.rtsIn
                     %span.rtsTxt Administrar Odenes
             %li.rtsLI.rtsLIMid
+              %a.rtsLink{:href => "#"}
+                %span.rtsOut
+                  %span.rtsIn
+                    %span.rtsTxt Estadisticas
+
+            %li.rtsLI.rtsLIMid
+              %a.rtsLink{:href => "#{reporte_areas_path}"}
+                %span.rtsOut
+                  %span.rtsIn
+                    %span.rtsTxt Áreas
+            %li.rtsLI.rtsLast
               %a.rtsLink{:href => "#{cuapanel_path}"}
                 %span.rtsOut
                   %span.rtsIn
                     %span.rtsTxt Configurar
-        %li.rtsLI.rtsLIMid
-          %a.rtsLink{:href => "http://www.clinicauandes.cl/conoce-la-clinica/cumpliendo-estandares-exigentes"}
-            %span.rtsOut
-              %span.rtsIn
-                %span.rtsTxt Conócenos
-        %li.rtsLI.rtsLast
-          %a.rtsLink{:href => "http://www.clinicauandes.cl/nuestra-inspiracion/mision"}
-            %span.rtsOut
-              %span.rtsIn
-                %span.rtsTxt Nuestra inspiración
+
+        -else 
+          %li.rtsLI.rtsLIMid
+            %a.rtsLink{:href => "http://www.clinicauandes.cl/conoce-la-clinica/cumpliendo-estandares-exigentes"}
+              %span.rtsOut
+                %span.rtsIn
+                  %span.rtsTxt Conócenos
+          %li.rtsLI.rtsLast
+            %a.rtsLink{:href => "http://www.clinicauandes.cl/nuestra-inspiracion/mision"}
+              %span.rtsOut
+                %span.rtsIn
+                  %span.rtsTxt Nuestra inspiración

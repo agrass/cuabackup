@@ -1,0 +1,42 @@
+= label_tag(:fecha, "Fecha:")
+%input{"data-behaviour" => "datepicker", :type => "text", :data_url => "#{reporte_areas_path}"}
+
+#accordion3.accordion
+  - Plate.horarios_nombre().each do |horario|
+    .accordion-group
+      .accordion-heading
+        %a.btn.btn-success.right{ :href => "#"}
+          %i.icon-download-alt
+          Generar PDF
+        %a.accordion-toggle.collapsed{"data-parent" => "#accordion3", "data-toggle" => "collapse", :href => "#horario#{horario[1]}"}
+          %legend #{horario[0]}                 
+            
+      .accordion-body.collapse{ :id => "horario#{horario[1]}"} 
+        .accordion-inner
+          #accordion2.accordion
+          - Area.all.each do |area|
+            .accordion-group
+              .accordion-heading
+                %a.accordion-toggle.collapsed{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "##{horario[1]}area#{area.id}"}
+                  %h4 #{area.nombre}
+              .accordion-body.collapse{ :id => "#{horario[1]}area#{area.id}"}
+                .accordion-inner                        
+                  - @areas_id[area.id].each do |plates_id|
+                    - count =  OrderList.joins(orders: :plates).where(:fecha => @date, plates: {id: plates_id}, orders: { horario: horario[1] }).count          
+                    - if count > 0
+                      = Plate.find(plates_id).nombre 
+                      = count
+
+:javascript
+  $(function() {
+  $('[data-behaviour~=datepicker]').datepicker({
+    format: 'dd/mm/yyyy'
+  }).on('changeDate', function(ev) {
+    url = $(this).attr('data_url') + '?date=' + $(this).val();
+    window.location = url;
+  });
+  $('[data-behaviour~=datepicker]').val("#{@date}")
+
+  });
+        
+        

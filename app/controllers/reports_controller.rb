@@ -2,12 +2,7 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   def index
-    @reports = Report.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @reports }
-    end
+ 
   end
 
   # GET /reports/1
@@ -23,17 +18,14 @@ class ReportsController < ApplicationController
 
   # GET /reports/new
   # GET /reports/new.json
-  def new
-    @report = Report.new
-    @fecha = Time.now - 2.days
-    if params[:fecha_in] != nil
-      @fecha = params[:fecha_in]
+  def new    
+    @fecha = Date.today.strftime("%d-%m-%Y")
+    if params[:fecha] != nil
+      @fecha = params[:fecha]
     end
 
-    @report.name = Report.plates(params[:tipo], @fecha)
-    @report.tipo = params[:tipo]
-    @report.save
-    redirect_to @report
+    nombre = Report.plates(params[:tipo], @fecha) 
+    redirect_to reports_path(:source => nombre)
 
 
   end

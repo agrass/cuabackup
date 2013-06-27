@@ -13,6 +13,27 @@ class HomeController < ApplicationController
   end
 
   def admin
+   
+
+  end
+
+  def area
+     if params[:date]
+      date0 = params[:date]
+      date0 = date0.split('/')
+      @date = date0[2]+'-'+date0[1]+'-'+date0[0]
+    else
+      @date = Date.today.strftime("%Y-%m-%d")
+    end
+
+    @areas_id = Array.new
+    Area.all.each do |area|
+      @ids = Array.new
+      AreasPlates.find_all_by_area_id(area.id).each do |ap|
+        @ids << ap.plate_id
+      end
+      @areas_id[area.id] = @ids
+    end
 
   end
 end

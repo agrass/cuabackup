@@ -2,7 +2,7 @@
   / Only required for left/right tabs
   %ul.nav.nav-tabs
     %li.active
-      %a{"data-toggle" => "tab", :href => "#tab1"} Ordenes
+      %a{"data-toggle" => "tab", :href => "#tab1"} Areas
     %li
       %a{"data-toggle" => "tab", :href => "#tab2"} Vouchers
     %li
@@ -11,11 +11,24 @@
       %a{"data-toggle" => "tab", :href => "#tab4"} Estadisticas
 
   .tab-content{ :style => "overflow: hidden;"}
-    #tab1.tab-pane.active
-      Pedidos
+    #tab1.tab-pane
+      = label_tag(:fecha, "Fecha:")
+      %input{"data-behaviour" => "datepicker", :type => "text", :data_url => "#{order_lists_path}"}
+      #accordion2.accordion
+        - Area.all.each do |area|
+          .accordion-group
+            .accordion-heading
+              %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#area#{area.id}"}
+                #{area.nombre}
+            .accordion-body.collapse.in{ :id => "area#{area.id}"}
+              .accordion-inner
+                
+                
+        
     #tab2.tab-pane
       Vouchers
     #tab3.tab-pane
       Compras
     #tab4.tab-pane
       Estadisticas
+

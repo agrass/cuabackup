@@ -10,7 +10,8 @@ class OrderListsController < ApplicationController
     end
 
     date2 = @date.split('/')
-    @order_lists = OrderList.where(:fecha => date2[2]+'-'+date2[1]+'-'+date2[0])
+    @format_date = date2[2]+'-'+date2[1]+'-'+date2[0]
+    @order_lists = OrderList.where(:fecha => @format_date)
 
     respond_to do |format|
       format.html # index.html.erb

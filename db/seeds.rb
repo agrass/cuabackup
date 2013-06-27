@@ -14,7 +14,7 @@ YAML.load(ENV['ROLES']).each do |role|
   puts 'role: ' << role
 end
 puts 'DEFAULT USERS'
-user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
+user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :rut => "12345678-9", :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
 puts 'user: ' << user.name
 user.add_role :admin
 user.add_role :nutricionista
@@ -76,14 +76,14 @@ Plate.create(:nombre => "Helado" , :tipo => 10 , :horario => 2)
 Plate.create(:nombre => "Fruta" , :tipo => 10 , :horario => 2)
 
 puts 'Ingredientes'
-ingrediente1 = Ingredient.create(:nombre => "carne", :precio => 250, :unidad => "gramos", :area_id => carnes.id )
-ingrediente2 = Ingredient.create(:nombre => "arroz", :precio => 100, :unidad => "gramos", :area_id => otros.id )
-ingrediente3 = Ingredient.create(:nombre => "lechuga", :precio => 100, :unidad => "gramos", :area_id => verduras.id )
-ingrediente4 = Ingredient.create(:nombre => "papas", :precio => 200, :unidad => "gramos", :area_id => verduras.id )
-ingrediente5 = Ingredient.create(:nombre => "cebolla", :precio => 150, :unidad => "gramos", :area_id => verduras.id )
-ingrediente6 = Ingredient.create(:nombre => "pollo", :precio => 450, :unidad => "gramos", :area_id => carnes.id )
-ingrediente7 = Ingredient.create(:nombre => "champiñones", :precio => 450, :unidad => "gramos", :area_id => verduras.id )
-ingrediente8 = Ingredient.create(:nombre => "reineta", :precio => 450, :unidad => "gramos", :area_id => carnes.id )
+ingrediente1 = Ingredient.create(:nombre => "carne", :precio => 250, :unidad => "gramos")
+ingrediente2 = Ingredient.create(:nombre => "arroz", :precio => 100, :unidad => "gramos" )
+ingrediente3 = Ingredient.create(:nombre => "lechuga", :precio => 100, :unidad => "gramos" )
+ingrediente4 = Ingredient.create(:nombre => "papas", :precio => 200, :unidad => "gramos" )
+ingrediente5 = Ingredient.create(:nombre => "cebolla", :precio => 150, :unidad => "gramos")
+ingrediente6 = Ingredient.create(:nombre => "pollo", :precio => 450, :unidad => "gramos" )
+ingrediente7 = Ingredient.create(:nombre => "champiñones", :precio => 450, :unidad => "gramos" )
+ingrediente8 = Ingredient.create(:nombre => "reineta", :precio => 450, :unidad => "gramos" )
 ingrediente9 = Ingredient.create(:nombre => "aceite", :precio => 10, :unidad => "ml" )
 ingrediente10 = Ingredient.create(:nombre => "sal", :precio => 5, :unidad => "gramos" )
 

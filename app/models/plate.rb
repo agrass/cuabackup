@@ -36,4 +36,8 @@ class Plate < ActiveRecord::Base
     end
     return tipos
   end
+
+  def self.horarios_nombre
+    return [["Desayuno", 1], ["Almuerzo", 2], ["Once", 4], ["Cena", 8]]
+  end
 end

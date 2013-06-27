@@ -34,3 +34,4 @@ gem 'bootstrap-datepicker-rails'
 gem 'prawn'
 gem 'chosen-rails'
 gem 'roo'
+gem "seed_dump"
