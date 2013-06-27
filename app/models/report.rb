@@ -56,11 +56,36 @@ class Report < ActiveRecord::Base
   end
 
   def self.areas(tipo, fecha)
-    - @areas_id[area.id].each do |plates_id|
-      - count =  OrderList.joins(orders: :plates).where(:fecha => @date, plates: {id: plates_id}, orders: { horario: horario[1] }).count          
-      - if count > 0
-        = Plate.find(plates_id).nombre 
-        = count
+    FileUtils.rm_rf("public/pdf/")   
+    Dir.mkdir("public/pdf/") unless File.exists?("public/pdf/")
+    now = Time.now
+    @name = now.strftime("%d-%m-%Y").to_s + " Pedidos Area.pdf"    
+    Prawn::Document.generate("public/pdf/"+ @name ) do
+         
+      Area.all.each do |area|
+        platos_info = Array.new
+        titulo_hoja = "<b> Lista Pedidos "+ Report.getHorario(tipo) + " #{area.nombre} - #{fecha}</b>"     
+        AreasPlates.find_all_by_area_id(area.id).each do |ap|        
+            count =  OrderList.joins(orders: :plates).where(:fecha => fecha, plates: {id: ap.plate_id}, orders: { horario: tipo }).count          
+            if count > 0
+             platos_info << "<b>#{Plate.find(ap.plate_id).nombre}</b>                    " + count.to_s
+            end        
+        end
+        if platos_info.count > 0
+          text(titulo_hoja, :align => :center, :inline_format=>true, :font_size => 14)
+          transparent(0.2) {image "public/assets/images/logo2.jpg", :scale => 2, :at => [bounds.left+200, bounds.top - 50]}
+          text(" ")
+          text("<b> Nombre Plato                   Cantidad </b>", :align => :left, :inline_format=>true)
+          text("______________________________________________________________ ")
+          platos_info.each do |plato_string|
+            text(plato_string, :align => :left, :inline_format=>true) 
+          end 
+          start_new_page
+        end
+      end
+  end
+
+    return @name   
 
   end
 

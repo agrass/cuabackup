@@ -23,8 +23,12 @@ class ReportsController < ApplicationController
     if params[:fecha] != nil
       @fecha = params[:fecha]
     end
-
-    nombre = Report.plates(params[:tipo], @fecha) 
+    nombre = ""
+    if params[:tipo] == "vaucher"
+      nombre = Report.plates(params[:horario], @fecha) 
+    elsif params[:tipo] == "areas"
+      nombre = Report.areas(params[:horario], @fecha)
+    end
     redirect_to reports_path(:source => nombre)
 
 

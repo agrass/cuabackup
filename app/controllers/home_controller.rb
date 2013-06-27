@@ -36,7 +36,7 @@ class HomeController < ApplicationController
       @areas_id[area.id] = @ids
     end
 
-    @date = Date.today.strftime("%d/%m/%Y")
+    
   end
 
   def upDay

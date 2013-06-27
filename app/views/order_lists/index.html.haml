@@ -14,7 +14,7 @@
 #accordion2.accordion
   .accordion-group
     .accordion-heading
-      %a.btn.btn-success.right{ :href => "../reports/new?tipo=1&fecha=" + @format_date}
+      %a.btn.btn-success.right{ :href => "../reports/new?tipo=vaucher&horario=1&fecha=" + @format_date}
         %i.icon-download-alt
         Generar PDF
       %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseDesayuno"}
@@ -41,7 +41,7 @@
                   %i.icon-trash
   .accordion-group
     .accordion-heading
-      %a.btn.btn-success.right{ :href => "../reports/new?tipo=2&fecha=" + @format_date}
+      %a.btn.btn-success.right{ :href => "../reports/new?tipo=vaucher&horario=2&fecha=" + @format_date}
         %i.icon-download-alt
         Generar PDF
       %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseAlmuerzo"}
@@ -68,7 +68,7 @@
                   %i.icon-trash
   .accordion-group
     .accordion-heading
-      %a.btn.btn-success.right{ :href => "../reports/new?tipo=4&fecha=" + @format_date}
+      %a.btn.btn-success.right{ :href => "../reports/new?tipo=vaucher&horario=4&fecha=" + @format_date}
         %i.icon-download-alt
         Generar PDF
       %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseOnce"}
@@ -97,7 +97,7 @@
                     %i.icon-trash
   .accordion-group
     .accordion-heading
-      %a.btn.btn-success.right{ :href => "../reports/new?tipo=8&fecha=" + @format_date}
+      %a.btn.btn-success.right{ :href => "../reports/new?tipo=vaucher&horario=8&fecha=" + @format_date}
         %i.icon-download-alt
         Generar PDF
       %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseCena"}
