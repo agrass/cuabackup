@@ -57,14 +57,9 @@
                 %span.rtsOut
                   %span.rtsIn
                     %span.rtsTxt Ordenes
-          - if current_user.has_role? :admin        
+          - if current_user.has_role? :admin         
             %li.rtsLI.rtsLIMid
               %a.rtsLink{:href => "#{admin_path}"}
-                %span.rtsOut
-                  %span.rtsIn
-                    %span.rtsTxt Administrar Odenes
-            %li.rtsLI.rtsLIMid
-              %a.rtsLink{:href => "#"}
                 %span.rtsOut
                   %span.rtsIn
                     %span.rtsTxt Estadisticas
