@@ -2,21 +2,28 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :nombre
-    = f.input :description, label: 'Descripción'
-    = f.input :calorias
+    %legend Nombre
+    = f.input :nombre, label: false
+    %legend Descripción
+    = f.input :description, label: false
+    %legend Calorias
+    = f.input :calorias, label: false
     //= f.association :regimes, label_method: :nombre,  as: :check_boxes
+    %legend Horario
     -if f.object.new_record?
       = f.input :horario, as: :check_boxes, collection: [["Desayuno",1],["Almuerzo",2],["Once", 4],["Cena",8]]
     -else
-      = f.input :horario, as: :check_boxes, collection: [["Desayuno",1],["Almuerzo",2],["Once", 4],["Cena",8]], :checked => @plate.obtener_horarios
-    = f.input :tipo, as: :radio_buttons, collection: Plate.obtener_tipos(0)
+      = f.input :horario, as: :check_boxes, collection: [["Desayuno",1],["Almuerzo",2],["Once", 4],["Cena",8]], :checked => @plate.obtener_horarios, label: false
+    %legend Tipo
+    = f.input :tipo, as: :radio_buttons, collection: Plate.obtener_tipos(0), label: false
+    %legend Ingredientes
     =f.fields_for :plate_ingredients do |plate_ingredients_form|
       = plate_ingredients_form.select :ingredient_id, Ingredient.all.map {|i| [i.nombre + " (" + i.unidad + ")", i.id]}
       = plate_ingredients_form.input :cantidad
       = plate_ingredients_form.link_to_remove "Borrar ingrediente"
     =f.link_to_add "Agregar Ingrediente", :plate_ingredients
-    =f.association :areas,label_method: :nombre, value_method: :id, as: :check_boxes
+    %legend Áreas
+    =f.association :areas, label_method: :nombre, value_method: :id, as: :check_boxes, label: false
 
   .form-actions
     = f.button :submit, @plate.new_record? ? "Crear Plato" : "Actualizar Plato"

@@ -112,9 +112,9 @@
   .form-actions
     %a.btn.btn-primary#send_regimen Actualizar
 
-= link_to 'Show', @regime
-\|
-= link_to 'Back', regimes_path
+%a.btn{ :href => "#{cuapanel_path}" }
+  %i.icon-arrow-left
+  Regresar
 
 :javascript
   $(function() {

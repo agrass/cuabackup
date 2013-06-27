@@ -2,9 +2,12 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :nombre
-    = f.input :precio
-    = f.input :unidad, as: :radio_buttons, collection: [["gramos","gr"],["ml","ml"]]
+    %legend Nombre
+    = f.input :nombre, label: false
+    %legend Precio
+    = f.input :precio, label: false
+    %legend Unidad
+    = f.input :unidad, as: :radio_buttons, collection: [["gramos","gr"],["ml","ml"]], label: false
 
   .form-actions
     = f.button :submit, @ingredient.new_record? ? "Crear Ingrediente" : "Actualizar Ingrediente"

@@ -22,7 +22,6 @@
           %th Nombre
           %th Calorias
           %th
-          %th
 
         - @plates.each do |plate|
           %tr
@@ -31,7 +30,6 @@
             %td
               = link_to(edit_plate_path(plate),:class => 'btn btn-mini', "data-toggle" => "tooltip", :title => "Editar") do
                 %i.icon-pencil
-            %td 
               = link_to(plate, :method => :delete, :data => { :confirm => '¿Seguro que desea eliminar al paciente?' },:class => 'btn btn-mini', "data-toggle" => "tooltip", :title => "Eliminar") do
                 %i.icon-trash
 
@@ -99,6 +97,7 @@
           %thead
             %tr
               %th Nombre de Usuario
+              %th Rut
               %th Email
               %th Fecha de Regístro
               %th Rol
@@ -107,7 +106,8 @@
           %tbody
             - @users.each do |user|
               %tr
-                %td= link_to user.name, user
+                %td= user.name
+                %td= user.rut
                 %td= user.email
                 %td= user.created_at.to_date
                 %td= user.roles.first.name.titleize unless user.roles.first.nil?
