@@ -18,30 +18,34 @@
                 %span.rtsOut
                   %span.rtsIn
                     %span.rtsTxt
-                    %i.icon-off
-                    Cerrar Sesion
+                      %i.icon-off
+                      Cerrar Sesion
           - else
             %li.rtsLI
               %a.rtsLink{:href => "#{new_user_registration_path}"}
                 %span.rtsOut
                   %span.rtsIn
-                    %span.rtsTxt Registrarse                    
+                    %span.rtsTxt
+                      %i.icon-book
+                      Registrarse                    
             %li.rtsLI
               %a.rtsLink{:href => "#{new_user_session_path}"}
                 %span.rtsOut
                   %span.rtsIn
-                    %span.rtsTxt Ingresar
+                    %span.rtsTxt
+                      %i.icon-user
+                      Ingresar
           %li.rtsLI.rtsLast
             %a.rtsLink{:href => "http://www.clinicauandes.cl/shortcuts/contacto"}
               %span.rtsOut
                 %span.rtsIn
-                  %span.rtsTxt Contacto
-      #search
-        
+                  %span.rtsTxt
+                    %i.icon-envelope
+                    Contacto      
     #menu_ppl
       %ul.rtsUL
-        %li.rtsLI.rtsFirst.rtsLI_Selected
-          %a.rtsLink.rtsSelected{:href => "#{root_path}"}
+        %li.rtsLI.rtsFirst.rts
+          %a.rtsLink{:href => "#{root_path}"}
             %span.rtsOut
               %span.rtsIn
                 %span.rtsTxt Home
@@ -57,6 +61,11 @@
                 %span.rtsOut
                   %span.rtsIn
                     %span.rtsTxt Ordenes
+            %li.rtsLI.rtsLIMid
+              %a.rtsLink{:href => "#{new_order_list_path({:date => Date.tomorrow.strftime("%d/%m/%Y")})}"}
+                %span.rtsOut
+                  %span.rtsIn
+                    %span.rtsTxt Nueva Orden
           - if current_user.has_role? :cocina
             %li.rtsLI.rtsLIMid
               %a.rtsLink{:href => "#{reporte_areas_path}"}

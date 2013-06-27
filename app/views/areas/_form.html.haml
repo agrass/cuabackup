@@ -2,8 +2,10 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :nombre
-    = f.input :descripcion
+    %legend Nombre
+    = f.input :nombre, label: false
+    %legend Descripción
+    = f.input :descripcion, label: false
 
   .form-actions
     = f.button :submit, @area.new_record? ? "Crear Área" : "Actualizar Área"

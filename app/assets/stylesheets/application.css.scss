@@ -16,6 +16,14 @@
 
 @charset "utf-8";
 
+legend + .control-group{
+    margin-top: 0px !important;
+}
+
+.control-group{
+    margin-bottom: 0px !important;
+}
+
 #main{
     
     min-height: 500px;
@@ -342,9 +350,7 @@ ul, li {
 #head #menu_sec #menu_sec_content ul li.activo_first{
         background:url("../assets/images/bg_menu_novedades.png") no-repeat left !important;
 }
-#head #menu_sec #menu_sec_content ul li a{
-        padding-left:16px;
-}
+
 #head #menu_sec #menu_sec_content ul li a,
 #head #menu_sec #menu_sec_content ul li a span 
 {
@@ -356,37 +362,6 @@ ul, li {
 #head #menu_sec #menu_sec_content ul li.rtsLI:hover a{
         color:#333333;
 }
-
-/*
-#head #menu_sec #menu_sec_content ul li a:hover{
-        text-decoration:underline;
-}
-*/
-#head #menu_sec #menu_sec_content ul li.rtsLI.rtsFirst a {
-        background:url(../assets/images/menu_sec_ico.png) no-repeat -2px 0px transparent;
-}
-
-#head #menu_sec #menu_sec_content ul li.rtsLI a {
-        background:url(../assets/images/menu_sec_ico.png) no-repeat -2px -51px transparent;
-}
-#head #menu_sec #menu_sec_content ul li.rtsLI.rtsLast a{
-        background:url(../assets/images/menu_sec_ico.png) no-repeat -2px -101px transparent;
-}
-
-#head #menu_sec #menu_sec_content ul li.rtsLI:hover a
-{
-    background-position: -2px -68px;
-}
-#head #menu_sec #menu_sec_content ul li.rtsLI_HOver.rtsFirst a
-{
-    background-position: -2px -17px;
-}
-#head #menu_sec #menu_sec_content ul li.rtsLI_HOver.rtsLast a
-{
-    background-position: -2px -118px;
-}
-
-
 
 #head #menu_sec #menu_sec_content ul li.buscar {
         position: relative;

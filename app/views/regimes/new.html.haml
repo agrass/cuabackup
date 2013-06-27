@@ -1,16 +1,15 @@
-%h1 New regime
+%h1 Nuevo Régimen
 
 = simple_form_for(@regime) do |f|
   = f.error_notification
 
   .form-inputs
-    = f.input :nombre
+    %legend Nombre
+    = f.input :nombre, label: false
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, 'Crear Régimen'
 
-
-
-
-
-= link_to 'Back', regimes_path
+%a.btn{ :href => "#{cuapanel_path}" }
+  %i.icon-arrow-left
+  Regresar

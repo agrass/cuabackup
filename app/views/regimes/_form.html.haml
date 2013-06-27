@@ -2,7 +2,8 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :nombre
+  	%legend Nombre
+    = f.input :nombre, label: false
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, 'Crear Régimen'
