@@ -6,7 +6,7 @@
     = hidden_field_tag 'regime_order[id]', @regime_id
     -if @horario
       -if @order_list.esPaciente
-        %div#detalles.half.right.alert.fixed_comment
+        %div#detalles.half.right.alert
           %button.close{"data-dismiss" => "alert", :type => "button"} ×
           = label_tag(:nombre_paciente, 'Comentarios sobre '+@order_list.patient.nombre+':' , :id =>"nombre_paciente")
           %br
