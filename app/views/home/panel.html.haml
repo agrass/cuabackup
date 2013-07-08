@@ -154,7 +154,7 @@
         %tbody
           - @areas.each do |area|
             %tr
-              %td= link_to area.nombre, area
+              %td= area.nombre
               %td
                 = link_to(edit_area_path(area),:class => 'btn btn-mini', "data-toggle" => "tooltip", :title => "Editar") do
                   %i.icon-pencil
