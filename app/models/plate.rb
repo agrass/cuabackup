@@ -38,6 +38,6 @@ class Plate < ActiveRecord::Base
   end
 
   def self.horarios_nombre
-    return [["Desayuno", 1], ["Almuerzo", 2], ["Once", 4], ["Cena", 8]]
+    return [["Desayuno", 1], ["Almuerzo", 2], ["Once", 4], ["Cena", 8], ["Colacion", 16]]
   end
 end
