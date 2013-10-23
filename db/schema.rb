@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130626173509) do
+ActiveRecord::Schema.define(:version => 20131023151829) do
 
   create_table "areas", :force => true do |t|
     t.string   "nombre"
@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(:version => 20130626173509) do
   create_table "day_regimes", :force => true do |t|
     t.date     "date"
     t.integer  "regime_day"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "estado_areas", :force => true do |t|
+    t.integer  "idArea"
+    t.date     "fecha"
+    t.integer  "horario"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -56,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20130626173509) do
     t.datetime "updated_at",    :null => false
     t.integer  "order_list_id"
     t.integer  "regime_id"
+    t.integer  "estado"
   end
 
   create_table "orders_plates", :force => true do |t|
