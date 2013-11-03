@@ -20,6 +20,12 @@
                     %span.rtsTxt
                       %i.icon-off
                       Cerrar Sesion
+            %li.rtsLI.rtsLast#alarms{"data-notifications-url" => "#{notifications_path(:format => :json)}"}
+              %a.rtsLink{:href => "#"}
+                %span.rtsOut
+                  %span.rtsIn
+                    %span.rtsTxt
+                      %i.icon-warning-sign
           - else
             %li.rtsLI
               %a.rtsLink{:href => "#{new_user_registration_path}"}
@@ -28,20 +34,20 @@
                     %span.rtsTxt
                       %i.icon-book
                       Registrarse                    
-            %li.rtsLI
+            %li.rtsLI.rtsLast
               %a.rtsLink{:href => "#{new_user_session_path}"}
                 %span.rtsOut
                   %span.rtsIn
                     %span.rtsTxt
                       %i.icon-user
                       Ingresar
-          %li.rtsLI.rtsLast
-            %a.rtsLink{:href => "http://www.clinicauandes.cl/shortcuts/contacto"}
-              %span.rtsOut
-                %span.rtsIn
-                  %span.rtsTxt
-                    %i.icon-envelope
-                    Contacto      
+          -# %li.rtsLI.rtsLast
+          -#   %a.rtsLink{:href => "http://www.clinicauandes.cl/shortcuts/contacto"}
+          -#     %span.rtsOut
+          -#       %span.rtsIn
+          -#         %span.rtsTxt
+          -#           %i.icon-envelope
+          -#           Contacto      
     #menu_ppl
       %ul.rtsUL
         %li.rtsLI.rtsFirst.rts
