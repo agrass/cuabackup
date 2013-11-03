@@ -1,32 +1,29 @@
 = label_tag(:fecha, "Fecha:")
 %input{"data-behaviour" => "datepicker", :type => "text", :data_url => "#{reporte_areas_path}"}
 
-#accordion3.accordion
+%ul#myTab.nav.nav-tabs
   - Plate.horarios_nombre().each do |horario|
-    .accordion-group
-      .accordion-heading
-        %a.btn.btn-success.right{ :href => "../reports/new?tipo=areas&horario=#{horario[1]}&fecha=#{@date}"}
-          %i.icon-download-alt
-          Generar PDF
-        %a.accordion-toggle.collapsed{"data-parent" => "#accordion3", "data-toggle" => "collapse", :href => "#horario#{horario[1]}"}
-          %legend #{horario[0]}                 
-            
-      .accordion-body.collapse{ :id => "horario#{horario[1]}"} 
-        .accordion-inner
-          #accordion2.accordion
-          - Area.all.each do |area|
-            .accordion-group
-              .accordion-heading
-                %a.accordion-toggle.collapsed{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "##{horario[1]}area#{area.id}"}
-                  %h4 #{area.nombre}
-              .accordion-body.collapse{ :id => "#{horario[1]}area#{area.id}"}
-                .accordion-inner                        
-                  - @areas_id[area.id].each do |plates_id|
-                    - count =  OrderList.joins(orders: :plates).where(:fecha => @date, plates: {id: plates_id}, orders: { horario: horario[1] }).count          
-                    - if count > 0
-                      %p
-                        = Plate.find(plates_id).nombre 
-                        = count
+    %li
+      %a{"data-toggle" => "tab", :href => "#horario#{horario[1]}"} #{horario[0]}         
+#myTabContent.tab-content                    
+  - Plate.horarios_nombre().each do |horario|
+    .tab-pane.fade{ :id => "horario#{horario[1]}", :class => "#{horario[1] ==1 ? 'active in' : ''}"}      
+      %a.btn.btn-success.right{ :href => "../reports/new?tipo=areas&horario=#{horario[1]}&fecha=#{@date}"}
+        %i.icon-download-alt
+        Generar PDF  
+      - Area.all.each do |area|
+        .accordion-group
+          .accordion-heading
+            %a.accordion-toggle.collapsed{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "##{horario[1]}area#{area.id}"}
+              %h4 #{area.nombre}
+          .accordion-body.collapse{ :id => "#{horario[1]}area#{area.id}"}
+            .accordion-inner                        
+              - @areas_id[area.id].each do |plates_id|
+                - count =  OrderList.joins(orders: :plates).where(:fecha => @date, plates: {id: plates_id}, orders: { horario: horario[1] }).count          
+                - if count > 0
+                  %p
+                    = Plate.find(plates_id).nombre 
+                    = count
 
 :javascript
   $(function() {

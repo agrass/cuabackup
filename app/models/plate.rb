@@ -37,6 +37,14 @@ class Plate < ActiveRecord::Base
     return tipos
   end
 
+  def self.buscar_tipo(tipo)
+    acomp = "Acompa\361iamiento".force_encoding("ISO-8859-1")
+    @valores = [["Liquido",1],["Sandwich",2],["Salado", 3],["Untable",4], ["Bebida", 5], ["Reposteria", 6], ["Entrada",7], ["Plato de Fondo",8], [acomp.encode("UTF-8"),9], ["Postre",10]]
+    return @valores[tipo -1][0]
+  end
+
+ 
+
   def self.horarios_nombre
     return [["Desayuno", 1], ["Almuerzo", 2], ["Once", 4], ["Cena", 8], ["Colacion", 16]]
   end
