@@ -21,6 +21,7 @@
 //= require bootstrap-popover
 //= require chosen-jquery
 //= require highcharts
+//= require notification_menu/ttw-notification-menu
 
 
 $(function() {
