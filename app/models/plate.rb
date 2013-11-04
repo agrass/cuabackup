@@ -1,11 +1,18 @@
 class Plate < ActiveRecord::Base
 
-  attr_accessible :calorias, :nombre, :tipo, :regime_ids, :horario, :plate_ingredients_attributes, :description, :area_ids
+  attr_accessible :calorias, :nombre, :tipo, :regime_ids, :horario, :plate_ingredients_attributes, :description, :area_ids, :foto
   has_many :plate_ingredients
   has_many :ingredients, :through => :plate_ingredients
   accepts_nested_attributes_for :plate_ingredients, :allow_destroy => true
   has_and_belongs_to_many :orders
   has_and_belongs_to_many :areas
+
+  has_attached_file :foto, :styles => { :small => "100x100>" },
+                  :url  => "/assets/plates/:id/:style/:basename.:extension",
+                  :path => ":rails_root/public/assets/plates/:id/:style/:basename.:extension"
+
+  validates_attachment_size :foto, :less_than => 5.megabytes
+  validates_attachment_content_type :foto, :content_type => ['image/jpeg', 'image/png']
 
   def obtener_horarios
   	array = []
