@@ -11,6 +11,7 @@ $ ->
 		change_name()
 
 	($ 'select#regime_').change ->
+		$( "input[name='commit']" ).removeAttr("disabled");
 		get_plates_from_regime()
 
 	($ 'input#acompanante').change ->
@@ -39,11 +40,12 @@ $ ->
 		url = '/get_plates?regime_id='+regime_id+'&horario='+horario+'&dia='+dia
 		$.get url, (data) ->
         	$('#plates').html data
-        	setTimeout(set_images_event, 1000)
+        	set_images_event()
+        	#setTimeout(set_images_event, 1000)
 
 	set_images_event = () ->
 		$('li.span2').each ->
-			$(this).children().last().hide()
+			#$(this).children().last().hide()
 			$(this).find("a").first().popover()
 			$(this).children().first().click ->
 				flag = true

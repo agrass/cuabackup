@@ -38,7 +38,8 @@
       - @order_lists.each do |order_list|
         - order_list.orders.find_all_by_horario(1).each do |order|
           %tr
-            %td= order_list.patient.num_pieza
+            - if order_list.patient
+              %td= order_list.patient.num_pieza
             %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
             %td= order.regime_id
             %td
@@ -63,7 +64,8 @@
       - @order_lists.each do |order_list|
         - order_list.orders.find_all_by_horario(2).each do |order|            
           %tr
-            %td= order_list.patient.num_pieza
+            - if order_list.patient
+              %td= order_list.patient.num_pieza
             %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
             %td= order.regime_id
             %td
@@ -90,7 +92,8 @@
         - order_list.orders.each do |order|
           - if order.horario == 4
             %tr
-              %td= order_list.patient.num_pieza
+              - if order_list.patient
+                %td= order_list.patient.num_pieza
               %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
               %td= order.regime_id
               %td
@@ -116,7 +119,8 @@
         - order_list.orders.each do |order|
           - if order.horario == 8
             %tr
-              %td= order_list.patient.num_pieza
+              - if order_list.patient
+                %td= order_list.patient.num_pieza
               %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
               %td= order.regime_id
               %td
