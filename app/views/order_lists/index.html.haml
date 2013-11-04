@@ -27,7 +27,8 @@
           %i.icon-download-alt
           Generar PDF
         %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapse#{horario[0]}"}
-          %legend Desayuno
+          %legend 
+            = horario[0]
       %table.table
         %th Pieza
         %th Paciente
@@ -38,6 +39,7 @@
           - order_list.orders.find_all_by_horario(horario[1]).each do |order|
             %tr{ :class => "#{order.estado == 3 ? 'tr_success' : 'tr_error'}"}
               %td= order_list.patient.num_pieza
+
               %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
               %td= Regime.find(order.regime_id).nombre              
               %td
@@ -45,9 +47,7 @@
                   %i.icon-pencil
               %td
                 = link_to(order, "data-toggle" => "tooltip", :title => "Eliminar", :method => :delete, :data => { :confirm => 'Are you sure?' }) do
-                  %i.icon-trash
-     
-      
+                  %i.icon-trash    
      
       
 %a.btn{ :href => "#{new_order_list_path({:date => @date})}" }

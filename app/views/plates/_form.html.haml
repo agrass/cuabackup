@@ -1,4 +1,4 @@
-= simple_nested_form_for @plate do |f|
+= simple_nested_form_for (@plate) do |f|
   = f.error_notification
 
   .form-inputs
@@ -24,6 +24,8 @@
     =f.link_to_add "Agregar Ingrediente", :plate_ingredients
     %legend Áreas
     =f.association :areas, label_method: :nombre, value_method: :id, as: :check_boxes, label: false
+    %legend Foto
+    =f.file_field :foto
 
   .form-actions
     = f.button :submit, @plate.new_record? ? "Crear Plato" : "Actualizar Plato"
