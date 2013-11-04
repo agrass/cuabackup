@@ -11,124 +11,41 @@
   });
   $('[data-behaviour~=datepicker]').val("#{@date}")
   });
-
+%a.btn.right{ :href => "../pdf_list?tipo=vaucher"}
+  %i.icon-download-alt
+  Lista Documentos
 %ul#myTab.nav.nav-tabs
-  %li.active
-    %a{"data-toggle" => "tab", href: "#desayuno"} Desayuno
-  %li
-    %a{"data-toggle" => "tab", href: "#almuerzo"} Almuerzo
-  %li
-    %a{"data-toggle" => "tab", href: "#once"} Once
-  %li
-    %a{"data-toggle" => "tab", href: "#Cena"} Cena  
+  - Plate.horarios_nombre.each do |horario|
+    %li{ :class => "#{ horario[1] == 1 ? 'active' : ''}" }
+      %a{"data-toggle" => "tab", :href => "##{horario[0]}"} #{horario[0]}
+ 
 #myTabContent.tab-content
-  #desayuno.tab-pane.fade.active.in
-    .accordion-heading
-      %a.btn.btn-success.right{ :href => "../reports/new?tipo=vaucher&horario=1&fecha=" + @format_date}
-        %i.icon-download-alt
-        Generar PDF
-      %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseDesayuno"}
-        %legend Desayuno
-    %table.table
-      %th Pieza
-      %th Paciente
-      %th Regimen
-      %th
-      %th
-      - @order_lists.each do |order_list|
-        - order_list.orders.find_all_by_horario(1).each do |order|
-          %tr
-            %td= order_list.patient.num_pieza
-            %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
-            %td= order.regime_id
-            %td
-              = link_to(edit_order_path(order), "data-toggle" => "tooltip", :title => "Editar") do
-                %i.icon-pencil
-            %td
-              = link_to(order, "data-toggle" => "tooltip", :title => "Eliminar", :method => :delete, :data => { :confirm => 'Are you sure?' }) do
-                %i.icon-trash
-  #almuerzo.tab-pane.fade
-    .accordion-heading
-      %a.btn.btn-success.right{ :href => "../reports/new?tipo=vaucher&horario=2&fecha=" + @format_date}
-        %i.icon-download-alt
-        Generar PDF
-      %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseAlmuerzo"}
-        %legend Almuerzo
-    %table.table
-      %th Pieza
-      %th Paciente
-      %th Regimen
-      %th
-      %th
-      - @order_lists.each do |order_list|
-        - order_list.orders.find_all_by_horario(2).each do |order|            
-          %tr
-            %td= order_list.patient.num_pieza
-            %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
-            %td= order.regime_id
-            %td
-              = link_to(edit_order_path(order), "data-toggle" => "tooltip", :title => "Editar") do
-                %i.icon-pencil
-            %td
-              = link_to(order, "data-toggle" => "tooltip", :title => "Eliminar", :method => :delete, :data => { :confirm => 'Are you sure?' }) do
-                %i.icon-trash
-  #once.tab-pane.fade
-    .accordion-heading
-      %a.btn.btn-success.right{ :href => "../reports/new?tipo=vaucher&horario=4&fecha=" + @format_date}
-        %i.icon-download-alt
-        Generar PDF
-      %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseOnce"}
-        %legend Once
-    %table.table
-      %th Pieza
-      %th Paciente
-      %th Regimen
-      %th
-      %th
-      - @order_lists.each do |order_list|
-
-        - order_list.orders.each do |order|
-          - if order.horario == 4
-            %tr
+  - Plate.horarios_nombre.each  do |horario|
+    .tab-pane.fade{ :id => "#{horario[0]}",  :class => "#{horario[1] ==1 ? 'active in' : ''}" }
+      .accordion-heading{ :id => "acord#{horario[0]}"}
+        %a.btn.btn-success.right{ :href => "../reports/new?tipo=vaucher&horario=#{horario[1]}&fecha=" + @format_date}
+          %i.icon-download-alt
+          Generar PDF
+        %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapse#{horario[0]}"}
+          %legend Desayuno
+      %table.table
+        %th Pieza
+        %th Paciente
+        %th Regimen
+        %th 
+        %th
+        - @order_lists.each do |order_list|
+          - order_list.orders.find_all_by_horario(horario[1]).each do |order|
+            %tr{ :class => "#{order.estado == 3 ? 'tr_success' : 'tr_error'}"}
               %td= order_list.patient.num_pieza
               %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
-              %td= order.regime_id
+              %td= Regime.find(order.regime_id).nombre              
               %td
                 = link_to(edit_order_path(order), "data-toggle" => "tooltip", :title => "Editar") do
                   %i.icon-pencil
               %td
                 = link_to(order, "data-toggle" => "tooltip", :title => "Eliminar", :method => :delete, :data => { :confirm => 'Are you sure?' }) do
                   %i.icon-trash
-  #cena.tab-pane.fade
-    .accordion-heading
-      %a.btn.btn-success.right{ :href => "../reports/new?tipo=vaucher&horario=8&fecha=" + @format_date}
-        %i.icon-download-alt
-        Generar PDF
-      %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseCena"}
-        %legend Cena
-    %table.table
-      %th Pieza
-      %th Paciente
-      %th Regimen
-      %th
-      %th
-      - @order_lists.each do |order_list|
-        - order_list.orders.each do |order|
-          - if order.horario == 8
-            %tr
-              %td= order_list.patient.num_pieza
-              %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
-              %td= order.regime_id
-              %td
-                = link_to(edit_order_path(order), "data-toggle" => "tooltip", :title => "Editar") do
-                  %i.icon-pencil
-              %td
-                = link_to(order, "data-toggle" => "tooltip", :title => "Eliminar", :method => :delete, :data => { :confirm => 'Are you sure?' }) do
-                  %i.icon-trash
-
-  
-      
-     
      
       
      

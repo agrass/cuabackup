@@ -6,15 +6,15 @@ class Bandeja
    end 
 end
 class Report < ActiveRecord::Base
-  attr_accessible :description, :name, :start, :type
+  attr_accessible :description, :name, :start, :tipo
 
   def self.plates(tipo, fecha)
-    FileUtils.rm_rf("public/pdf/")   
-    Dir.mkdir("public/pdf/") unless File.exists?("public/pdf/")
+    #FileUtils.rm_rf("public/pdf/")   
+    #Dir.mkdir("public/pdf/") unless File.exists?("public/pdf/")
     now = Time.now
-    @name = now.strftime("%d-%m-%Y").to_s + " " + getHorario(tipo) + name + ".pdf"    
-    Prawn::Document.generate("public/pdf/"+ @name ) do |pdf|           
-      order_count = 0         
+    @name = now.to_s + " " + getHorario(tipo) + ".pdf"
+    order_count = 0   
+    Prawn::Document.generate("public/pdf/"+ @name ) do |pdf|             
       @orders_list = OrderList.find_all_by_fecha(fecha) 
       Report.page_template(pdf, @orders_list.count%4)   
       @orders_list.each do |order_list|
@@ -28,24 +28,27 @@ class Report < ActiveRecord::Base
           @ticket.habitacion =  order_list.patient.num_pieza
           @ticket.fecha =  "#{now.strftime('%d/%m/%y')}"
           @ticket.id = order_list.id                  
-          order_list.orders.find_all_by_horario(tipo).each do |order|
-            if order.plates.count > 0
+          order= order_list.orders.find_by_horario_and_estado(tipo, [1,2,4,5])
+            if order != nil
               @ticket.servicio = Report.getHorario(order.horario)
               @ticket.regimen = Regime.find(order.regime_id).nombre
               @ticket.observaciones = order.comentarios
-
-            end
-            @ticket.menu = []         
-            order.plates.each do |plate|
-              @ticket.menu << [Plate.buscar_tipo(plate.tipo),  plate.nombre]            
-            end          
-          Report.fill_template(pdf, order_count%4, @ticket)
-               
-        order_count = order_count + 1        
+              order.set_ok            
+              @ticket.menu = []         
+              order.plates.each do |plate|
+                @ticket.menu << [Plate.buscar_tipo(plate.tipo),  plate.nombre]            
+              end       
+              Report.fill_template(pdf, order_count%4, @ticket)
+              order_count = order_count + 1 
+            end               
+                 
         end
       end
     end
-  end
+    if order_count == 0      
+      File.delete("public/pdf/" + @name)
+      @name = "0"
+    end
 
     return @name
 
@@ -55,7 +58,7 @@ class Report < ActiveRecord::Base
     FileUtils.rm_rf("public/pdf/")   
     Dir.mkdir("public/pdf/") unless File.exists?("public/pdf/")
     now = Time.now
-    @name = now.strftime("%d-%m-%Y").to_s + " Pedidos Area.pdf"    
+    @name = now.to_s + " Pedidos Area.pdf"    
     Prawn::Document.generate("public/pdf/"+ @name ) do
          
       Area.all.each do |area|
@@ -137,12 +140,12 @@ class Report < ActiveRecord::Base
       pdf.text_box ticket.servicio, :at => [75, 265], :width => 150, :align => :left, :size => 12, :inline_format=>true
       pdf.text_box ticket.habitacion, :at => [75, 250], :width => 150, :align => :left,  :size => 12, :inline_format=>true
       pdf.text_box ticket.regimen, :at => [75, 235], :width => 150, :align => :left,  :size => 12, :inline_format=>true
-      pdf.transparent(0.6) { pdf.stroke_line [0, 220], [280, 220] }
+      pdf.transparent(0.3) { pdf.stroke_line [0, 220], [280, 220] }
       j = 215      
       ticket.menu.each do |plato|
         if j > 60
           pdf.text_box "#{plato[0]}:", :at => [0, j],:align => :left, :style => :bold,  :size => 12, :width => 70, :height => 25, :inline_format => true, :overflow => :truncate
-          pdf.text_box plato[1], :at => [70, j],:align => :left,  :size => 12, :width => 228, :height => 25, :inline_format => true, :overflow => :truncate     
+          pdf.text_box plato[1], :at => [70, j],:align => :left,  :size => 12, :width => 215, :height => 25, :inline_format => true, :overflow => :truncate     
             if plato[1].length > 34
               j = j - 30
             else
@@ -157,11 +160,11 @@ class Report < ActiveRecord::Base
   end
 
   def self.getHorario(num)
-    if num == 1 
+    if num.to_i == 1 
       return "Desayuno"
-    elsif num == 2
+    elsif num.to_i == 2
       return "Almuerzo"
-    elsif num == 3
+    elsif num.to_i == 4
       return "Once"
     else
       return "Cena"

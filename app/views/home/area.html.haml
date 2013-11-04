@@ -1,6 +1,8 @@
 = label_tag(:fecha, "Fecha:")
 %input{"data-behaviour" => "datepicker", :type => "text", :data_url => "#{reporte_areas_path}"}
-
+%a.btn.right{ :href => "../pdf_list?tipo=areas"}
+  %i.icon-download-alt
+  Lista Documentos
 %ul#myTab.nav.nav-tabs
   - Plate.horarios_nombre().each do |horario|
     %li

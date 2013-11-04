@@ -1,7 +1,6 @@
 class Order < ActiveRecord::Base
   attr_accessible :comentarios, :horario, :order_list_id, :regime_id, :estado
   before_save :set_state
-
   module Estados
     PorImprimir = 1
     Modificado = 2
@@ -24,8 +23,9 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def set_ok
-  	self.estado = Estados::Ok
+  public
+  def set_ok  	
+    self.update_column(:estado, 3)
   end
 
   has_and_belongs_to_many :plates
