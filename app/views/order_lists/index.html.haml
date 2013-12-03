@@ -4,7 +4,8 @@
 :javascript
   $(function() {
   $('[data-behaviour~=datepicker]').datepicker({
-    format: 'dd/mm/yyyy'
+    format: 'dd/mm/yyyy',
+    "setDate": new Date()
   }).on('changeDate', function(ev) {
     url = $(this).attr('data_url') + '?date=' + $(this).val();
     window.location = url;

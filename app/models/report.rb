@@ -16,7 +16,7 @@ class Report < ActiveRecord::Base
     order_count = 0   
     Prawn::Document.generate("public/pdf/"+ @name ) do |pdf|             
       @orders_list = OrderList.find_all_by_fecha(fecha) 
-      Report.page_template(pdf, @orders_list.count%4)   
+      Report.page_template(pdf, 4)   
       @orders_list.each do |order_list|
         if order_list.orders.find_all_by_horario(tipo).count > 0
           if order_count%3 == 0 && order_count != 0
@@ -107,7 +107,7 @@ class Report < ActiveRecord::Base
           pdf.text_box "HABITACION:", :at => [0, 250], :width => 150, :align => :left,  :size => 12, :inline_format=>true
           pdf.text_box "REGIMEN:", :at => [0, 235], :width => 150, :align => :left,  :size => 12, :inline_format=>true
           #pdf.text_box "MENU:", :at => [0, 215], :width => 150, :align => :left,  :size => 12, :inline_format=>true 
-          pdf.text_box "OBSERVACIONES:", :at => [0, 55], :width => 150, :align => :left,  :size => 12, :inline_format=>true         
+          pdf.text_box "OBSERVACIONES:", :at => [0, 50], :width => 150, :align => :left,  :size => 12, :inline_format=>true         
           #pdf.transparent(0.2) { pdf.stroke_bounds }      
           
       end

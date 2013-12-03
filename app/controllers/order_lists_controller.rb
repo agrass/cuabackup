@@ -6,7 +6,7 @@ class OrderListsController < ApplicationController
     if params[:date]
       @date = params[:date]
     else
-      @date = Date.tomorrow.strftime("%d/%m/%Y")
+      @date = Date.today.strftime("%d/%m/%Y")
     end
 
     date2 = @date.split('/')
