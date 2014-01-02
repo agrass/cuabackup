@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131023151829) do
+ActiveRecord::Schema.define(:version => 20131104215352) do
 
   create_table "areas", :force => true do |t|
     t.string   "nombre"
@@ -93,10 +93,14 @@ ActiveRecord::Schema.define(:version => 20131023151829) do
     t.string   "nombre"
     t.integer  "calorias"
     t.integer  "tipo"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.integer  "horario"
     t.text     "description"
+    t.string   "foto_file_name"
+    t.string   "foto_content_type"
+    t.integer  "foto_file_size"
+    t.datetime "foto_updated_at"
   end
 
   create_table "regime_plates", :force => true do |t|

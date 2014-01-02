@@ -1,0 +1,10 @@
+%table.table
+  %th Nombre
+  %th 
+  %th 
+  %th
+  %th
+  - @reports.each do |report|
+    %tr
+      %td= report.name      
+      %td= link_to "<i class='icon-download-alt'>".html_safe, pdf_show_path(:source => report.name)

@@ -36,8 +36,9 @@ class Order < ActiveRecord::Base
     end
   end
 
+  public
   def set_ok
-    self.estado = Estados::Ok
+    self.update_column(:estado, 3)
   end
 
 end

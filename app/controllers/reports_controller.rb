@@ -2,18 +2,17 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   def index
- 
+
   end
 
   # GET /reports/1
   # GET /reports/1.json
-  def show
-    @report = Report.find(params[:id])
+  def pdf_show
+   
+  end
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @report }
-    end
+  def pdf_list
+    @reports = Report.order('created_at DESC').find_all_by_tipo(params[:tipo])
   end
 
   # GET /reports/new
@@ -24,12 +23,28 @@ class ReportsController < ApplicationController
       @fecha = params[:fecha]
     end
     nombre = ""
+    tipo = ""
     if params[:tipo] == "vaucher"
       nombre = Report.plates(params[:horario], @fecha) 
+      tipo = "vaucher"
     elsif params[:tipo] == "areas"
       nombre = Report.areas(params[:horario], @fecha)
+      tipo = "areas"
     end
-    redirect_to reports_path(:source => nombre)
+    if nombre != "0"
+      @report = Report.create(:name => nombre, :tipo => tipo)
+      Report.where("created_at <= ?", Time.now - 7.days).each do |report|
+        begin
+          File.delete("public/pdf/" + report.name)
+          report.destroy
+        rescue
+          report.destroy
+        end
+      end
+      redirect_to pdf_show_path(:source => nombre)
+    else
+      redirect_to order_lists_path, notice: 'No existen ordenes por imprimir.'
+    end
 
 
   end

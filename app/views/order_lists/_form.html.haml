@@ -12,15 +12,8 @@
           %br
           = text_area_tag 'patient_detalles', @order_list.patient.detalles, :rows => "5"
       = f.simple_fields_for :orders, @order_list.orders.build do |orders_form|
-        -case @horario.to_i
-        -when 1
-          %h2 Desayuno
-        -when 2
-          %h2 Almuerzo
-        -when 4
-          %h2 Once
-        -else
-          %h2 Cena
+        %h2
+          =Plate.horarios_nombre.flatten[Plate.horarios_nombre.flatten.index(@horario.to_i) -1]
         = hidden_field_tag 'order_list[orders_attributes][0][horario]', @horario
         = select("regime", "", Regime.all.collect {|p| [ p.nombre, p.id ] }, {:prompt => 'Seleccione Régimen'})
         #plates
@@ -37,7 +30,10 @@
             = check_box_tag(:acompanante)
 
   .form-actions
-    = f.button :submit, 'Guardar'
+    - if @regime_id || @horario == nil
+      = f.button :submit, 'Guardar'
+    - else
+      = f.button :submit, 'Guardar', :disabled => true
     -if @horario && @horario!='8'
       %a.btn{ :href => url_for(:controller => "order_lists", :action => "edit", :id => @order_list.id,  :horario => (@horario.to_i * 2).to_s) }
         Saltar
