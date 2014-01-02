@@ -13,6 +13,8 @@ class OrderListsController < ApplicationController
     @format_date = date2[2]+'-'+date2[1]+'-'+date2[0]
     @order_lists = OrderList.where(:fecha => @format_date)
 
+    @regimes = Regime.get_names_hash
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @order_lists }

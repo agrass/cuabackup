@@ -48,4 +48,12 @@ class Regime < ActiveRecord::Base
     return regimes
   end
 
+  def self.get_names_hash
+    regimes = {}
+    Regime.all.each do |reg|
+      regimes[reg.id] = reg.nombre
+    end
+    return regimes
+  end
+
 end

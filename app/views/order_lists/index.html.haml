@@ -32,7 +32,7 @@
             %tr
               %td= order_list.patient.num_pieza
               %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
-              %td= order.regime_id
+              %td= @regimes[order.regime_id]
               %td
                 = link_to(edit_order_path(order), "data-toggle" => "tooltip", :title => "Editar") do
                   %i.icon-pencil
@@ -59,7 +59,7 @@
             %tr
               %td= order_list.patient.num_pieza
               %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
-              %td= order.regime_id
+              %td= @regimes[order.regime_id]
               %td
                 = link_to(edit_order_path(order), "data-toggle" => "tooltip", :title => "Editar") do
                   %i.icon-pencil
@@ -88,7 +88,7 @@
               %tr
                 %td= order_list.patient.num_pieza
                 %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
-                %td= order.regime_id
+                %td= @regimes[order.regime_id]
                 %td
                   = link_to(edit_order_path(order), "data-toggle" => "tooltip", :title => "Editar") do
                     %i.icon-pencil
@@ -116,7 +116,7 @@
               %tr
                 %td= order_list.patient.num_pieza
                 %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
-                %td= order.regime_id
+                %td= @regimes[order.regime_id]
                 %td
                   = link_to(edit_order_path(order), "data-toggle" => "tooltip", :title => "Editar") do
                     %i.icon-pencil

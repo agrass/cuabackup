@@ -3,6 +3,7 @@ $(function () {
     var notifications_bar = new $.ttwNotificationMenu({
         notificationClickCallback:function(notification){
             console.log(notification.settings.link);
+            window.location.href = notification.settings.link;
 
         },
         deleteCallback:
