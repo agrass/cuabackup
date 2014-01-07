@@ -18,6 +18,7 @@ Role.find_or_create_by_name({ :name => 'Cocina' }, :without_protection => true)
 'role: ' << role.name
 
 puts 'DEFAULT USERS'
+User.delete_all
 user = User.find_or_create_by_email :name => 'Administrador', :rut => "12345678-9", :email => 'user@example.com', :password => 'changeme', :password_confirmation => 'changeme'
 puts 'user: ' << user.name
 user.add_role :admin
