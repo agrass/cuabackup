@@ -42,15 +42,15 @@
               %td= order_list.patient.num_pieza
 
               %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
-              %td= Regime.find(order.regime_id).nombre              
+              %td= @regimes[order.regime_id]
               %td
                 = link_to(edit_order_path(order), "data-toggle" => "tooltip", :title => "Editar") do
                   %i.icon-pencil
               %td
                 = link_to(order, "data-toggle" => "tooltip", :title => "Eliminar", :method => :delete, :data => { :confirm => 'Are you sure?' }) do
-                  %i.icon-trash    
-     
-      
+                  %i.icon-trash
+
+
 %a.btn{ :href => "#{new_order_list_path({:date => @date})}" }
   %i.icon-plus
   Nueva Orden

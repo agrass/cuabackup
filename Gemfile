@@ -1,9 +1,11 @@
 source 'http://rubygems.org'
+ruby '1.9.3'
 gem 'rails', '3.2.13'
 
 gem 'sqlite3', :group => :development
-group :production do
+group :production, :staging do
 	gem 'pg'
+	gem 'rails_12factor'
 end
 group :assets do
 	gem 'sass-rails',   '~> 3.2.3'
