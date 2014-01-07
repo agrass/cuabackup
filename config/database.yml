@@ -18,7 +18,7 @@ test:
  pool: 5
  timeout: 5000
 
- staging:
+staging:
  adapter: postgresql
  database: dg2natsu02pfe
  username: pbpnvkqmanezbp
