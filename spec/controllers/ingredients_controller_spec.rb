@@ -24,7 +24,10 @@ describe IngredientsController do
   # Ingredient. As you add validations to Ingredient, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    { "nombre" => "MyString" }
+    { "nombre" => "Lechuga",
+      "precio" => 30,
+      "unidad" => "gramos"
+      }
   end
 
   # This should return the minimal set of values that should be in the session
@@ -77,12 +80,7 @@ describe IngredientsController do
         post :create, {:ingredient => valid_attributes}, valid_session
         assigns(:ingredient).should be_a(Ingredient)
         assigns(:ingredient).should be_persisted
-      end
-
-      it "redirects to the created ingredient" do
-        post :create, {:ingredient => valid_attributes}, valid_session
-        response.should redirect_to(Ingredient.last)
-      end
+      end    
     end
 
     describe "with invalid params" do
@@ -119,12 +117,6 @@ describe IngredientsController do
         put :update, {:id => ingredient.to_param, :ingredient => valid_attributes}, valid_session
         assigns(:ingredient).should eq(ingredient)
       end
-
-      it "redirects to the ingredient" do
-        ingredient = Ingredient.create! valid_attributes
-        put :update, {:id => ingredient.to_param, :ingredient => valid_attributes}, valid_session
-        response.should redirect_to(ingredient)
-      end
     end
 
     describe "with invalid params" do
@@ -132,7 +124,7 @@ describe IngredientsController do
         ingredient = Ingredient.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Ingredient.any_instance.stub(:save).and_return(false)
-        put :update, {:id => ingredient.to_param, :ingredient => { "nombre" => "invalid value" }}, valid_session
+        put :update, {:id => ingredient.to_param, :ingredient => { "precio" => -1 }}, valid_session
         assigns(:ingredient).should eq(ingredient)
       end
 
@@ -140,7 +132,7 @@ describe IngredientsController do
         ingredient = Ingredient.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Ingredient.any_instance.stub(:save).and_return(false)
-        put :update, {:id => ingredient.to_param, :ingredient => { "nombre" => "invalid value" }}, valid_session
+        put :update, {:id => ingredient.to_param, :ingredient => { "precio" => -1 }}, valid_session
         response.should render_template("edit")
       end
     end
@@ -154,11 +146,7 @@ describe IngredientsController do
       }.to change(Ingredient, :count).by(-1)
     end
 
-    it "redirects to the ingredients list" do
-      ingredient = Ingredient.create! valid_attributes
-      delete :destroy, {:id => ingredient.to_param}, valid_session
-      response.should redirect_to(ingredients_url)
-    end
+  
   end
 
 end

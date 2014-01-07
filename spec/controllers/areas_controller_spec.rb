@@ -24,7 +24,8 @@ describe AreasController do
   # Area. As you add validations to Area, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    { "nombre" => "MyString" }
+    { "nombre" => "Area 1",
+      "descripcion" => "descripcion area1" }
   end
 
   # This should return the minimal set of values that should be in the session
@@ -78,11 +79,7 @@ describe AreasController do
         assigns(:area).should be_a(Area)
         assigns(:area).should be_persisted
       end
-
-      it "redirects to the created area" do
-        post :create, {:area => valid_attributes}, valid_session
-        response.should redirect_to(Area.last)
-      end
+      
     end
 
     describe "with invalid params" do
@@ -119,12 +116,7 @@ describe AreasController do
         put :update, {:id => area.to_param, :area => valid_attributes}, valid_session
         assigns(:area).should eq(area)
       end
-
-      it "redirects to the area" do
-        area = Area.create! valid_attributes
-        put :update, {:id => area.to_param, :area => valid_attributes}, valid_session
-        response.should redirect_to(area)
-      end
+      
     end
 
     describe "with invalid params" do
@@ -153,12 +145,7 @@ describe AreasController do
         delete :destroy, {:id => area.to_param}, valid_session
       }.to change(Area, :count).by(-1)
     end
-
-    it "redirects to the areas list" do
-      area = Area.create! valid_attributes
-      delete :destroy, {:id => area.to_param}, valid_session
-      response.should redirect_to(areas_url)
-    end
+   
   end
 
 end

@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :area do
-    nombre "MyString"
+    nombre "Area 1"
     descripcion "MyText"
   end
 end

@@ -43,8 +43,10 @@ class PlatesController < ApplicationController
   def create
     @plate = Plate.new(params[:plate])
     count = 0
-    params[:plate][:horario].each do |x|
-      count += x.to_i
+    if params[:plate][:horario] != nil
+      params[:plate][:horario].each do |x|
+        count += x.to_i
+      end
     end
     @plate.horario = count
 
@@ -64,8 +66,10 @@ class PlatesController < ApplicationController
   def update
     @plate = Plate.find(params[:id])
     count = 0
-    params[:plate][:horario].each do |x|
-      count += x.to_i
+    if params[:plate][:horario] != nil
+      params[:plate][:horario].each do |x|
+        count += x.to_i
+      end
     end
 
     respond_to do |format|

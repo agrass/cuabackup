@@ -24,7 +24,10 @@ describe PlatesController do
   # Plate. As you add validations to Plate, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    { "nombre" => "MyString" }
+    { "nombre" => "Plato 1",
+      "calorias" => 20,
+      "tipo" => 1
+    }
   end
 
   # This should return the minimal set of values that should be in the session
@@ -78,25 +81,21 @@ describe PlatesController do
         assigns(:plate).should be_a(Plate)
         assigns(:plate).should be_persisted
       end
-
-      it "redirects to the created plate" do
-        post :create, {:plate => valid_attributes}, valid_session
-        response.should redirect_to(Plate.last)
-      end
+      
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved plate as @plate" do
         # Trigger the behavior that occurs when invalid params are submitted
         Plate.any_instance.stub(:save).and_return(false)
-        post :create, {:plate => { "nombre" => "invalid value" }}, valid_session
+        post :create, {:plate => { "calorias" => -2 }}, valid_session
         assigns(:plate).should be_a_new(Plate)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Plate.any_instance.stub(:save).and_return(false)
-        post :create, {:plate => { "nombre" => "invalid value" }}, valid_session
+        post :create, {:plate => { "calorias" => -2 }}, valid_session
         response.should render_template("new")
       end
     end
@@ -119,12 +118,7 @@ describe PlatesController do
         put :update, {:id => plate.to_param, :plate => valid_attributes}, valid_session
         assigns(:plate).should eq(plate)
       end
-
-      it "redirects to the plate" do
-        plate = Plate.create! valid_attributes
-        put :update, {:id => plate.to_param, :plate => valid_attributes}, valid_session
-        response.should redirect_to(plate)
-      end
+      
     end
 
     describe "with invalid params" do
@@ -132,7 +126,7 @@ describe PlatesController do
         plate = Plate.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Plate.any_instance.stub(:save).and_return(false)
-        put :update, {:id => plate.to_param, :plate => { "nombre" => "invalid value" }}, valid_session
+        put :update, {:id => plate.to_param, :plate => { "calorias" => -2 }}, valid_session
         assigns(:plate).should eq(plate)
       end
 
@@ -140,7 +134,7 @@ describe PlatesController do
         plate = Plate.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Plate.any_instance.stub(:save).and_return(false)
-        put :update, {:id => plate.to_param, :plate => { "nombre" => "invalid value" }}, valid_session
+        put :update, {:id => plate.to_param, :plate => { "calorias" => -2 }}, valid_session
         response.should render_template("edit")
       end
     end
@@ -153,12 +147,7 @@ describe PlatesController do
         delete :destroy, {:id => plate.to_param}, valid_session
       }.to change(Plate, :count).by(-1)
     end
-
-    it "redirects to the plates list" do
-      plate = Plate.create! valid_attributes
-      delete :destroy, {:id => plate.to_param}, valid_session
-      response.should redirect_to(plates_url)
-    end
+   
   end
 
 end
