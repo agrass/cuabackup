@@ -18,7 +18,7 @@ Role.find_or_create_by_name({ :name => 'Cocina' }, :without_protection => true)
 'role: ' << role.name
 
 puts 'DEFAULT USERS'
-user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :rut => "12345678-9", :email => 'user@example.com', :password => 'changeme', :password_confirmation => 'changeme'
+user = User.find_or_create_by_email :name => 'Administrador', :rut => "12345678-9", :email => 'user@example.com', :password => 'changeme', :password_confirmation => 'changeme'
 puts 'user: ' << user.name
 user.add_role :admin
 user.add_role :nutricionista
