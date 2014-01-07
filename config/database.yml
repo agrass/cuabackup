@@ -29,6 +29,5 @@ production:
  adapter: postgresql
  database: d3j8jffvhl29pr
  username: ahxgfxktprrmne
- password: RABt8TO7hT4zUypyXNyRAdeCz1
+ password: PwFpXS437swNvvIdeu4RNYlNSv
  host: ec2-54-197-246-197.compute-1.amazonaws.com
- port: 5432
