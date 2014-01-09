@@ -24,9 +24,18 @@
   - Plate.horarios_nombre.each  do |horario|
     .tab-pane.fade{ :id => "#{horario[0]}",  :class => "#{horario[1] ==1 ? 'active in' : ''}" }
       .accordion-heading{ :id => "acord#{horario[0]}"}
-        %a.btn.btn-success.right{ :href => "../reports/new?tipo=vaucher&horario=#{horario[1]}&fecha=" + @format_date}
-          %i.icon-download-alt
-          Generar PDF
+        .btn-group.right{:style => "margin-right: 20px;"}
+          %button.btn.btn-success.right.dropdown-toggle{"data-toggle" => "dropdown"}        
+            Generar PDF #{horario[0]}
+            %span.caret
+          %ul.dropdown-menu
+            %li
+              %a{ :href => "../reports/new?tipo=vaucher&horario=#{horario[1]}&fecha=" + @format_date} Todo #{horario[0]}
+            %li
+              %a{:href => "../reports/new?tipo=vaucher&estados=nuevos&horario=#{horario[1]}&fecha=" + @format_date} Nuevas #{horario[0]}
+            %li
+              %a{:href => "../reports/new?tipo=vaucher&estados=modificados&horario=#{horario[1]}&fecha=" + @format_date} Modificadas #{horario[0]}              
+         
         %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapse#{horario[0]}"}
           %legend 
             = horario[0]
@@ -34,7 +43,8 @@
         %th Pieza
         %th Paciente
         %th Regimen
-        %th 
+        %th Estado
+        %th
         %th
         - @order_lists.each do |order_list|
           - order_list.orders.find_all_by_horario(horario[1]).each do |order|
@@ -43,6 +53,7 @@
 
               %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
               %td= @regimes[order.regime_id]
+              %td= order.estado == 2 ? image_tag('images/notification-bg.png') : ''
               %td
                 = link_to(edit_order_path(order), "data-toggle" => "tooltip", :title => "Editar") do
                   %i.icon-pencil

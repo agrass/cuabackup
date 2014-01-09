@@ -24,8 +24,17 @@ class ReportsController < ApplicationController
     end
     nombre = ""
     tipo = ""
+    #imprimir aquellos que son vaucher del paciente
     if params[:tipo] == "vaucher"
-      nombre = Report.plates(params[:horario], @fecha) 
+      #por defecto se imprimen todos 1 por imprimir, 2 modificado, 4 ingresado por alerta, 5 pendiente
+      estados = [1,2,4,5] 
+      if params[:estados] == "nuevos"
+        estados = [1,4,5]
+      #puse por separado los modificados, ya que puede ser necesario identificar especificamente aquellos vouchers a remplazar de los nuevos.
+      elsif params[:estados] == "modificados"
+        estados = [2]
+      end
+      nombre = Report.plates(params[:horario], @fecha, estados) 
       tipo = "vaucher"
     elsif params[:tipo] == "areas"
       nombre = Report.areas(params[:horario], @fecha)

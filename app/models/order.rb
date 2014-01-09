@@ -40,5 +40,4 @@ class Order < ActiveRecord::Base
   def set_ok
     self.update_column(:estado, 3)
   end
-
 end
