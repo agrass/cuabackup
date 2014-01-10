@@ -10,7 +10,7 @@
 #myTabContent.tab-content                    
   - Plate.horarios_nombre().each do |horario|
     .tab-pane.fade{ :id => "horario#{horario[1]}", :class => "#{horario[1] ==1 ? 'active in' : ''}"}      
-      %a.btn.btn-success.right{ :href => "../reports/new?tipo=areas&horario=#{horario[1]}&fecha=#{@date}"}
+      %a.btn.btn-success.right{ :href => "#", :tipo => "#{horario[0]}", :link => "../reports/new?tipo=areas&horario=#{horario[1]}&fecha=#{@date}"}
         %i.icon-download-alt
         Generar PDF  
       - Area.all.each do |area|
@@ -26,6 +26,17 @@
                   %p
                     = Plate.find(plates_id).nombre 
                     = count
+#myModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+    %h3#myModalLabel Vouchers
+  .modal-body
+    %p 
+  .modal-footer
+    %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Cerrar
+    %a.btn.btn-primary{href: "#", :onclick => "callPrint('iframe_pdf');"}
+      %i.icon-print
+      Imprimir
 
 :javascript
   $(function() {
@@ -36,7 +47,22 @@
     window.location = url;
   });
   $('[data-behaviour~=datepicker]').val("#{@date}")
+  $('.btn-success').click(function(){
+      //$('.dropdown-toggle').addClass('disabled');
+      $('#myModalLabel').html("Ficha Area "+ $(this).attr('tipo'))    
+      $( ".modal-body" ).load( $(this).attr('link'), function() {
+        $('#myModal').modal('show');
+        //$('.dropdown-toggle').removeClass('disabled');
+      });     
+      
+    })
 
   });
+
+  function callPrint(iframeId) {
+      var PDF = document.getElementById(iframeId);
+      PDF.focus();
+      PDF.contentWindow.print();
+  }
         
         

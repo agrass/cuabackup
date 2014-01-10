@@ -50,9 +50,10 @@ class ReportsController < ApplicationController
           report.destroy
         end
       end
-      redirect_to pdf_show_path(:source => nombre)
+      params[:source] = nombre
+       render "pdf_show", :layout => false    
     else
-      redirect_to order_lists_path, notice: 'No existen ordenes por imprimir.'
+      render :text => "No existen vouchers por imprimir!"
     end
 
 
