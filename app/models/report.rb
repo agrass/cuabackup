@@ -125,7 +125,7 @@ class Report < ActiveRecord::Base
   def self.fill_template(pdf, num, ticket)
     xin =  -10
     yin = 580
-    x = 350
+    x = 355
     y = 300
     if num == 1
       xin = x
@@ -136,10 +136,10 @@ class Report < ActiveRecord::Base
       xin = x
     end    
     pdf.bounding_box([xin, yin], :width => x, :height => y) do     
-      pdf.text_box ticket.paciente, :at => [75, 225], :width => 200, :align => :left, :size => 12,:inline_format=>true
-      pdf.text_box ticket.servicio, :at => [75, 210], :width => 200, :align => :left, :size => 12, :inline_format=>true
-      pdf.text_box ticket.habitacion, :at => [75, 195], :width => 200, :align => :left,  :size => 12, :inline_format=>true
-      pdf.text_box ticket.regimen, :at => [75, 180], :width => 200, :align => :left,  :size => 12, :inline_format=>true
+      pdf.text_box ticket.paciente, :at => [78, 225], :width => 200, :align => :left, :size => 12,:inline_format=>true
+      pdf.text_box ticket.servicio, :at => [78, 210], :width => 200, :align => :left, :size => 12, :inline_format=>true
+      pdf.text_box ticket.habitacion, :at => [78, 195], :width => 200, :align => :left,  :size => 12, :inline_format=>true
+      pdf.text_box ticket.regimen, :at => [78, 180], :width => 200, :align => :left,  :size => 12, :inline_format=>true
       pdf.transparent(0.3) { pdf.stroke_line [0, 165], [280, 165] }
       j = 160      
       ticket.menu.each do |plato|

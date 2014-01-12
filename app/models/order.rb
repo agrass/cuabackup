@@ -40,4 +40,12 @@ class Order < ActiveRecord::Base
   def set_ok
     self.update_column(:estado, 3)
   end
+  #revisar si es de hoy
+  def check_is_today
+    if OrderList.find(self.order_list_id).fecha == Date.today
+      return true
+    else
+      return false
+    end
+  end
 end
