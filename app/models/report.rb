@@ -10,7 +10,7 @@ class Report < ActiveRecord::Base
 
   def self.plates(tipo, fecha, estados)
     #FileUtils.rm_rf("public/pdf/")   
-    #Dir.mkdir("public/pdf/") unless File.exists?("public/pdf/")
+    Dir.mkdir("public/pdf/") unless File.exists?("public/pdf/")
     now = Time.now
     @name = now.to_s + " " + getHorario(tipo) + ".pdf"
     order_count = 0   
