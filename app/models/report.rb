@@ -62,25 +62,45 @@ class Report < ActiveRecord::Base
     Prawn::Document.generate("public/pdf/"+ @name ) do
          
       Area.all.each do |area|
-        platos_info = Array.new
-        titulo_hoja = "<b> Lista Pedidos "+ Report.getHorario(tipo.to_i) + " #{area.nombre} - #{fecha}</b>"
+        platos_info = Array.new 
 
-        AreasPlates.find_all_by_area_id(area.id).each do |ap|        
-            count =  OrderList.joins(orders: :plates).where(:fecha => fecha, plates: {id: ap.plate_id}, orders: { horario: tipo }).count          
+        AreasPlates.find_all_by_area_id(area.id).each do |ap|
+          Regime.all.each do |rg|        
+            count =  OrderList.joins(orders: :plates).where(:fecha => fecha, plates: {id: ap.plate_id}, orders: { horario: tipo , regime_id: rg }).count          
             if count > 0
-             platos_info << "<b>#{Plate.find(ap.plate_id).nombre}</b> " + count.to_s
-            end        
+             platos_info << [rg.nombre, Plate.find(ap.plate_id).nombre, count.to_s]
+            end
+          end        
         end
         if platos_info.count > 0
-          text(titulo_hoja, :align => :center, :inline_format=>true, :font_size => 14)
-          transparent(0.2) {image "public/assets/images/logo2.jpg", :scale => 2, :at => [bounds.left+200, bounds.top - 150]}
-          text(" ")
-          move_down 20
-          move_down 20
-          text("<b> Nombre Plato                   Cantidad </b>", :align => :left, :inline_format=>true)
-          text("______________________________________________________________ ")
+          text_box "PEDIDOS POR AREA", :at => [85, 720], :width => 300, :align => :center, :size => 20
+          transparent(0.8) {image "public/assets/images/logo2.jpg", :scale => 0.8, :at => [8, 740]}
+          #transparent(0.8) { stroke_line [-20, 695], [600, 695] }
+          text_box "FECHA:", :at => [60, 680], :width => 80, :align => :right, :size => 15
+          text_box fecha, :at => [150, 680], :width => 150, :align => :left, :size => 15 
+          transparent(0.8) { stroke_line [145, 665], [400, 665] } 
+          text_box "SERVICIO:", :at => [60, 660], :width => 80, :align => :right, :size => 15 
+          text_box Report.getHorario(tipo.to_i), :at => [150, 660], :width => 150, :align => :left, :size => 15
+          transparent(0.8) { stroke_line [145, 645], [400, 645] } 
+          text_box "CUARTO:", :at => [60, 640], :width => 80, :align => :right, :size => 15
+          text_box area.nombre, :at => [150, 640], :width => 150, :align => :left, :size => 15
+          transparent(0.8) { stroke_line [145, 625], [400, 625] }  
+          
+          text_box "REGIMEN", :at => [-10, 610], :width => 100, :align => :center, :size => 15
+          transparent(0.8) { stroke_line [-15, 615], [560, 615] }
+          transparent(0.8) { stroke_line [-15, 595], [560, 595] }
+          transparent(0.8) { stroke_line [-15, 615], [-15, 0] }
+          transparent(0.8) { stroke_line [95, 615], [95, 0] }
+          transparent(0.8) { stroke_line [455, 615], [455, 0] }
+          transparent(0.8) { stroke_line [560, 615], [560, 0] }  
+          text_box "PREPARACION", :at => [100, 610], :width => 350, :align => :center, :size => 15 
+          text_box "RACIONES", :at => [460, 610], :width => 80, :align => :center, :size => 15 
+          temp_y = 590     
           platos_info.each do |plato_string|
-            text(plato_string, :align => :left, :inline_format=>true) 
+            text_box plato_string[0][0..10], :at => [-10, temp_y], :width => 90, :align => :center, :size => 15
+            text_box plato_string[1], :at => [105, temp_y], :width => 345, :align => :center, :size => 15
+            text_box plato_string[2], :at => [465, temp_y], :width => 75, :align => :center, :size => 15
+            temp_y = temp_y - 15 
           end           
           start_new_page
         end

@@ -76,6 +76,7 @@
         - @regimes.each do |regime|
           %tr
             %td= regime.nombre
+            %td= regime.description
             %td
               = link_to(edit_regime_path(regime),:class => 'btn btn-mini', "data-toggle" => "tooltip", :title => "Editar") do
                 %i.icon-pencil
