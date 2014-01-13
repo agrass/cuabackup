@@ -13,6 +13,7 @@ class ReportsController < ApplicationController
 
   def pdf_list
     @reports = Report.order('created_at DESC').find_all_by_tipo(params[:tipo])
+    render :layout => false
   end
 
   # GET /reports/new

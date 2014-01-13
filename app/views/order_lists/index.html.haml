@@ -17,20 +17,35 @@
       //$('.dropdown-toggle').addClass('disabled');
       $('#myModalLabel').html("Voucher "+ $(this).attr('tipo'))    
       $( ".modal-body" ).load( $(this).attr('link'), function() {
+        //Mostrar boton imprimir
+        $('.modal-footer .btn-primary').show();
         $('#myModal').modal('show');
         //$('.dropdown-toggle').removeClass('disabled');
-      });     
-      
-    })
+      });      
+    });
+  //Cargar menu lista documentos y logs por jquery
+  $('.menu_superior .btn').click(function(){
+      //$('.dropdown-toggle').addClass('disabled');
+      $('#myModalLabel').html("Voucher "+ $(this).attr('tipo'))    
+      $( ".modal-body" ).load( $(this).attr('link'), function() {
+        $('.modal-footer .btn-primary').hide();
+        $('#myModal').modal('show');
+        //$('.dropdown-toggle').removeClass('disabled');
+      });      
+    });
+
   });
   function callPrint(iframeId) {
       var PDF = document.getElementById(iframeId);
       PDF.focus();
       PDF.contentWindow.print();
   }
-%a.btn.right{ :href => "../pdf_list?tipo=vaucher"}
-  %i.icon-download-alt
-  Lista Documentos
+.btn-group.menu_superior.right
+  %button.btn{ :link => "../pdf_list?tipo=vaucher", :tipo => "Lista Documentos" }
+    %i.icon-download-alt
+    Lista Documentos
+  %button.btn{ :link => "../change_logs", :tipo => "Registro Cambios" } Registro Cambios
+
 %ul#myTab.nav.nav-tabs
   - Plate.horarios_nombre.each do |horario|
     %li{ :class => "#{ horario[1] == 1 ? 'active' : ''}" }

@@ -26,13 +26,8 @@ class Order < ActiveRecord::Base
   def set_state
     if self.estado == Estados::Ok
       self.estado = Estados::Modificado
-    else
-      date = OrderList.find(self.order_list_id).fecha
-      if date == Date.today
-        self.estado = Estados::IngresadoAlerta
-      else
-        self.estado = Estados::PorImprimir
-      end
+    else      
+      self.estado = Estados::PorImprimir      
     end
   end
 

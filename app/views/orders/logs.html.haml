@@ -1,0 +1,19 @@
+- if @logs.count > 0
+  %table.table
+    %tr
+      %th Horario
+      %th Plato
+      %th Cambio
+      %th Encargado
+      %th
+
+    - @logs.each do |log|
+      %tr{ :class => "#{log.tipo == 1 ? 'tr_success' : 'tr_error'}"}
+        %td= Report.getHorario(log.horario)
+        %td= Plate.find(log.plate_id).nombre
+        %td <i class='#{log.tipo == 1 ? 'icon-arrow-up' : 'icon-arrow-down'  }'></i>
+        %td
+- else 
+  No existen registros de cambios!
+       
+

@@ -6,5 +6,5 @@
   %th
   - @reports.each do |report|
     %tr
-      %td= report.name      
+      %td= link_to report.name, pdf_show_path(:source => report.name, :size => "hi")
       %td= link_to "<i class='icon-download-alt'>".html_safe, pdf_show_path(:source => report.name, :size => "hi")

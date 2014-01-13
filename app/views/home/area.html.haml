@@ -1,8 +1,9 @@
 = label_tag(:fecha, "Fecha:")
 %input{"data-behaviour" => "datepicker", :type => "text", :data_url => "#{reporte_areas_path}"}
-%a.btn.right{ :href => "../pdf_list?tipo=areas"}
-  %i.icon-download-alt
-  Lista Documentos
+.btn-group.menu_superior.right
+  %button.btn{ :link => "../pdf_list?tipo=areas", :tipo => "Lista Documentos" }
+    %i.icon-download-alt
+    Lista Documentos
 %ul#myTab.nav.nav-tabs
   - Plate.horarios_nombre().each do |horario|
     %li
@@ -56,6 +57,16 @@
       });     
       
     })
+  //Cargar menu lista documentos y logs por jquery
+  $('.menu_superior .btn').click(function(){
+      //$('.dropdown-toggle').addClass('disabled');
+      $('#myModalLabel').html("Voucher "+ $(this).attr('tipo'))    
+      $( ".modal-body" ).load( $(this).attr('link'), function() {
+        $('.modal-footer .btn-primary').hide();
+        $('#myModal').modal('show');
+        //$('.dropdown-toggle').removeClass('disabled');
+      });      
+    });
 
   });
 

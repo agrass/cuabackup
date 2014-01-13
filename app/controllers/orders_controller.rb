@@ -27,6 +27,11 @@ class OrdersController < ApplicationController
     end
   end
 
+  def logs
+    @logs = ChangeLog.order('created_at DESC').all
+    render :layout => false
+  end
+
   # GET /orders/new
   # GET /orders/new.json
   def new
