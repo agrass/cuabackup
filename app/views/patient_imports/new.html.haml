@@ -1,0 +1,38 @@
+%h1 Importación de Pacientes
+%p Un archivo CSV o Excel se puede utilizar para la importación. La primera fila deben ser los nombres de las comlumnas. Se permiten los siguientes columnas:
+%ul
+  %li
+    %strong nombre
+    \- Nombre completo del paciente.
+  %li
+    %strong rut
+    \- El rut del paciente.
+  %li
+    %strong num_pieza
+    \- numero de la pieza donde se encuentra el paciente.
+
+= form_for @patient_import do |f|
+  = if @patient_import.errors.any?
+    %div#error_explanation
+      %h2= #{pluralize(@patient_import.errors.count, "error")} Errores:
+      %ul
+        =@patient_import.errors.full_messages.each do |msg|
+          %li= msg
+
+  .fileupload.fileupload-new{"data-provides" => "fileupload"}
+    .input-append
+      .uneditable-input.span3
+        %i.icon-file.fileupload-exists
+        %span.fileupload-preview
+      %span.btn.btn-file
+        %span.fileupload-new Selecionar
+        %span.fileupload-exists Cambiar
+        =f.file_field :file
+      %a.btn.fileupload-exists{"data-dismiss" => "fileupload", :href => "#"} Eliminar
+      %a.btn.btn-success#document_upload Subir
+
+
+:javascript
+  $('#document_upload').click(function(){
+    $('#new_patient_import').submit();
+  })

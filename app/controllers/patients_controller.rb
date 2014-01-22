@@ -81,8 +81,4 @@ class PatientsController < ApplicationController
     end
   end
 
-  def import
-    Patient.import(params[:file]) if params[:file]
-    redirect_to patients_path, notice: "Pacientes importados correctamente"
-  end
 end

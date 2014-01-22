@@ -1,36 +1,16 @@
-%legend Importar Pacientes
 
-= form_tag import_patients_path, multipart: true, :id => "import_patients" do
-  .fileupload.fileupload-new{"data-provides" => "fileupload"}
-    .input-append
-      .uneditable-input.span3
-        %i.icon-file.fileupload-exists
-        %span.fileupload-preview
-      %span.btn.btn-file
-        %span.fileupload-new Selecionar 
-        %span.fileupload-exists Cambiar      
-        %input#file{:type => "file", :name => "file"}/
-      %a.btn.fileupload-exists{"data-dismiss" => "fileupload", :href => "#"} Eliminar
-      %a.btn.btn-success#document_upload Subir  
-
-
-:javascript
-  $('#document_upload').click(function(){
-    $('#import_patients').submit();
-  })  
+%p= link_to "Importar Pacientes", new_patient_import_path, :class => 'btn btn-primary'
 
 %br
 
 %table.table.table-condensed
   %tr
     %th Nombre
-    %th RUT
     %th Num pieza
 
   - @patients.each do |patient|
     %tr
       %td= patient.nombre
-      %td= patient.rut
       %td= patient.num_pieza
 
 %br

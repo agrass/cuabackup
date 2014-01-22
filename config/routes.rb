@@ -16,6 +16,7 @@ CUA::Application.routes.draw do
   root :to => "home#index"
   devise_for :users
   resources :users
+  resources :patient_imports, only: [:new, :create]
   get 'pdf_show', :to => 'reports#pdf_show', :as => :pdf_show
   get 'pdf_list', :to => 'reports#pdf_list'
   get 'change_logs', :to => "orders#logs"
