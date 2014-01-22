@@ -1,9 +1,10 @@
 class Regime < ActiveRecord::Base
 
-  attr_accessible :nombre, :regime_plates_attributes ,:plate_id, :dia
+  attr_accessible :nombre, :regime_plates_attributes ,:plate_id, :dia, :description
   has_many :regime_plates
   has_many :plates, :through => :regime_plates
   accepts_nested_attributes_for :regime_plates, :allow_destroy => true
+  validates_length_of :nombre, :minimum => 3, :maximum => 10, :allow_blank => true
 
   def get_plates_by_horario_and_dia(horario, dia)
     plates = self.plates.where(:regime_plates => {:dia => dia, :horario=> horario}).order(:tipo)

@@ -5,6 +5,10 @@ class OrderListsController < ApplicationController
 
     if params[:date]
       @date = params[:date]
+      #crear cookie para guardar el valor de fecha cuando cambia de pagina
+      cookies[:date] = { :value => @date, :expires => 1.hour.from_now }
+    elsif cookies[:date] != nil
+      @date = cookies[:date]
     else
       @date = Date.today.strftime("%d/%m/%Y")
     end

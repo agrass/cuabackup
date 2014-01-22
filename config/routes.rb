@@ -18,6 +18,7 @@ CUA::Application.routes.draw do
   resources :users
   get 'pdf_show', :to => 'reports#pdf_show', :as => :pdf_show
   get 'pdf_list', :to => 'reports#pdf_list'
+  get 'change_logs', :to => "orders#logs"
   match 'get_plates', :to => 'regimes#get_plates', :as => :regime_plates
   match 'cuapanel', :to => 'home#cuaPanel'
   match 'admin', :to => 'home#admin'

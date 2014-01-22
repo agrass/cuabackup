@@ -4,8 +4,10 @@
   = f.error_notification
 
   .form-inputs
-    %legend Nombre
+    %legend Nombre (10 caracteres)
     = f.input :nombre, label: false
+    %legend Descripcion
+    = f.input :description, label: false
 
   .form-actions
     = f.button :submit, 'Crear Régimen'
