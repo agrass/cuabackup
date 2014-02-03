@@ -73,10 +73,14 @@ class OrderListsController < ApplicationController
   # POST /order_lists.json
   def create
     @order_list = OrderList.new(params[:order_list])
-
     respond_to do |format|
       if @order_list.save
-        format.html { redirect_to :controller => 'order_lists', :action => 'edit', :id => @order_list.id, :horario => '1'}
+        if params[:is_colacion]
+          @order_list.orders.create(params[:order])
+          format.html { redirect_to order_lists_path, notice: 'La colacion fue ingresada exitosamente!' }
+        else
+          format.html { redirect_to :controller => 'order_lists', :action => 'edit', :id => @order_list.id, :horario => '1'}
+        end
         format.json { render json: @order_list, status: :created, location: @order_list }
       else
         format.html { render action: "new" }
@@ -138,4 +142,15 @@ class OrderListsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def new_colacion
+    @order_list = OrderList.new
+    @patients_info = Patient.patients_group_by_num_pieza.to_json
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @order_list }
+    end
+  end
+
 end

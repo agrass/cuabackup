@@ -72,6 +72,11 @@
                 %span.rtsOut
                   %span.rtsIn
                     %span.rtsTxt Nueva Orden
+            %li.rtsLI.rtsLIMid
+              %a.rtsLink{:href => "#{colacion_path()}"}
+                %span.rtsOut
+                  %span.rtsIn
+                    %span.rtsTxt Nueva Colación
           - if current_user.has_role? :cocina
             %li.rtsLI.rtsLIMid
               %a.rtsLink{:href => "#{reporte_areas_path}"}

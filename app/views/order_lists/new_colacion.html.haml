@@ -1,0 +1,32 @@
+%legend Nueva Colación
+%br
+
+= simple_form_for(@order_list) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = hidden_field_tag 'is_colacion', 'true'
+    = hidden_field_tag 'order_list[dia]', DayRegime.getDayByDate(Date.today)
+    = hidden_field_tag 'order_list[fecha]', Date.today
+    = hidden_field_tag 'order[horario]', 16
+    = select(:order_list, :patient_id, Patient.all.collect {|p| [ p.num_pieza, p.id ] }, {:prompt => 'Seleccione Pieza'}, { class: 'chzn-select' })
+    #persona
+      %ul#lista_persona{:style =>"display: none"}
+        %li{:style => "display: inline-table; padding-right: 50px"}
+          = f.input :esPaciente, :id =>"nombre_paciente"
+        %li{:style => "display: inline-table"}
+          = label_tag(:acompanante, "Acompañante")
+          = check_box_tag(:acompanante)
+    %br
+    = text_area(:order, :comentarios, cols: 20, rows: 5)
+  .form-actions
+    = f.button :submit, 'Guardar'
+
+
+    
+:javascript
+  patient_mapper = #{@patients_info};
+
+%a.btn{ :href => "#{order_lists_path}" }
+  %i.icon-arrow-left
+  Regresar

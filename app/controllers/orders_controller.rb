@@ -47,7 +47,9 @@ class OrdersController < ApplicationController
   # GET /orders/1/edit
   def edit
     @order = Order.find(params[:id])
-    @plates = Regime.find(@order.regime_id).get_plates_by_horario_and_dia(@order.horario, OrderList.find(@order.order_list_id).dia)
+    if @order.horario != 16
+      @plates = Regime.find(@order.regime_id).get_plates_by_horario_and_dia(@order.horario, OrderList.find(@order.order_list_id).dia)
+    end
   end
 
   # POST /orders

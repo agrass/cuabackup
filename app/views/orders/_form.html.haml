@@ -1,29 +1,30 @@
 = simple_form_for(@order) do |f|
   = f.error_notification
-  - Plate.obtener_tipos(@order.horario).each do |tipo|
-    %p
-      %h3=tipo[0]
-    - a = tipo[1].to_s
-    .row-fluid
-      %ul.thumbnails
-        - @plates.where(:tipo => tipo[1]).each do |plate|
-          - if @order.plates.exists?(plate)
-            %li.span2
-              .thumbnail.select
-                %img{:alt => "300x300", :src => "http://www.clker.com/cliparts/d/a/1/f/11949858101575416323hotel_icon_restaurant_ge_01.svg.med.png", :style => "width: 100px; height: 100px; margin-top: 30px"}/
-                .caption{:style => "padding: 0px"}
-                  %h4{:style => "text-align: center"}= plate.nombre
-              %a.btn{"data-content" => "#{plate.description}", "data-original-title" => "#{plate.nombre}", "data-placement" => "top", "data-toggle" => "popover", :style => "margin-top: 10px;width: 85%;"}Descripción
-              = radio_button(:regPlates, a, plate.id, :checked => true)
-          -else
-            %li.span2
-              .thumbnail
-                %img{:alt => "300x300", :src => "http://www.clker.com/cliparts/d/a/1/f/11949858101575416323hotel_icon_restaurant_ge_01.svg.med.png", :style => "width: 100px; height: 100px; margin-top: 30px"}/
-                .caption{:style => "padding: 0px"}
-                  %h4{:style => "text-align: center"}= plate.nombre
-              %a.btn{"data-content" => "#{plate.description}", "data-original-title" => "#{plate.nombre}", "data-placement" => "top", "data-toggle" => "popover", :style => "margin-top: 10px;width: 85%;"}Descripción
-              = radio_button(:regPlates, a, plate.id)
-
+  - if @order.horario != 16
+    - Plate.obtener_tipos(@order.horario).each do |tipo|
+      %p
+        %h3=tipo[0]
+      - a = tipo[1].to_s
+      .row-fluid
+        %ul.thumbnails
+          - @plates.where(:tipo => tipo[1]).each do |plate|
+            - if @order.plates.exists?(plate)
+              %li.span2
+                .thumbnail.select
+                  %img{:alt => "300x300", :src => "http://www.clker.com/cliparts/d/a/1/f/11949858101575416323hotel_icon_restaurant_ge_01.svg.med.png", :style => "width: 100px; height: 100px; margin-top: 30px"}/
+                  .caption{:style => "padding: 0px"}
+                    %h4{:style => "text-align: center"}= plate.nombre
+                %a.btn{"data-content" => "#{plate.description}", "data-original-title" => "#{plate.nombre}", "data-placement" => "top", "data-toggle" => "popover", :style => "margin-top: 10px;width: 85%;"}Descripción
+                = radio_button(:regPlates, a, plate.id, :checked => true)
+            -else
+              %li.span2
+                .thumbnail
+                  %img{:alt => "300x300", :src => "http://www.clker.com/cliparts/d/a/1/f/11949858101575416323hotel_icon_restaurant_ge_01.svg.med.png", :style => "width: 100px; height: 100px; margin-top: 30px"}/
+                  .caption{:style => "padding: 0px"}
+                    %h4{:style => "text-align: center"}= plate.nombre
+                %a.btn{"data-content" => "#{plate.description}", "data-original-title" => "#{plate.nombre}", "data-placement" => "top", "data-toggle" => "popover", :style => "margin-top: 10px;width: 85%;"}Descripción
+                = radio_button(:regPlates, a, plate.id)
+  = f.input :comentarios, as: :text, :input_html => { :rows => 5 }
   .form-actions
     = f.button :submit, 'Actualizar Orden'
 :javascript
