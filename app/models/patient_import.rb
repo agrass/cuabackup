@@ -39,8 +39,13 @@ class PatientImport
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      patient = Patient.find_by_rut(row["rut"]) || Patient.new
-      patient.attributes = row.to_hash.slice(*Patient.accessible_attributes)
+      patient = Patient.find_by_rut(row["rut"].hash)
+      if patient.nil?
+        patient = Patient.new
+        patient.nombre = row["nombre"]
+        patient.rut = row["rut"].hash
+      end
+      patient.num_pieza = row["num_pieza"]
       patients << patient
     end
     return patients

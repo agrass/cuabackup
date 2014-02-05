@@ -4,7 +4,6 @@ class PatientImportsController < ApplicationController
 	end
 
 	def create
-		Patient.delete_all
 		@patient_import = PatientImport.new(params[:patient_import])
 		if @patient_import.save
 			redirect_to patients_path , notice: "Importacion realizada correctamente."
