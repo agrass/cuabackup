@@ -105,6 +105,9 @@ class Report < ActiveRecord::Base
           start_new_page
         end
       end
+      EstadoArea.find_all_by_fecha(fecha).each do |ear|
+        ear.destroy
+      end
   end
 
     return @name   

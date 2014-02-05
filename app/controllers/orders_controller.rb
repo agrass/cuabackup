@@ -56,8 +56,9 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(params[:order])
+    raise ""
     params[:regPlates].each do |plate|
-      if(!plate[1].empty?)
+      if(!plate[1].empty?)        
         @order.plates << Plate.find(plate[1].to_i)
       end
     end

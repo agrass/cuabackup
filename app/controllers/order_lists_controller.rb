@@ -108,7 +108,10 @@ class OrderListsController < ApplicationController
             order.plates.destroy_all
             if params[:regPlates]
               params[:regPlates].each do |plate|
-                if(!plate[1].empty?)
+                if(!plate[1].empty?)                  
+                  if order.check_is_today
+                    EstadoArea.create_alert(order.horario, plate[1].to_i)      
+                  end
                   order.plates << Plate.find(plate[1].to_i)
                 end
               end

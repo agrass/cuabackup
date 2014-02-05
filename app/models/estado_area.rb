@@ -15,6 +15,9 @@ class EstadoArea < ActiveRecord::Base
       id_area = area_plate.area_id
       if EstadoArea.find_by_horario_and_idArea(horario, id_area) == nil
         EstadoArea.create(:fecha => Date.today, :horario => horario, :idArea => id_area)
+      else
+        EstadoArea.find_by_horario_and_idArea(horario, id_area).destroy
+        EstadoArea.create(:fecha => Date.today, :horario => horario, :idArea => id_area)
       end
     end
   end
