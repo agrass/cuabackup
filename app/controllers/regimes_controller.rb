@@ -102,9 +102,14 @@ class RegimesController < ApplicationController
   end
 
   def get_plates
-    @plates = Regime.find(params[:regime_id]).get_plates_by_horario_and_dia(params[:horario], params[:dia])
-    @horario = params[:horario]
-    respond_with @plates, :layout => nil
+    if params[:regime_id] != "undefined"
+      @plates = Regime.find(params[:regime_id]).get_plates_by_horario_and_dia(params[:horario], params[:dia])
+      @horario = params[:horario]
+      respond_with @plates, :layout => nil
+    else
+      render :text => " "
+    end
+    
   end
 
   def get_form_select
