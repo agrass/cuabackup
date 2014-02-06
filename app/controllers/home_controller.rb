@@ -6,9 +6,9 @@ class HomeController < ApplicationController
 
   def cuaPanel
     @users = User.all
-    @plates = Plate.all
+    @plates = Plate.find(:all, :order => "nombre ASC")
     @regimes = Regime.all
-    @ingredients = Ingredient.all
+    @ingredients = Ingredient.find(:all, :order => "nombre ASC")
     @areas = Area.all
     render "panel"
   end

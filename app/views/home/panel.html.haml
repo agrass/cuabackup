@@ -17,6 +17,9 @@
   .tab-content{ :style => "overflow: hidden;"}
     #tab1.tab-pane.active
       %legend Platos
+      %a.btn.btn-success.right{ :href => "#{new_plate_path}" }
+        %i.icon-plus
+        Nuevo Plato
       %table.table.table-condensed
         %tr
           %th Nombre
@@ -32,15 +35,13 @@
                 %i.icon-pencil
               = link_to(plate, :method => :delete, :data => { :confirm => '¿Seguro que desea eliminar al paciente?' },:class => 'btn btn-mini', "data-toggle" => "tooltip", :title => "Eliminar") do
                 %i.icon-trash
-
-
-      %br
-      %a.btn{ :href => "#{new_plate_path}" }
-        %i.icon-plus
-        Nuevo Plato
+   
 
     #tab2.tab-pane
-      %legend Lista Ingredientes
+      %legend Lista Ingredientes      
+      %a.btn.btn-success.right{ :href => "#{new_ingredient_path}" }
+        %i.icon-plus
+        Nuevo Ingrediente
 
       %table.table.table-condensed
         %tr
@@ -60,11 +61,6 @@
                 %i.icon-pencil
               = link_to(ingredient, :method => :delete, :data => { :confirm => '¿Seguro que desea eliminar al paciente?' },:class => 'btn btn-mini', "data-toggle" => "tooltip", :title => "Eliminar") do
                 %i.icon-trash    
-
-      %br
-      %a.btn{ :href => "#{new_ingredient_path}" }
-        %i.icon-plus
-        Nuevo Ingrediente
 
     #tab3.tab-pane
       %legend Regímenes
@@ -128,6 +124,10 @@
           %i.icon-arrow-down
         :javascript
           $(function() {
+          $('table').filterTable({ 
+          placeholder: "Buscar por nombre en la lista..", 
+          label: ""
+          });
           $('#upDay').click(function() {
             $.ajax({
               url: "#{url_for :upDay}"
