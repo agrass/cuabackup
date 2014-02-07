@@ -3,7 +3,7 @@ class Order < ActiveRecord::Base
   before_save :set_state
 
   has_and_belongs_to_many :plates
-  belongs_to :order_lists
+  belongs_to :order_list
   has_one :regime
 
   module Estados

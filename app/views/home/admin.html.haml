@@ -1,4 +1,4 @@
-%legend Estadísticas
+%legend Ingredientes
 = label_tag(:fecha, "Fecha:")
 %input{"data-behaviour" => "datepicker", :type => "text", :data_url => "#{regime_stats_path}"}/
 :javascript
@@ -7,15 +7,23 @@
     format: 'dd/mm/yyyy'
   }).on('changeDate', function(ev) {
     $('#mensaje').hide();
-    url = '#{regime_stats_path}?date=' + $(this).val();
+
+    url = '/ingredientsPanel?date=' + $(this).val();
     $.get(url, function(data) {
-      $('#estadistica').html(data);
+      $('#ingredientes').html(data);
       });
+    //url = '#{regime_stats_path}?date=' + $(this).val();
+    //$.get(url, function(data) {
+    //  $('#estadistica').html(data);
+    //  });
     return true;
   });
-  // $('[data-behaviour~=datepicker]').val("#{@date}")
 
   });
+%br
+%div#ingredientes
+%br
+%legend Estadísticas
 %div#estadistica
 %br
 .alert#mensaje  

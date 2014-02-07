@@ -14,9 +14,18 @@ class HomeController < ApplicationController
   end
 
   def admin
+  end
 
-   
-
+  def ingredientsPanel
+    if params[:date]
+      date = params[:date].split('/')
+      @ingredients = Ingredient.joins(plates: [orders: :order_list]).where(order_lists: {fecha: date[2]+'-'+date[1]+'-'+date[0]}).select('ingredients.nombre, sum(plate_ingredients.cantidad) as cantidad_total, ingredients.unidad').group('ingredients.nombre')
+      render layout: false
+      return
+    else
+      render nothing: true
+      return
+    end
   end
 
   def area
