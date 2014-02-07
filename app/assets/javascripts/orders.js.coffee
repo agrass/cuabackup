@@ -11,8 +11,12 @@ $ ->
 		change_name()
 
 	($ 'select#regime_').change ->
-		$( "input[name='commit']" ).removeAttr("disabled");
-		get_plates_from_regime()
+		if ($ 'select#regime_').val()
+			$( "input[name='commit']" ).removeAttr("disabled");
+			get_plates_from_regime()
+		else
+			$( "input[name='commit']" ).prop( "disabled", true );
+			$('#plates').empty();
 
 	($ 'input#acompanante').change ->
 		if this.checked

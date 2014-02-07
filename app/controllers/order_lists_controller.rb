@@ -104,19 +104,26 @@ class OrderListsController < ApplicationController
           format.html { redirect_to :controller => 'order_lists', :action => 'edit', :id => @order_list.id, :horario => '1'}
         else
           if !params[:order_list][:orders_attributes]['0'][:horario].empty?
-            order = @order_list.orders.where(:horario => params[:order_list][:orders_attributes]['0'][:horario].to_i).first
-            order.plates.destroy_all
-            if params[:regPlates]
-              params[:regPlates].each do |plate|
-                if(!plate[1].empty?)                  
-                  if order.check_is_today
-                    EstadoArea.create_alert(order.horario, plate[1].to_i)      
+            if params[:regime_order][:id] and params[:regime_order][:id] != ""
+              order = @order_list.orders.where(:horario => params[:order_list][:orders_attributes]['0'][:horario].to_i).first
+              order.plates.destroy_all
+              order.regime_id = params[:regime_order][:id]
+              if params[:regPlates]
+                params[:regPlates].each do |plate|
+                  if(!plate[1].empty?)                  
+                    if order.check_is_today
+                      EstadoArea.create_alert(order.horario, plate[1].to_i)      
+                    end
+                    order.plates << Plate.find(plate[1].to_i)
                   end
-                  order.plates << Plate.find(plate[1].to_i)
                 end
               end
-              order.regime_id = params[:regime_order][:id]
               order.save
+            else
+              order = @order_list.orders.where(:horario => params[:order_list][:orders_attributes]['0'][:horario].to_i).first
+
+              order.destroy
+
             end
           end
 
