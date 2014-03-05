@@ -39,13 +39,13 @@ class PatientImport
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      patient = Patient.find_by_rut(row["rut"].hash)
+      patient = Patient.find_by_rut(row["Rut"].hash.to_s)
       if patient.nil?
         patient = Patient.new
-        patient.nombre = row["nombre"]
-        patient.rut = row["rut"].hash
+        patient.nombre = row["Paciente"].to_s
+        patient.rut = row["Rut"].hash.to_s
       end
-      patient.num_pieza = row["num_pieza"]
+      patient.num_pieza = row["Cama"].to_s
       patients << patient
     end
     return patients
@@ -63,6 +63,7 @@ class PatientImport
     when ".csv" then Csv.new(file.path, nil, :ignore)
     when ".xls" then Roo::Excel.new(file.path, nil, :ignore)
     when ".xlsx" then Roo::Excelx.new(file.path, nil, :ignore)
+    when ".XLSX" then Roo::Excelx.new(file.path, nil, :ignore)
     else raise "Unknown file type: #{file.original_filename}"
     end
   end

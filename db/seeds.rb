@@ -10,11 +10,11 @@
 # See http://railsapps.github.com/rails-environment-variables.html
 puts 'ROLES'
 Role.delete_all
-role = Role.find_or_create_by_name({ :name => 'Admin' }, :without_protection => true)
+role = Role.find_or_create_by_name({ :name => 'admin' }, :without_protection => true)
 'role: ' << role.name
-Role.find_or_create_by_name({ :name => 'Nutricionista' }, :without_protection => true)
+Role.find_or_create_by_name({ :name => 'nutricionista' }, :without_protection => true)
 'role: ' << role.name
-Role.find_or_create_by_name({ :name => 'Cocina' }, :without_protection => true)
+Role.find_or_create_by_name({ :name => 'central' }, :without_protection => true)
 'role: ' << role.name
 
 puts 'DEFAULT USERS'
@@ -23,7 +23,7 @@ user = User.find_or_create_by_email :name => 'Administrador', :rut => "12345678-
 puts 'user: ' << user.name
 user.add_role :admin
 user.add_role :nutricionista
-user.add_role :cocina
+user.add_role :central
 
 puts 'INGREDIENTS'
 Ingredient.delete_all
@@ -275,17 +275,21 @@ Ingredient.create(:nombre => "Zapallo italiano",  :unidad => "KG" )
 # Ingredient.destroy_all
 # RegimePlate.destroy_all
 # Patient.destroy_all
-# DayRegime.destroy_all
-# Area.destroy_all
+DayRegime.destroy_all
+Area.destroy_all
 # #OrderList.destroy_all
 
-# puts 'areas cocina'
+puts 'dia regimen'
 
-# reposteria = Area.create(:nombre => "reposteria")
-# cocina_fria = Area.create(:nombre => "Cocina fria")
-# carnes = Area.create(:nombre => "Carnes")
-# verduras = Area.create(:nombre => "Verduras")
-# otros = Area.create(:nombre => "Otros")
+DayRegime.create(:date => Date.today, :regime_day => 1)
+
+puts 'areas'
+
+reposteria = Area.create(:nombre => "reposteria")
+cocina_fria = Area.create(:nombre => "Cocina fria")
+carnes = Area.create(:nombre => "Carnes")
+verduras = Area.create(:nombre => "Verduras")
+otros = Area.create(:nombre => "Otros")
 
 # puts 'Platos'
 # plate1 = Plate.create(:nombre => "Cafe" , :tipo => 1 , :horario => 5, :description => 'Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos.')
@@ -354,11 +358,6 @@ Ingredient.create(:nombre => "Zapallo italiano",  :unidad => "KG" )
 # paciente3 = Patient.create(:nombre => "Fernando E", :rut => "13753853-3" , :num_pieza => "3A" )
 # paciente4 = Patient.create(:nombre => "Joaquin F", :rut => "16753853-2" , :num_pieza => "4A" )
 # paciente5 = Patient.create(:nombre => "Vicente V", :rut => "13753853-1" , :num_pieza => "5A" )
-
-
-# puts 'dia regimen'
-
-# DayRegime.create(:date => Date.new(2013, 4, 20), :regime_day => 1)
 
 
 # puts 'Ordenes'

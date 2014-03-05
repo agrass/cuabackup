@@ -77,12 +77,12 @@
                 %span.rtsOut
                   %span.rtsIn
                     %span.rtsTxt Nueva Colación
-          - if current_user.has_role? :cocina
+          - if current_user.has_role? :central
             %li.rtsLI.rtsLIMid
               %a.rtsLink{:href => "#{reporte_areas_path}"}
                 %span.rtsOut
                   %span.rtsIn
-                    %span.rtsTxt Áreas Cocina
+                    %span.rtsTxt Áreas
           - if current_user.has_role? :admin
             %li.rtsLI.rtsLIMid
               %a.rtsLink{:href => "#{admin_path}"}

@@ -1,0 +1,11 @@
+%table.table.table-condensed
+  %tr
+    %th Nombre
+    %th Cantidad Total
+    %th Unidad
+
+    - @ingredients.each do |ingredient|
+      %tr
+        %td= ingredient.nombre
+        %td= ingredient.cantidad_total
+        %td= ingredient.unidad
