@@ -10,6 +10,8 @@ class HomeController < ApplicationController
     @regimes = Regime.all
     @ingredients = Ingredient.find(:all, :order => "nombre ASC")
     @areas = Area.all
+    authorize! :manage, [@users, @ingredients, @areas]    
+
     render "panel"
   end
 

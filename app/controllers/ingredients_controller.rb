@@ -1,4 +1,5 @@
 class IngredientsController < ApplicationController
+  load_resource_authorize_resource 
   # GET /ingredients
   # GET /ingredients.json
   def index
@@ -57,6 +58,7 @@ class IngredientsController < ApplicationController
   # PUT /ingredients/1.json
   def update
     @ingredient = Ingredient.find(params[:id])
+    authorize! :manage, [@ingredient]
 
     respond_to do |format|
       if @ingredient.update_attributes(params[:ingredient])
@@ -73,6 +75,7 @@ class IngredientsController < ApplicationController
   # DELETE /ingredients/1.json
   def destroy
     @ingredient = Ingredient.find(params[:id])
+    authorize! :manage, [@ingredient]
     @ingredient.destroy
 
     respond_to do |format|
