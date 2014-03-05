@@ -20,12 +20,13 @@
                     %span.rtsTxt
                       %i.icon-off
                       Cerrar Sesion
-            %li.rtsLI.rtsLast#alarms{"data-notifications-url" => "#{notifications_path(:format => :json)}"}
-              %a.rtsLink{:href => "#"}
-                %span.rtsOut
-                  %span.rtsIn
-                    %span.rtsTxt
-                      %i.icon-warning-sign
+            - if current_user.has_role? :admin or current_user.has_role? :central
+              %li.rtsLI.rtsLast#alarms{"data-notifications-url" => "#{notifications_path(:format => :json)}"}
+                %a.rtsLink{:href => "#"}
+                  %span.rtsOut
+                    %span.rtsIn
+                      %span.rtsTxt
+                        %i.icon-warning-sign
           - else
             %li.rtsLI
               %a.rtsLink{:href => "#{new_user_registration_path}"}

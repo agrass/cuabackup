@@ -40,11 +40,12 @@
       PDF.focus();
       PDF.contentWindow.print();
   }
-.btn-group.menu_superior.right
-  %button.btn{ :link => "../pdf_list?tipo=vaucher", :tipo => "Lista Documentos" }
-    %i.icon-download-alt
-    Lista Documentos
-  %button.btn{ :link => "../change_logs", :tipo => "Registro Cambios" } Registro Cambios
+- if current_user.has_role? :admin or current_user.has_role? :central
+  .btn-group.menu_superior.right
+    %button.btn{ :link => "../pdf_list?tipo=vaucher", :tipo => "Lista Documentos" }
+      %i.icon-download-alt
+      Lista Documentos
+    %button.btn{ :link => "../change_logs", :tipo => "Registro Cambios" } Registro Cambios
 
 %ul#myTab.nav.nav-tabs
   - Plate.horarios_nombre.each do |horario|
@@ -55,17 +56,18 @@
   - Plate.horarios_nombre.each  do |horario|
     .tab-pane.fade{ :id => "#{horario[0]}",  :class => "#{horario[1] ==1 ? 'active in' : ''}" }
       .accordion-heading{ :id => "acord#{horario[0]}"}
-        .btn-group.right{:style => "margin-right: 20px;"}
-          %button.btn.btn-success.right.dropdown-toggle{"data-toggle" => "dropdown"}        
-            Generar PDF #{horario[0]}
-            %span.caret
-          %ul.dropdown-menu
-            %li
-              %a{ :href => "#", :tipo => "#{horario[0]}" , :link => "../reports/new?tipo=vaucher&horario=#{horario[1]}&fecha=" + @format_date} Todo #{horario[0]}
-            %li
-              %a{:href => "#", :link => "../reports/new?tipo=vaucher&estados=nuevos&horario=#{horario[1]}&fecha=" + @format_date} Nuevas #{horario[0]}
-            %li
-              %a{:href => "#", :link => "../reports/new?tipo=vaucher&estados=modificados&horario=#{horario[1]}&fecha=" + @format_date} Modificadas #{horario[0]}              
+        - if current_user.has_role? :admin or current_user.has_role? :central
+          .btn-group.right{:style => "margin-right: 20px;"}
+            %button.btn.btn-success.right.dropdown-toggle{"data-toggle" => "dropdown"}        
+              Generar PDF #{horario[0]}
+              %span.caret
+            %ul.dropdown-menu
+              %li
+                %a{ :href => "#", :tipo => "#{horario[0]}" , :link => "../reports/new?tipo=vaucher&horario=#{horario[1]}&fecha=" + @format_date} Todo #{horario[0]}
+              %li
+                %a{:href => "#", :link => "../reports/new?tipo=vaucher&estados=nuevos&horario=#{horario[1]}&fecha=" + @format_date} Nuevas #{horario[0]}
+              %li
+                %a{:href => "#", :link => "../reports/new?tipo=vaucher&estados=modificados&horario=#{horario[1]}&fecha=" + @format_date} Modificadas #{horario[0]}              
          
         %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapse#{horario[0]}"}
           %legend 
