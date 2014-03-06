@@ -26,15 +26,13 @@
 
 $(function() {
 
-$('#send_regimen').click(function(){
-
-  
-
-
-  $('.edit_regime').submit();
-
-
-});
+  $('#send_regimen').click(function(){
+    $('.edit_regime').submit();
+  });
+  //Solucion provisioria esconder burbuja
+  if($('.notification-bubble').html() == "0"){
+    $('.notification-bubble').hide();
+  }
 
 });
 
