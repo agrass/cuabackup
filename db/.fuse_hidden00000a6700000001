@@ -3,27 +3,28 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
 # Examples:
+#
 # Examples:
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 # Environment variables (ENV['...']) are set in the file config/application.yml.
 # See http://railsapps.github.com/rails-environment-variables.html
-puts 'ROLES'
- Role.delete_all
- role = Role.find_or_create_by_name({ :name => 'admin' }, :without_protection => true)
- 'role: ' << role.name
- Role.find_or_create_by_name({ :name => 'nutricionista' }, :without_protection => true)
- 'role: ' << role.name
- Role.find_or_create_by_name({ :name => 'central' }, :without_protection => true)
- 'role: ' << role.name
+# puts 'ROLES'
+# Role.delete_all
+# role = Role.find_or_create_by_name({ :name => 'admin' }, :without_protection => true)
+# 'role: ' << role.name
+# Role.find_or_create_by_name({ :name => 'nutricionista' }, :without_protection => true)
+# 'role: ' << role.name
+# Role.find_or_create_by_name({ :name => 'central' }, :without_protection => true)
+# 'role: ' << role.name
 
- puts 'DEFAULT USERS'
- User.delete_all
- user = User.find_or_create_by_email :name => 'Administrador', :rut => "12345678-9", :email => 'user@example.com', :password => 'changeme', :password_confirmation => 'changeme'
- puts 'user: ' << user.name
- user.add_role :admin
- user.add_role :nutricionista
- user.add_role :central
+# puts 'DEFAULT USERS'
+# User.delete_all
+# user = User.find_or_create_by_email :name => 'Administrador', :rut => "12345678-9", :email => 'user@example.com', :password => 'changeme', :password_confirmation => 'changeme'
+# puts 'user: ' << user.name
+# user.add_role :admin
+# user.add_role :nutricionista
+# user.add_role :central
 
 # puts 'INGREDIENTS'
 # Ingredient.delete_all
@@ -279,9 +280,9 @@ puts 'ROLES'
 # Area.destroy_all
 # # #OrderList.destroy_all
 
-puts 'dia regimen'
+# puts 'dia regimen'
 
-DayRegime.create(:date => Date.today, :regime_day => 1)
+# DayRegime.create(:date => Date.today, :regime_day => 1)
 
 # puts 'areas'
 
