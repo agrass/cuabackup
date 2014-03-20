@@ -1,3 +1,4 @@
+#encoding: utf-8
 class PatientImport
   # switch to ActiveModel::Model in Rails 4
   extend ActiveModel::Naming
@@ -39,22 +40,26 @@ class PatientImport
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      patient = Patient.find_by_rut(row["Rut"].hash.to_s)
-      if patient.nil?
-        patient = Patient.new
-        patient.nombre = row["Paciente"].to_s
-        patient.rut = row["Rut"].hash.to_s
+      if !row["Paciente"].to_s.empty?
+        patient = Patient.find_by_rut(row["Número de paciente"].hash.to_s)
+        if patient.nil?
+            patient = Patient.new
+            patient.nombre = row["Paciente"].to_s
+            patient.rut = row["Número de paciente"].hash.to_s
+        end
+        patient.num_pieza = row["Cama"].to_s
+        patients << patient
       end
-      patient.num_pieza = row["Cama"].to_s
-      patients << patient
     end
     return patients
   end
 
   def set_piezas_to_nil
     Patient.all.each do |patient|
-      patient.num_pieza = nil
-      patient.save
+      if patient.num_pieza
+        patient.num_pieza = nil
+        patient.save
+      end
     end
   end
 

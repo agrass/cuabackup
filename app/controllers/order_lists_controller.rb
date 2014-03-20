@@ -21,7 +21,6 @@ class OrderListsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @order_lists }
     end
   end
 
