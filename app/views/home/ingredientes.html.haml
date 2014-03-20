@@ -1,0 +1,31 @@
+%a.btn.btn-small{ :href=>"../cuapanel"} Volver
+#tab2.tab-pane
+  %legend Lista Ingredientes      
+  %a.btn.btn-success.right{ :href => "#{new_ingredient_path}" }
+    %i.icon-plus
+    Nuevo Ingrediente
+
+  %table.table.table-condensed
+    %tr
+      %th Nombre
+      %th Precio
+      %th Unidad
+      %th
+      %th
+    - @ingredients.each do |ingredient|
+      %tr
+        %td= ingredient.nombre
+        %td= ingredient.precio
+        %td= ingredient.unidad
+        %td
+          = link_to(edit_ingredient_path(ingredient),:class => 'btn btn-mini', "data-toggle" => "tooltip", :title => "Editar") do
+            %i.icon-pencil
+          = link_to(ingredient, :method => :delete, :data => { :confirm => '¿Seguro que desea eliminar al paciente?' },:class => 'btn btn-mini', "data-toggle" => "tooltip", :title => "Eliminar") do
+            %i.icon-trash    
+:javascript
+  $(function() {
+  $('table').filterTable({ 
+  placeholder: "Buscar por nombre en la lista..", 
+  label: ""
+  });
+  });

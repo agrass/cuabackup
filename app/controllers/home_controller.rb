@@ -6,13 +6,20 @@ class HomeController < ApplicationController
 
   def cuaPanel
     @users = User.all
-    @plates = Plate.find(:all, :order => "nombre ASC")
-    @regimes = Regime.all
-    @ingredients = Ingredient.find(:all, :order => "nombre ASC")
+    @regimes = Regime.all    
     @areas = Area.all
     authorize! :manage, [@users, @ingredients, @areas]    
 
     render "panel"
+  end
+
+  def plates
+    @plates = Plate.find(:all, :order => "nombre ASC")
+    render "platos"
+  end
+  def ingredients
+    @ingredients = Ingredient.find(:all, :order => "nombre ASC")
+    render "ingredientes"
   end
 
   def admin

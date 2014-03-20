@@ -2,10 +2,6 @@
   / Only required for left/right tabs
   %ul.nav.nav-tabs
     %li.active
-      %a{"data-toggle" => "tab", :href => "#tab1"} Platos
-    %li
-      %a{"data-toggle" => "tab", :href => "#tab2"} Ingredientes
-    %li
       %a{"data-toggle" => "tab", :href => "#tab3"} Regimenes
     %li
       %a{"data-toggle" => "tab", :href => "#tab4"} Usuarios
@@ -13,56 +9,13 @@
       %a{"data-toggle" => "tab", :href => "#tab6"} Areas
     %li
       %a{"data-toggle" => "tab", :href => "#tab5"} Configuración
+    %li
+      %a{:href => "../cuaplates"} Platos
+    %li
+      %a{:href => "../cuaingredients"} Ingredientes
 
   .tab-content{ :style => "overflow: hidden;"}
-    #tab1.tab-pane.active
-      %legend Platos
-      %a.btn.btn-success.right{ :href => "#{new_plate_path}" }
-        %i.icon-plus
-        Nuevo Plato
-      %table.table.table-condensed
-        %tr
-          %th Nombre
-          %th Calorias
-          %th
-
-        - @plates.each do |plate|
-          %tr
-            %td= plate.nombre
-            %td= plate.calorias
-            %td
-              = link_to(edit_plate_path(plate),:class => 'btn btn-mini', "data-toggle" => "tooltip", :title => "Editar") do
-                %i.icon-pencil
-              = link_to(plate, :method => :delete, :data => { :confirm => '¿Seguro que desea eliminar al paciente?' },:class => 'btn btn-mini', "data-toggle" => "tooltip", :title => "Eliminar") do
-                %i.icon-trash
-   
-
-    #tab2.tab-pane
-      %legend Lista Ingredientes      
-      %a.btn.btn-success.right{ :href => "#{new_ingredient_path}" }
-        %i.icon-plus
-        Nuevo Ingrediente
-
-      %table.table.table-condensed
-        %tr
-          %th Nombre
-          %th Precio
-          %th Unidad
-          %th
-          %th
-
-        - @ingredients.each do |ingredient|
-          %tr
-            %td= ingredient.nombre
-            %td= ingredient.precio
-            %td= ingredient.unidad
-            %td
-              = link_to(edit_ingredient_path(ingredient),:class => 'btn btn-mini', "data-toggle" => "tooltip", :title => "Editar") do
-                %i.icon-pencil
-              = link_to(ingredient, :method => :delete, :data => { :confirm => '¿Seguro que desea eliminar al paciente?' },:class => 'btn btn-mini', "data-toggle" => "tooltip", :title => "Eliminar") do
-                %i.icon-trash    
-
-    #tab3.tab-pane
+    #tab3.tab-pane.active
       %legend Regímenes
 
       %table.table.table-condensed

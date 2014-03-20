@@ -2,7 +2,6 @@ class OrderListsController < ApplicationController
   # GET /order_lists
   # GET /order_lists.json
   def index
-
     if params[:date]
       @date = params[:date]
       #crear cookie para guardar el valor de fecha cuando cambia de pagina
@@ -12,7 +11,6 @@ class OrderListsController < ApplicationController
     else
       @date = Date.today.strftime("%d/%m/%Y")
     end
-
     date2 = @date.split('/')
     @format_date = date2[2]+'-'+date2[1]+'-'+date2[0]
     @order_lists = OrderList.where(:fecha => @format_date)
@@ -20,8 +18,7 @@ class OrderListsController < ApplicationController
     @regimes = Regime.get_names_hash
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @order_lists }
+      format.html # index.html.erb      
     end
   end
 
