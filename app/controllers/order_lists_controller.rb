@@ -18,7 +18,7 @@ class OrderListsController < ApplicationController
     @regimes = Regime.get_names_hash
 
     respond_to do |format|
-      format.html # index.html.erb      
+      format.html # index.html.erb
     end
   end
 
