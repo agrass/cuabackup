@@ -3,9 +3,13 @@ class Plate < ActiveRecord::Base
   attr_accessible :calorias, :nombre, :tipo, :regime_ids, :horario, :plate_ingredients_attributes, :description, :area_ids, :foto
   has_many :plate_ingredients
   has_many :ingredients, :through => :plate_ingredients
+  #has_and_belongs_to_many :regimes
+  has_many :regime_plates
+  has_many :regimes, :through => :regime_plates
   accepts_nested_attributes_for :plate_ingredients, :allow_destroy => true
   has_and_belongs_to_many :orders
   has_and_belongs_to_many :areas
+
 
   has_attached_file :foto, :styles => { :small => "100x100>" },
                   :url  => "/assets/plates/:id/:style/:basename.:extension",

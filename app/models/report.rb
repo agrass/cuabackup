@@ -59,19 +59,14 @@ class Report < ActiveRecord::Base
     Dir.mkdir("public/pdf/") unless File.exists?("public/pdf/")
     now = Time.now
     @name = now.to_s + " Pedidos Area.pdf"    
-    Prawn::Document.generate("public/pdf/"+ @name ) do
-         
+    Prawn::Document.generate("public/pdf/"+ @name ) do         
       Area.all.each do |area|
         platos_info = Array.new 
-
-        AreasPlates.find_all_by_area_id(area.id).each do |ap|
-          Regime.all.each do |rg|        
-            count =  OrderList.joins(orders: :plates).where(:fecha => fecha, plates: {id: ap.plate_id}, orders: { horario: tipo , regime_id: rg }).count          
-            if count > 0
-             platos_info << [rg.nombre, Plate.find(ap.plate_id).nombre, count.to_s]
-            end
-          end        
+        OrderList.joins(orders: [plates: [:areas, :regimes]]).where(:fecha => Date.today, orders: {:horario => 1}, areas: {:id => 1}).select('plates.nombre, count(*), regimes.nombre').group("regimes.nombre, plates.nombre").each do |jn|
+          raise ""
+          #platos_info << [jn.regimes, Plate.find(ap.plate_id).nombre, count.to_s]
         end
+       
         if platos_info.count > 0
           text_box "PEDIDOS POR AREA", :at => [85, 720], :width => 300, :align => :center, :size => 20
           transparent(0.8) {image "public/assets/images/logo2.jpg", :scale => 0.8, :at => [8, 740]}
