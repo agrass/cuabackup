@@ -45,17 +45,6 @@ class HomeController < ApplicationController
     else
       @date = Date.today.strftime("%Y-%m-%d")
     end
-
-    @areas_id = Array.new
-    Area.all.each do |area|
-      @ids = Array.new
-      AreasPlates.find_all_by_area_id(area.id).each do |ap|
-        @ids << ap.plate_id
-      end
-      @areas_id[area.id] = @ids
-    end
-
-    
   end
 
   def upDay

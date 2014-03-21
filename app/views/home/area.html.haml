@@ -20,13 +20,16 @@
             %a.accordion-toggle.collapsed{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "##{horario[1]}area#{area.id}"}
               %h4 #{area.nombre}
           .accordion-body.collapse{ :id => "#{horario[1]}area#{area.id}"}
-            .accordion-inner                        
-              - @areas_id[area.id].each do |plates_id|
-                - count =  OrderList.joins(orders: :plates).where(:fecha => @date, plates: {id: plates_id}, orders: { horario: horario[1] }).count          
-                - if count > 0
-                  %p
-                    = Plate.find(plates_id).nombre 
-                    = count
+            .accordion-inner
+              %table.table                     
+                - Area.get_plates_by_horario_and_area(horario[1], area.id, @date).each do |pl|
+                  %tr
+                    %td
+                      = pl.regimen
+                    %td
+                      = pl.plato
+                    %td
+                      = pl.numero
 #myModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
   .modal-header
     %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
