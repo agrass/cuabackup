@@ -62,7 +62,7 @@ class Report < ActiveRecord::Base
     Prawn::Document.generate("public/pdf/"+ @name ) do         
       Area.all.each do |area|
         platos_info = Array.new
-        OrderList.joins(orders: [plates: [:areas, :regimes]]).where(:fecha => fecha, orders: {:horario => tipo.to_i}, areas: {:id => area.id}).select('plates.nombre as plato, count(*) as numero, regimes.nombre as regimen').group("regimes.nombre, plates.nombre").each do |jn|
+        Area.get_plates_by_horario_and_area(tipo.to_i, area.id, fecha).each do |jn|
           platos_info << [jn.regimen, jn.plato, jn.numero.to_s]
         end
        
