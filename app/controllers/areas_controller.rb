@@ -58,7 +58,6 @@ class AreasController < ApplicationController
   # PUT /areas/1.json
   def update
     @area = Area.find(params[:id])
-
     respond_to do |format|
       if @area.update_attributes(params[:area])
         format.html { redirect_to cuapanel_path, notice: 'Area was successfully updated.' }

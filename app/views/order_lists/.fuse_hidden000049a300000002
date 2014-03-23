@@ -20,7 +20,7 @@
         //Mostrar boton imprimir
         $('.modal-footer .btn-primary').show();
         $('#myModal').modal('show');
-        $('#' +$('li.active a').html() + ' tr.tr_error').addClass('tr_success');       
+        $('.tr_error').addClass('tr_success');
         //$('.dropdown-toggle').removeClass('disabled');
       });      
     });

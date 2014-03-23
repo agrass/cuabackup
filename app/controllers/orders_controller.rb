@@ -83,7 +83,6 @@ class OrdersController < ApplicationController
       old[plate.id] = 1
     end       
     @order.plates.delete_all
-
     params[:regPlates].each do |plate|
       if(!plate[1].empty?)
         new_plate = Plate.find(plate[1].to_i)

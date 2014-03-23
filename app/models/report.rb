@@ -19,12 +19,12 @@ class Report < ActiveRecord::Base
       Report.page_template(pdf, 4)   
       @orders_list.each do |order_list|
         if order_list.orders.find_all_by_horario_and_estado(tipo, estados).count > 0
-          if order_count%3 == 0 && order_count != 0
-            start_new_page
+          if order_count%4 == 0 && order_count != 0
+            pdf.start_new_page
             Report.page_template(pdf, 4)            
           end
           @ticket = Bandeja.new
-          @ticket.paciente = order_list.patient.nombre
+          @ticket.paciente = order_list.patient.nombre[0..22]
           @ticket.habitacion =  order_list.patient.num_pieza
           @ticket.fecha =  "#{now.strftime('%d/%m/%y')}"
           @ticket.id = order_list.id                  
@@ -150,6 +150,7 @@ class Report < ActiveRecord::Base
       xin  = -10
     elsif num ==3
       xin = x
+      yin =
     end    
     pdf.bounding_box([xin, yin], :width => x, :height => y) do     
       pdf.text_box ticket.paciente, :at => [78, 225], :width => 200, :align => :left, :size => 12,:inline_format=>true
@@ -170,7 +171,7 @@ class Report < ActiveRecord::Base
         end
       end
       pdf.transparent(0.4) { pdf.stroke_line [0, 65], [280, 65] }       
-      pdf.text_box ticket.observaciones, :at => [0, 45], :width => 260, :align => :left,  :size => 12, :inline_format=>true
+      pdf.text_box ticket.observaciones, :at => [0, 41], :width => 256, :align => :left,  :size => 12, :inline_format=>true
       #pdf.transparent(0.2) { pdf.stroke_bounds }        
     end
   end
