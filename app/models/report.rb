@@ -61,13 +61,10 @@ class Report < ActiveRecord::Base
     @name = now.to_s + " Pedidos Area.pdf"    
     Prawn::Document.generate("public/pdf/"+ @name ) do         
       Area.all.each do |area|
-        platos_info = Array.new 
-        raise ""
-        OrderList.joins(orders: [plates: [:areas, :regimes]]).where(:fecha => Date.today, orders: {:horario => 1}, areas: {:id => 1}).select('plates.nombre, count(*), regimes.nombre').group("regimes.nombre, plates.nombre").each do |jn|
-          
-          #platos_info << [jn.regimes, Plate.find(ap.plate_id).nombre, count.to_s]
-        end
-       
+        platos_info = Array.new
+        OrderList.joins(orders: [plates: [:areas, :regimes]]).where(:fecha => fecha, orders: {:horario => tipo.to_i}, areas: {:id => area.id}).select('plates.nombre as plato, count(*) as numero, regimes.nombre as regimen').group("regimes.nombre, plates.nombre").each do |jn|
+          platos_info << [jn.regimen, jn.plato, jn.numero.to_s]
+        end       
         if platos_info.count > 0
           text_box "PEDIDOS POR AREA", :at => [85, 720], :width => 300, :align => :center, :size => 20
           transparent(0.8) {image "public/assets/images/logo2.jpg", :scale => 0.8, :at => [8, 740]}
