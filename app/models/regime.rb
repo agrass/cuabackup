@@ -1,7 +1,7 @@
 class Regime < ActiveRecord::Base
 
   attr_accessible :nombre, :regime_plates_attributes ,:plate_id, :dia, :description
-  has_many :regime_plates, :class_name => :regime_plates
+  has_many :regime_plates
   has_many :plates, :through => :regime_plates
   accepts_nested_attributes_for :regime_plates, :allow_destroy => true
   validates_length_of :nombre, :minimum => 3, :maximum => 10, :allow_blank => true
