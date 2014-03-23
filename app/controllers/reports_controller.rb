@@ -73,10 +73,8 @@ class ReportsController < ApplicationController
     respond_to do |format|
       if @report.save
         format.html { redirect_to @report, notice: 'Report was successfully created.' }
-        format.json { render json: @report, status: :created, location: @report }
       else
         format.html { render action: "new" }
-        format.json { render json: @report.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -89,10 +87,8 @@ class ReportsController < ApplicationController
     respond_to do |format|
       if @report.update_attributes(params[:report])
         format.html { redirect_to @report, notice: 'Report was successfully updated.' }
-        format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @report.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -105,7 +101,6 @@ class ReportsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to reports_url }
-      format.json { head :no_content }
     end
   end
 end

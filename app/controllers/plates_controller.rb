@@ -6,7 +6,6 @@ class PlatesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @plates }
     end
   end
 
@@ -17,7 +16,6 @@ class PlatesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @plate }
     end
   end
 
@@ -28,14 +26,12 @@ class PlatesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @plate }
     end
   end
 
   # GET /plates/1/edit
   def edit
     @plate = Plate.find(params[:id])
-    # @plate.plate_ingredients.build
   end
 
   # POST /plates
@@ -53,10 +49,8 @@ class PlatesController < ApplicationController
     respond_to do |format|
       if @plate.save
         format.html { redirect_to cuapanel_path, notice: 'Plate was successfully created.' }
-        format.json { render json: @plate, status: :created, location: @plate }
       else
         format.html { render action: "new" }
-        format.json { render json: @plate.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -77,10 +71,8 @@ class PlatesController < ApplicationController
         @plate.horario = count
         @plate.save
         format.html { redirect_to cuapanel_path, notice: 'Plate was successfully updated.' }
-        format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @plate.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -93,7 +85,6 @@ class PlatesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to cuapanel_path }
-      format.json { head :no_content }
     end
   end
 end

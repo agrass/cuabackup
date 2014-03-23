@@ -29,7 +29,6 @@ class OrderListsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @order_list }
     end
   end
 
@@ -50,7 +49,6 @@ class OrderListsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @order_list }
     end
   end
 
@@ -78,10 +76,8 @@ class OrderListsController < ApplicationController
         else
           format.html { redirect_to :controller => 'order_lists', :action => 'edit', :id => @order_list.id, :horario => '1'}
         end
-        format.json { render json: @order_list, status: :created, location: @order_list }
       else
         format.html { render action: "new" }
-        format.json { render json: @order_list.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -132,7 +128,6 @@ class OrderListsController < ApplicationController
         end
       else
         format.html { render action: "edit" }
-        format.json { render json: @order_list.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -146,7 +141,6 @@ class OrderListsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to order_lists_url }
-      format.json { head :no_content }
     end
   end
 
@@ -156,7 +150,6 @@ class OrderListsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @order_list }
     end
   end
 
