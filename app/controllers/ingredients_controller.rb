@@ -1,5 +1,4 @@
-class IngredientsController < ApplicationController
-  load_resource_authorize_resource 
+class IngredientsController < ApplicationController  
   # GET /ingredients
   # GET /ingredients.json
   def index
