@@ -64,8 +64,7 @@ class Report < ActiveRecord::Base
         platos_info = Array.new
         Area.get_plates_by_horario_and_area(tipo.to_i, area.id, fecha).each do |jn|
           platos_info << [jn.regimen, jn.plato, jn.numero.to_s]
-        end
-       
+        end       
         if platos_info.count > 0
           text_box "PEDIDOS POR AREA", :at => [85, 720], :width => 300, :align => :center, :size => 20
           transparent(0.8) {image "public/assets/images/logo2.jpg", :scale => 0.8, :at => [8, 740]}
