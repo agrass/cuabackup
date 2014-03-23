@@ -15,7 +15,9 @@
   //Eventos botones PDF
   $('.dropdown-menu li a').click(function(){
       //$('.dropdown-toggle').addClass('disabled');
-      $('#myModalLabel').html("Voucher "+ $(this).attr('tipo'))    
+      $('#myModalLabel').html("Voucher "+ $(this).attr('tipo'))
+      $('#myModal').modal('show'); 
+      $( ".modal-body" ).html("<p>Generando PDF.. Esto puede tardar unos segundos</p> <img src='../assets/images/ajax-loader.gif' /> ")
       $( ".modal-body" ).load( $(this).attr('link'), function() {
         //Mostrar boton imprimir
         $('.modal-footer .btn-primary').show();
