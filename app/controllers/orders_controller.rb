@@ -104,8 +104,7 @@ class OrdersController < ApplicationController
           ChangeLog.create(:horario => @order.horario, :plate_id => key.to_i, :tipo => -1 )
         end
       end
-    end
-
+    end    
     respond_to do |format|
       if @order.update_attributes(params[:order])
         format.html { redirect_to order_lists_path, notice: 'La Orden fue actualizada' }

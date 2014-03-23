@@ -150,7 +150,7 @@ class Report < ActiveRecord::Base
       xin  = -10
     elsif num ==3
       xin = x
-      yin =
+      yin = y
     end    
     pdf.bounding_box([xin, yin], :width => x, :height => y) do     
       pdf.text_box ticket.paciente, :at => [78, 225], :width => 200, :align => :left, :size => 12,:inline_format=>true
@@ -171,7 +171,7 @@ class Report < ActiveRecord::Base
         end
       end
       pdf.transparent(0.4) { pdf.stroke_line [0, 65], [280, 65] }       
-      pdf.text_box ticket.observaciones, :at => [0, 41], :width => 256, :align => :left,  :size => 12, :inline_format=>true
+      pdf.text_box ticket.observaciones, :at => [0, 40], :width => 300, :align => :left,  :size => 12, :height => 30 ,:inline_format=>true
       #pdf.transparent(0.2) { pdf.stroke_bounds }        
     end
   end

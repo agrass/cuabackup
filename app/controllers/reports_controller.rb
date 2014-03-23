@@ -50,7 +50,7 @@ class ReportsController < ApplicationController
         rescue
           report.destroy
         end
-      end
+      end      
       params[:source] = nombre
        render "pdf_show", :layout => false    
     else
