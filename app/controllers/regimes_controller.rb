@@ -5,15 +5,10 @@ class RegimesController < ApplicationController
   # GET /regimes.json
   def index
     @regimes = Regime.all
-
     # respond_to do |format|
     #   format.html # index.html.erb
     #   format.json { render json: @regimes }
     # end
-
-
-
-
   end
 
   # GET /regimes/1
@@ -23,7 +18,6 @@ class RegimesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @regime }
     end
   end
 
@@ -33,10 +27,8 @@ class RegimesController < ApplicationController
     @regime = Regime.new
     @regime.regime_plates.new
 
-
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @regime }
     end
   end
 
@@ -65,10 +57,8 @@ class RegimesController < ApplicationController
     respond_to do |format|
       if @regime.save
         format.html { redirect_to edit_regime_path(@regime), notice: 'Regime was successfully created.' }
-        format.json { render json: @regime, status: :created, location: @regime }
       else
         format.html { render action: "new" }
-        format.json { render json: @regime.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -81,10 +71,8 @@ class RegimesController < ApplicationController
     respond_to do |format|
       if @regime.update_attributes(params[:regime])
         format.html { redirect_to edit_regime_path(@regime), notice: 'Regime was successfully updated.' }
-        format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @regime.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -97,7 +85,6 @@ class RegimesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to regimes_url }
-      format.json { head :no_content }
     end
   end
 
