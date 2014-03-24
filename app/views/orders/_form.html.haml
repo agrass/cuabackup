@@ -18,7 +18,7 @@
                   .caption{:style => "padding: 0px"}
                     %h4{:style => "text-align: center"}= plate.nombre
                 %a.btn{"data-content" => "#{plate.description}", "data-original-title" => "#{plate.nombre}", "data-placement" => "top", "data-toggle" => "popover", :style => "margin-top: 10px;width: 85%;"}Descripción
-                = radio_button(:regPlates, a, plate.id, :style => "visibility:hidden;")
+                = radio_button(:regPlates, a, plate.id, :checked => true, :style => "visibility:hidden;")
               -else
                 .thumbnail
                   -if plate.foto_file_name
