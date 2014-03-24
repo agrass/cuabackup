@@ -90,8 +90,8 @@ class Report < ActiveRecord::Base
           text_box "RACIONES", :at => [460, 610], :width => 80, :align => :center, :size => 15 
           temp_y = 590     
           platos_info.each do |plato_string|
-            text_box plato_string[0][0..10], :at => [-10, temp_y], :width => 90, :align => :center, :size => 15
-            text_box plato_string[1], :at => [105, temp_y], :width => 345, :align => :center, :size => 15
+            text_box plato_string[0][0..10], :at => [-10, temp_y], :width => 90, :align => :left, :size => 15
+            text_box plato_string[1][0..48], :at => [105, temp_y], :width => 345, :align => :left, :size => 15
             text_box plato_string[2], :at => [465, temp_y], :width => 75, :align => :center, :size => 15
             temp_y = temp_y - 15 
             if temp_y < 15 
