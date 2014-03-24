@@ -7,5 +7,6 @@ class ChangeLog < ActiveRecord::Base
   # plate_id: se hace referencia al plato que fue modificado
   # tipo : puede ser muy bien que se agrego (1) o que fue borrado (-1)
   # Al Momento de imprimir la ficha de la area se genera una tupla con valor tipo (0) para saber la hora en la cual hay que empezar a considerar las nuevas modificaciones.
-  has_one :plate
+  has_many :areas_plates
+
 end

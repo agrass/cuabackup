@@ -9,6 +9,8 @@ class Plate < ActiveRecord::Base
   accepts_nested_attributes_for :plate_ingredients, :allow_destroy => true
   has_and_belongs_to_many :orders
   has_and_belongs_to_many :areas
+  has_one :change_log
+  has_one :areas_plates
 
 
   has_attached_file :foto, :styles => { :small => "100x100>" },
