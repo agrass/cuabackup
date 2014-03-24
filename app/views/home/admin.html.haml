@@ -1,7 +1,7 @@
 %legend Ingredientes
 = label_tag(:fecha, "Fecha:")
 %input{"data-behaviour" => "datepicker", :type => "text", :data_url => "#{regime_stats_path}"}/
-%a.btn.btn-success.right{ :href => "#{ingredientsPanel_path}.xls" , :id => "excel_btn"}
+%a.btn.btn-success.right{ :href => "javascript: void(0)" , :id => "excel_btn",  :disabled => true}
   Exportar a Excel
 :javascript
   $(function() {
@@ -13,6 +13,7 @@
     url = '/ingredientsPanel?date=' + $(this).val();
     urlExcel = '/ingredientsPanel.xls?date=' + $(this).val();
     $( "#excel_btn" ).attr("href", urlExcel);
+    $( "#excel_btn" ).removeAttr("disabled");
     $.get(url, function(data) {
       $('#ingredientes').html(data);
       });
