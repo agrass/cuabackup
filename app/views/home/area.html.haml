@@ -53,9 +53,11 @@
   $('[data-behaviour~=datepicker]').val("#{@date}")
   $('.btn-success').click(function(){
       //$('.dropdown-toggle').addClass('disabled');
+      $('#myModal').modal('show'); 
+      $( ".modal-body" ).html("<p>Generando PDF.. Esto puede tardar unos segundos</p> <img src='../assets/images/ajax-loader.gif' /> ")
       $('#myModalLabel').html("Ficha Area "+ $(this).attr('tipo'))    
       $( ".modal-body" ).load( $(this).attr('link'), function() {
-        $('#myModal').modal('show');
+        
         //$('.dropdown-toggle').removeClass('disabled');
       });     
       

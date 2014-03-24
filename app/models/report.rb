@@ -94,13 +94,51 @@ class Report < ActiveRecord::Base
             text_box plato_string[1], :at => [105, temp_y], :width => 345, :align => :center, :size => 15
             text_box plato_string[2], :at => [465, temp_y], :width => 75, :align => :center, :size => 15
             temp_y = temp_y - 15 
-          end           
+            if temp_y < 15 
+                start_new_page
+                temp_y = 680
+            end           
+          end
+           #agregar ficha de modificaciones
+            cambios = Plate.joins([:change_log, :areas_plates]).where(:change_logs=>{:horario => tipo.to_i}, :areas_plates=>{:area_id => area.id}).select("change_logs.plate_id as plate_id, SUM(change_logs.tipo) as number, areas_plates.area_id").group(" change_logs.plate_id")
+            if cambios.length > 0
+              start_new_page
+              text_box "CAMBIOS POR AREA", :at => [85, 720], :width => 300, :align => :center, :size => 20
+              transparent(0.8) {image "public/assets/images/logo2.jpg", :scale => 0.8, :at => [8, 740]}
+              #transparent(0.8) { stroke_line [-20, 695], [600, 695] }
+              text_box "FECHA:", :at => [60, 680], :width => 80, :align => :right, :size => 15
+              text_box fecha, :at => [150, 680], :width => 150, :align => :left, :size => 15 
+              transparent(0.8) { stroke_line [145, 665], [400, 665] } 
+              text_box "SERVICIO:", :at => [60, 660], :width => 80, :align => :right, :size => 15 
+              text_box Report.getHorario(tipo.to_i), :at => [150, 660], :width => 150, :align => :left, :size => 15
+              transparent(0.8) { stroke_line [145, 645], [400, 645] } 
+              text_box "CUARTO:", :at => [60, 640], :width => 80, :align => :right, :size => 15
+              text_box area.nombre, :at => [150, 640], :width => 150, :align => :left, :size => 15
+              transparent(0.8) { stroke_line [145, 625], [400, 625] }
+              text_box "NOMBRE", :at => [0, 600], :width => 80, :align => :right, :size => 15 
+              text_box "DETALLE", :at => [265, 600], :width => 80, :align => :right, :size => 15
+              transparent(0.8) { stroke_line [-15, 615], [560, 615] }
+              transparent(0.8) { stroke_line [-15, 570], [560, 570] }
+              transparent(0.8) { stroke_line [-15, 615], [-15, 0] }
+              transparent(0.8) { stroke_line [262, 615], [262, 0] }               
+              z = 560
+              cambios.each do |cmb|
+                text_box "#{Plate.find(cmb.plate_id).nombre}", :at => [0, z], :width => 260, :align => :left, :size => 12
+                if cmb.number < 0
+                  text_box "Se han eliminado un total de # #{cmb.number.to_i*-1}.", :at => [265, z], :width => 250, :align => :left, :size => 12
+                else
+                  text_box "Se han agregado un total de # #{cmb.number.to_i}.", :at => [265, z], :width => 250, :align => :left, :size => 12
+                end
+                z = z - 20
+              end
+            end           
           start_new_page
         end
       end
       EstadoArea.find_all_by_fecha(fecha).each do |ear|
         ear.destroy
       end
+      ChangeLog.destroy_all
   end
 
     return @name   
