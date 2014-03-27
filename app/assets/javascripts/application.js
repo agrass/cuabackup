@@ -31,7 +31,7 @@ $(function() {
   //Solucion provisioria esconder burbuja
   if($('.notification-bubble').html() == "0"){
     $('.notification-bubble').hide();
-    $('.rtsLink').attr('disabled', true);
+    //$('.rtsLink').attr('disabled', true);
   }
 
 });
