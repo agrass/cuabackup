@@ -7,7 +7,7 @@
 %ul#myTab.nav.nav-tabs
   - Plate.horarios_nombre().each do |horario|
     %li{ :class => "#{params[:horario].to_i == horario[1].to_i ? 'active' : '' }"}
-      %a{"data-toggle" => "tab", :href => "#horario#{horario[1]}"} #{horario[0]}   
+      %a{"data-toggle" => "tab", :href => "#horario#{horario[1]}", :style => "#{horario[1] == params[:horario].to_i ? 'background: rgb(255, 192, 192);' : '' }" } #{horario[0]}   
 #myTabContent.tab-content                    
   - Plate.horarios_nombre().each do |horario|
     .tab-pane.fade{ :id => "horario#{horario[1]}", :class => "#{horario[1] == params[:horario].to_i || (!params[:horario] and horario[1]==1) ? 'active in' : ''}"}      
