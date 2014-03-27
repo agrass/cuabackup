@@ -118,7 +118,11 @@ class OrdersController < ApplicationController
   # DELETE /orders/1.json
   def destroy
     @order = Order.find(params[:id])
+    list = @order.order_list
     authorize! :manage, [@order]
+    if list.orders.count <= 1
+      list.destroy
+    end
     @order.destroy
 
     respond_to do |format|
