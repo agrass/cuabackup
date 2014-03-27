@@ -71,6 +71,7 @@ class OrdersController < ApplicationController
   # PUT /orders/1.json
   def update
     @order = Order.find(params[:id])
+    raise ""
     #authorize! :manage, [@order]
     #guardar los platos antiguos para hacer la comparacion
     old = Hash.new       

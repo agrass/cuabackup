@@ -6,11 +6,11 @@
     Lista Documentos
 %ul#myTab.nav.nav-tabs
   - Plate.horarios_nombre().each do |horario|
-    %li
-      %a{"data-toggle" => "tab", :href => "#horario#{horario[1]}"} #{horario[0]}         
+    %li{ :class => "#{params[:horario].to_i == horario[1].to_i ? 'active' : '' }"}
+      %a{"data-toggle" => "tab", :href => "#horario#{horario[1]}"} #{horario[0]}   
 #myTabContent.tab-content                    
   - Plate.horarios_nombre().each do |horario|
-    .tab-pane.fade{ :id => "horario#{horario[1]}", :class => "#{horario[1] ==1 ? 'active in' : ''}"}      
+    .tab-pane.fade{ :id => "horario#{horario[1]}", :class => "#{horario[1] == params[:horario].to_i || (!params[:horario] and horario[1]==1) ? 'active in' : ''}"}      
       %a.btn.btn-success.right{ :href => "#", :tipo => "#{horario[0]}", :link => "../reports/new?tipo=areas&horario=#{horario[1]}&fecha=#{@date}"}
         %i.icon-download-alt
         Generar PDF  
