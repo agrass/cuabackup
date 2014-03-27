@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
     		record.errors.add(attr, 'Rut escrito de forma incorrecta')
     	end
     	s = value.split("-")
-    	if User.getDigito(s[0]) != s[1]
+    	if User.getDigito(s[0]).to_s != s[1]
     		record.errors.add(attr, 'Rut invalido')
     	end
   	end
