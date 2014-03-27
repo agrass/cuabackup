@@ -21,7 +21,7 @@
                       %i.icon-off
                       Cerrar Sesion
             - if current_user.has_role? :admin or current_user.has_role? :central
-              %li.rtsLI.rtsLast#alarms{"data-notifications-url" => "#{notifications_path(:format => :json)}"}
+              %li.rtsLI.rtsLast#alarms{}
                 %a.rtsLink{:href => "#"}
                   %span.rtsOut
                     %span.rtsIn

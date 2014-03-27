@@ -62,6 +62,6 @@ $ ->
 					$(this).addClass("select")
 					$(this).parent().children().last().prop("checked", true)
 
-	if $('#regime_order_id').val() != ""
+	if $('#regime_order_id').val() != "" && $('#regime_order_id').val() != undefined
 		$('select#regime_').val($('#regime_order_id').val())
 		get_plates_from_regime()
