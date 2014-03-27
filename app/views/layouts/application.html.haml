@@ -50,6 +50,11 @@
             %p Tel: +56 2 2618 1920
             %p.mail contacto@clinicauandes.cl
             .redes
+      .notification-list-wrapper{ :style => "display: block; opacity: 1; display: none;"}
+        %ul.notification-list-menu
+          %li.close-notification-list
+        %ul.notification-list{"data-type" => "unread"}
+          %li.notification-list-item.empty-list 
       :javascript
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-39424470-1']);
@@ -60,6 +65,17 @@
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
+      - if ApplicationController.notifications?(current_user)
+        :javascript
+          $(function(){
+            get_notifications();
+            setInterval(function(){
+              get_notifications();
+            }, 30000);
+
+          });
+
+          //hacer el post
 
       / ! end of .container
     / ! end of #main

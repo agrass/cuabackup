@@ -1,11 +1,12 @@
+# coding: utf-8
 class EstadoArea < ActiveRecord::Base
 	attr_accessible :fecha, :horario, :idArea
 
 	def self.get_todays_notification(notifications)
 		alerts = EstadoArea.where(:fecha => Date.today).group("horario").select("horario, COUNT(*) as count")
 		unless alerts.length == 0
-      alerts.each |alert|
-			 notifications << {:message => "#{Report.getHorario(alert.horario)}: Hay #{alert.count} areas modificadas hoy", :link => reporte_areas_path{:horario => alert.horario}}
+      alerts.each do |alert|
+			 notifications << {:message => "Áreas #{Report.getHorario(alert.horario)} modificadas (#{alert.count})", :link => Rails.application.routes.url_helpers.reporte_areas_path(:horario => alert.horario) }
       end
 		end
 	end

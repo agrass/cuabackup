@@ -30,7 +30,7 @@ CUA::Application.routes.draw do
   match 'get_form_select_plates', :to => 'regimes#get_form_select', :as => :regime_plates
   match 'upDay', :to => 'home#upDay', :as => :upDay
   match 'downDay', :to => 'home#downDay', :as => :downDay
-  #match 'notifications', :to => 'notifications#notifications', :as => :notifications
+  match 'notifications', :to => 'notifications#notifications', :as => :notifications
   match 'colacion', :to => 'order_lists#new_colacion', :as => :colacion
 
 end

@@ -16,14 +16,11 @@ class Order < ActiveRecord::Base
 
 
   def self.get_todays_notification(notifications)
-    num_alerts = 0
-    Order.where(:estado => [Estados::Modificado, Estados::IngresadoAlerta]).each do |ord|
-      if OrderList.find(ord.order_list_id).fecha == Date.today
-        num_alerts = num_alerts + 1
+    alerts = OrderList.joins(:orders).where(:fecha => Date.today, orders: {:estado => [1,4]}).select("orders.horario, count(*) as count").group("orders.horario")   
+    unless alerts.length == 0
+      alerts.each do |alert|
+        notifications << {:message => "Vouchers #{Report.getHorario(alert.horario)} pendientes (#{alert.count})", :link => Rails.application.routes.url_helpers.order_lists_path(:date => Date.today)}
       end
-    end
-    unless num_alerts == 0
-      notifications << {:message => "#{num_alerts} ordenes modificadas hoy", :link => Rails.application.routes.url_helpers.order_lists_path(:date => Date.today)}
     end
   end
 
