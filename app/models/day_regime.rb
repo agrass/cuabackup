@@ -19,6 +19,9 @@ class DayRegime < ActiveRecord::Base
    end
 
    def self.getDayByDate(date)
+    if date.nil?
+      date = Date.today
+    end
     DayRegime.getCurrentDay()
     a = DayRegime.last
     n = (date - a.date).to_i
