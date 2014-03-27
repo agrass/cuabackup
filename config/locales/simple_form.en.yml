@@ -10,6 +10,7 @@ en:
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: "Por favor revisar los problemas desplegados:"
+
     # Labels and hints examples
     # labels:
     #   defaults:
