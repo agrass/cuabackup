@@ -2,6 +2,10 @@
   = f.error_notification
 
   .form-inputs
+    -if @order_list.fecha
+      = hidden_field_tag 'order_list[fecha]', @order_list.fecha
+    -else
+      = hidden_field_tag 'order_list[fecha]', @date
     = hidden_field_tag 'dia[dia]', @order_list.dia
     = hidden_field_tag 'regime_order[id]', @regime_id
     -if @horario
@@ -30,12 +34,9 @@
             = check_box_tag(:acompanante)
 
   .form-actions
-    - if @regime_id || @horario == nil
-      = f.button :submit, 'Guardar'
-    - else
-      = f.button :submit, 'Guardar', :disabled => true
+    = f.button :submit, 'Guardar', :disabled => true
     -if @horario && @horario!='8'
-      %a.btn{ :href => url_for(:controller => "order_lists", :action => "edit", :id => @order_list.id,  :horario => (@horario.to_i * 2).to_s) }
+      %a.btn{ :id => "skip_btn",:href => url_for(:controller => "order_lists", :action => "edit", :id => @order_list.id,  :horario => (@horario.to_i * 2).to_s) }
         Saltar
     -elsif @horario=='8'
       %a.btn{ :href => "#{order_lists_path}" }

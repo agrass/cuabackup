@@ -1,4 +1,12 @@
 $ ->
+	window.skip_base = null 
+	if $('#skip_btn') != undefined
+		window.skip_base = $('#skip_btn').attr("href")
+		if $('#regime_order_id') != undefined && $('#regime_order_id').val() != ""
+			$('#skip_btn').attr("href", window.skip_base + "&regime="+ $('#regime_order_id').val())
+			$( "input[name='commit']" ).removeAttr("disabled");
+
+
 	# enable chosen js
 	$('.chzn-select').chosen
 	    allow_single_deselect: true
@@ -9,9 +17,11 @@ $ ->
 		($ '#lista_persona').css("display", "block")
 		($ 'input#order_list_esPaciente').attr("checked",true)
 		change_name()
+		$( "input[name='commit']" ).removeAttr("disabled");
 
 	($ 'select#regime_').change ->
 		if ($ 'select#regime_').val()
+			$('#skip_btn').attr("href", window.skip_base + "&regime="+ ($ 'select#regime_').val())
 			$( "input[name='commit']" ).removeAttr("disabled");
 			get_plates_from_regime()
 		else
