@@ -84,7 +84,7 @@ class OrderListsController < ApplicationController
 
   # PUT /order_lists/1
   # PUT /order_lists/1.json
-  def update
+  def update    
     @order_list = OrderList.find(params[:id])
     if params[:patient_detalles]
       patient = @order_list.patient
