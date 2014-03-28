@@ -100,7 +100,7 @@ class Report < ActiveRecord::Base
             end           
           end
            #agregar ficha de modificaciones
-            cambios = Plate.joins([:change_log, :areas_plates]).where(:change_logs=>{:horario => tipo.to_i}, :areas_plates=>{:area_id => area.id}).select("change_logs.plate_id as plate_id, SUM(change_logs.tipo) as number, areas_plates.area_id").group(" change_logs.plate_id")
+            cambios = Plate.joins([:change_log, :areas_plates]).where(:change_logs=>{:horario => tipo.to_i}, :areas_plates=>{:area_id => area.id}).select("change_logs.plate_id as plate_id, SUM(change_logs.tipo) as number, areas_plates.area_id").group(" change_logs.plate_id, areas_plates.area_id")
             if cambios.length > 0
               start_new_page
               text_box "CAMBIOS POR AREA", :at => [85, 720], :width => 300, :align => :center, :size => 20
