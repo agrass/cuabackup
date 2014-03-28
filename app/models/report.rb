@@ -221,9 +221,11 @@ class Report < ActiveRecord::Base
       return "Almuerzo"
     elsif num.to_i == 4
       return "Once"
-    else
+    elsif num.to_i == 8
       return "Cena"
-    end 
+    else
+      return "Colacion"
+    end
   end     
 end
 

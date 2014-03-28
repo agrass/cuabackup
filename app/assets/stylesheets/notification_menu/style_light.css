@@ -136,7 +136,7 @@
     content: '';
     width: 40px;
     height: 18px;
-    background: transparent url(../images/list-pointer.png) no-repeat center bottom scroll;
+    background: transparent url(../assets/images/list-pointer.png) no-repeat center bottom scroll;
     position: absolute;
     left: 50%;
     margin-left: -15px;
@@ -183,7 +183,7 @@
     cursor: pointer;
     height: 16px;
     width: 16px;
-    background: transparent url(../images/close.png) no-repeat center center scroll;
+    background: transparent url(../assets/images/close.png) no-repeat center center scroll;
     opacity: .3;
     /*text-indent: -999999999px;*/
     -webkit-transition: all 0.3s ease;

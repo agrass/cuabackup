@@ -44,12 +44,14 @@ function updateBubble(count){
 	if(count > 0){
 		$('.notification-bubble').html(count);
 		$('.notification-bubble').show();
+		$('#notif_btn').on('click');
 		}
 	else{
 		$('.notification-bubble').hide();
+		$('#notif_btn').off('click');
 	}
 }
-function updateNotifications(data){
+function updateNotifications(data){	
 	updateBubble(data.length);
 	$('.notification-list').html("");
 	$.each( data, function( key, val ) {
