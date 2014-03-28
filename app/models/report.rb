@@ -148,10 +148,13 @@ class Report < ActiveRecord::Base
           start_new_page
         end
       end
-      EstadoArea.find_all_by_fecha(fecha).each do |ear|
+      #borrar los estado areas y logs especificos
+      EstadoArea.find_all_by_fecha_and_horario(fecha, tipo.to_i).each do |ear|
         ear.destroy
       end
-      ChangeLog.destroy_all
+      ChangeLog.find_all_by_horario(tipo.to_i).each do |cl|
+        cl.destroy
+      end
   end
 
     return @name   
