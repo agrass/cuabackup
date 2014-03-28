@@ -52,12 +52,12 @@
 
 %ul#myTab.nav.nav-tabs
   - Plate.horarios_nombre.each do |horario|
-    %li{ :class => "#{ horario[1] == 1 ? 'active' : ''}" }
-      %a{"data-toggle" => "tab", :href => "##{horario[0]}"} #{horario[0]}
+    %li{ :class => "#{ horario[1] == params[:horario].to_i ? 'active' : ''}" }
+      %a{"data-toggle" => "tab", :href => "##{horario[0]}", :style => "#{horario[1] == params[:horario].to_i ? 'color: rgb(221, 24, 24);' : '' }"} #{horario[0]}
  
 #myTabContent.tab-content
   - Plate.horarios_nombre.each  do |horario|
-    .tab-pane.fade{ :id => "#{horario[0]}",  :class => "#{horario[1] ==1 ? 'active in' : ''}" }
+    .tab-pane.fade{ :id => "#{horario[0]}",  :class => "#{horario[1] == params[:horario].to_i || (!params[:horario] and horario[1]==1) ? 'active in' : ''}" }
       .accordion-heading{ :id => "acord#{horario[0]}"}
         - if current_user.has_role? :admin or current_user.has_role? :central
           .btn-group.right{:style => "margin-right: 20px;"}

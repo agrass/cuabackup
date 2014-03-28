@@ -19,7 +19,7 @@ class Order < ActiveRecord::Base
     alerts = OrderList.joins(:orders).where(:fecha => Date.today, orders: {:estado => [1,2,4]}).select("orders.horario, count(*) as count").group("orders.horario")   
     unless alerts.length == 0
       alerts.each do |alert|
-        notifications << {:message => "Vouchers #{Report.getHorario(alert.horario)} pendientes (#{alert.count})", :link => Rails.application.routes.url_helpers.order_lists_path(:date => Date.today)}
+        notifications << {:message => "Vouchers #{Report.getHorario(alert.horario)} pendientes (#{alert.count})", :link => Rails.application.routes.url_helpers.order_lists_path(:date => Date.today, :horario => alert.horario)}
       end
     end
   end
