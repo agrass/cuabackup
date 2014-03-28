@@ -29,7 +29,7 @@ $(function() {
     $('.edit_regime').submit();
   });
 
-  $('.notification-bubble').click(function(){
+  $('#notif_btn').click(function(){
 	var pos = $('.icon-warning-sign').offset();
 	$('.notification-list-wrapper').css({top: pos.top + 30, left: pos.left - 135});
 	$('.notification-list-wrapper').show();	
