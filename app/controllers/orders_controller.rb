@@ -78,21 +78,23 @@ class OrdersController < ApplicationController
       old[plate.id] = 1
     end       
     @order.plates.delete_all
-    params[:regPlates].each do |plate|
-      if(!plate[1].empty?)
-        new_plate = Plate.find(plate[1].to_i)
-        #revisar si lo tenia antes y marcarlo
-        if old[plate[1].to_i] == 1
-          old[plate[1].to_i] = 3
-        #no lo tiene, por lo tanto hay que generar una alerta y log
-        elsif old[plate[1].to_i] == nil
-          #solo hay que crear la alerta si la modificacion es del mismo dia, sino no es necesario guardar los logs 
-          if @order.check_is_today
-            EstadoArea.create_alert(@order.horario, plate[1].to_i)
-            ChangeLog.create(:horario => @order.horario, :plate_id => plate[1].to_i, :tipo => 1 )
+    if params[:regPlates]
+      params[:regPlates].each do |plate|
+        if(!plate[1].empty?)
+          new_plate = Plate.find(plate[1].to_i)
+          #revisar si lo tenia antes y marcarlo
+          if old[plate[1].to_i] == 1
+            old[plate[1].to_i] = 3
+          #no lo tiene, por lo tanto hay que generar una alerta y log
+          elsif old[plate[1].to_i] == nil
+            #solo hay que crear la alerta si la modificacion es del mismo dia, sino no es necesario guardar los logs 
+            if @order.check_is_today
+              EstadoArea.create_alert(@order.horario, plate[1].to_i)
+              ChangeLog.create(:horario => @order.horario, :plate_id => plate[1].to_i, :tipo => 1 )
+            end
           end
+          @order.plates << new_plate
         end
-        @order.plates << new_plate
       end
     end
     #hay que revisar si se borro alguno para generar el log y la alerta

@@ -25,9 +25,7 @@ class ReportsController < ApplicationController
     end
     nombre = ""
     tipo = ""
-    #imprimir aquellos que son vaucher del paciente
-    if params[:tipo] == "vaucher"
-      #por defecto se imprimen todos 1 por imprimir, 2 modificado, 4 ingresado por alerta, 5 pendiente
+    #por defecto se imprimen todos 1 por imprimir, 2 modificado, 4 ingresado por alerta, 5 pendiente
       estados = [1,2,4,5] 
       if params[:estados] == "nuevos"
         estados = [1,4,5]
@@ -35,11 +33,21 @@ class ReportsController < ApplicationController
       elsif params[:estados] == "modificados"
         estados = [2]
       end
-      nombre = Report.plates(params[:horario], @fecha, estados) 
-      tipo = "vaucher"
+    #imprimir aquellos que son vaucher del paciente
+    if params[:tipo] == "vaucher"
+      if params[:horario] == "16"
+        nombre = Report.colacion(params[:horario], @fecha, estados)
+        tipo = "vaucher"
+      else  
+        nombre = Report.plates(params[:horario], @fecha, estados) 
+        tipo = "vaucher"
+      end
     elsif params[:tipo] == "areas"
       nombre = Report.areas(params[:horario], @fecha)
       tipo = "areas"
+    elsif params[:tipo] == "colacion"
+      nombre = Report.colacion(params[:horario], @fecha, estados)
+      tipo = "colacion"
     end
     if nombre != "0"
       @report = Report.create(:name => nombre, :tipo => tipo)
