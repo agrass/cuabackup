@@ -170,14 +170,15 @@ class Report < ActiveRecord::Base
     pdf.transparent(0.8) { pdf.stroke_line [350, 5], [350, 900] }
     num.times do |i|
       pdf.bounding_box([xin, yin], :width => x, :height => y) do
-          pdf.text_box "Ticket Bandeja", :at => [80, 245], :width => 170, :align => :center, :size => 18   
-          pdf.transparent(0.6) {pdf.image "public/assets/images/logo2.jpg", :scale => 0.6, :at => [pdf.bounds.left, pdf.bounds.top - 10]}
-          pdf.text_box "PACIENTE:", :at => [0, 225], :width => 150, :align => :left, :size => 12,:inline_format=>true
-          pdf.text_box "SERVICIO:", :at => [0, 210], :width => 150, :align => :left, :size => 12, :inline_format=>true
-          pdf.text_box "HABITACION:", :at => [0, 195], :width => 150, :align => :left,  :size => 12, :inline_format=>true
-          pdf.text_box "REGIMEN:", :at => [0, 180], :width => 150, :align => :left,  :size => 12, :inline_format=>true
+          pdf.text_box "Ticket Bandeja", :at => [80, 285], :width => 170, :align => :center, :size => 18
+          pdf.transparent(0.3) { pdf.stroke_line [0, 268], [280, 268] }
+          #pdf.transparent(0.6) {pdf.image "public/assets/images/logo2.jpg", :scale => 0.6, :at => [pdf.bounds.left, pdf.bounds.top - 10]}
+          pdf.text_box "PACIENTE:", :at => [0, 265], :width => 150, :align => :left, :size => 12,:inline_format=>true
+          pdf.text_box "SERVICIO:", :at => [0, 250], :width => 150, :align => :left, :size => 12, :inline_format=>true
+          pdf.text_box "HABITACION:", :at => [0, 235], :width => 150, :align => :left,  :size => 12, :inline_format=>true
+          pdf.text_box "REGIMEN:", :at => [0, 220], :width => 150, :align => :left,  :size => 12, :inline_format=>true
           #pdf.text_box "MENU:", :at => [0, 215], :width => 150, :align => :left,  :size => 12, :inline_format=>true 
-          pdf.text_box "OBSERVACIONES:", :at => [0, 50], :width => 150, :align => :left,  :size => 12, :inline_format=>true         
+          #pdf.text_box "OBSERVACIONES:", :at => [0, 70], :width => 150, :align => :left,  :size => 12, :inline_format=>true         
           #pdf.transparent(0.2) { pdf.stroke_bounds }     
           
       end
@@ -207,12 +208,12 @@ class Report < ActiveRecord::Base
       yin = y
     end    
     pdf.bounding_box([xin, yin], :width => x, :height => y) do     
-      pdf.text_box ticket.paciente, :at => [78, 225], :width => 200, :align => :left, :size => 12,:inline_format=>true
-      pdf.text_box ticket.servicio, :at => [78, 210], :width => 200, :align => :left, :size => 12, :inline_format=>true
-      pdf.text_box ticket.habitacion, :at => [78, 195], :width => 200, :align => :left,  :size => 12, :inline_format=>true
-      pdf.text_box ticket.regimen, :at => [78, 180], :width => 200, :align => :left,  :size => 12, :inline_format=>true
-      pdf.transparent(0.3) { pdf.stroke_line [0, 165], [280, 165] }
-      j = 160      
+      pdf.text_box ticket.paciente, :at => [78, 265], :width => 200, :align => :left, :size => 12,:inline_format=>true
+      pdf.text_box ticket.servicio, :at => [78, 250], :width => 200, :align => :left, :size => 12, :inline_format=>true
+      pdf.text_box ticket.habitacion, :at => [78, 235], :width => 200, :align => :left,  :size => 12, :inline_format=>true
+      pdf.text_box ticket.regimen, :at => [78, 220], :width => 200, :align => :left,  :size => 12, :inline_format=>true
+      pdf.transparent(0.3) { pdf.stroke_line [0, 205], [280, 205] }
+      j = 200      
       ticket.menu.each do |plato|
         if j > 60
           pdf.text_box "#{plato[0]}:", :at => [0, j],:align => :left, :style => :bold,  :size => 12, :width => 70, :height => 25, :inline_format => true, :overflow => :truncate
@@ -224,10 +225,52 @@ class Report < ActiveRecord::Base
             end
         end
       end
-      pdf.transparent(0.4) { pdf.stroke_line [0, 65], [280, 65] }       
-      pdf.text_box ticket.observaciones, :at => [0, 40], :width => 300, :align => :left,  :size => 12, :height => 30 ,:inline_format=>true
+      pdf.transparent(0.4) { pdf.stroke_line [0, 55], [280, 55] }       
+      pdf.text_box "OBSERVACIONES:" + ticket.observaciones[0..111], :at => [0, 50], :width => 375, :align => :left,  :size => 12, :height => 50 ,:inline_format=>true
       #pdf.transparent(0.2) { pdf.stroke_bounds }        
     end
+  end
+
+  def self.colacion(tipo, fecha, estados)
+    Dir.mkdir("public/pdf/") unless File.exists?("public/pdf/")
+    now = Time.now
+    @name = now.to_s + " " + "Colacion" + ".pdf"
+    order_count = 0
+    @orders = OrderList.joins(:orders).where(:fecha => fecha, :orders => { :horario => tipo, :estado => estados }).select("order_lists.patient_id, orders.horario, orders.comentarios")
+    Prawn::Document.generate("public/pdf/"+ @name, :page_layout => :landscape ) do |pdf|      
+      xin = -10
+      yin = 580
+      x = 355
+      y = 192
+      count = 1      
+      @orders.each do |col|
+        pdf.bounding_box([xin, yin], :width => x, :height => y) do
+            pdf.text_box "Ticket Colación", :at => [30, 180], :width => 170, :align => :center, :size => 18
+            pdf.transparent(0.3) { pdf.stroke_line [0, 160], [280, 160] }
+            #pdf.transparent(0.6) {pdf.image "public/assets/images/logo2.jpg", :scale => 0.6, :at => [pdf.bounds.left, pdf.bounds.top - 10]}
+            pdf.text_box "PACIENTE: " + Patient.find(col.patient_id).nombre[0..30], :at => [0, 150], :width => 340, :align => :left, :size => 12,:inline_format=>true
+            pdf.text_box "HABITACION: " + Patient.find(col.patient_id).num_pieza, :at => [0, 135], :width => 340, :align => :left, :size => 12, :inline_format=>true
+            pdf.text_box "DESCRIPCIÓN: " + col.comentarios, :at => [0, 120], :width => 340, :align => :left,  :size => 12, :inline_format=>true            
+        end
+        if count == 6
+          pdf.start_new_page
+          xin = -10
+          yin = 580
+          count = 0
+        elsif count == 3 
+          xin = 355
+          yin = 580        
+        else
+          yin = yin - 193
+        end
+        count = count + 1
+      end
+    end
+    if @orders.count == 0      
+      File.delete("public/pdf/" + @name)
+      @name = "0"
+    end
+    return @name
   end
 
   def self.getHorario(num)
