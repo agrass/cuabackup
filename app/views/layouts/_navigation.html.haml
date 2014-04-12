@@ -59,7 +59,7 @@
               %span.rtsIn
                 %span.rtsTxt Home
         - if user_signed_in?    
-          - if current_user.has_role? :nutricionista
+          - if current_user.has_role? :nutricionista or current_user.has_role? :admin
             %li.rtsLI.rtsLIMid
               %a.rtsLink{:href => "#{patients_path}"}
                 %span.rtsOut
@@ -80,7 +80,7 @@
                 %span.rtsOut
                   %span.rtsIn
                     %span.rtsTxt Nueva Colación
-          - if current_user.has_role? :central
+          - if current_user.has_role? :central or current_user.has_role? :admin
             %li.rtsLI.rtsLIMid
               %a.rtsLink{:href => "#{reporte_areas_path}"}
                 %span.rtsOut

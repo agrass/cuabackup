@@ -4,20 +4,43 @@
   xmlns:x="urn:schemas-microsoft-com:office:excel"
   xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
   xmlns:html="http://www.w3.org/TR/REC-html40">
-  <Worksheet ss:Name="Sheet1">
+  <Styles>
+    <Style ss:ID="Default" ss:Name="Default">
+      <Font ss:FontName="Arial"/>
+    </Style>
+    <Style ss:ID="ce1">
+      <Alignment ss:Horizontal="Center" ss:Vertical="Automatic" ss:Indent="0" ss:Rotate="0"/>
+      <Font ss:Bold="1" ss:FontName="Arial" ss:Size="12"/>
+    </Style>
+    <Style ss:ID="ce2">
+      <Font ss:Bold="1" ss:FontName="Arial" ss:Size="10"/>
+    </Style>
+  </Styles>
+  <% Area.all.each do |area| %>
+  <Worksheet ss:Name="<%=area.nombre%>">
     <Table>
+      <% hrs = Plate.horarios_nombre() %>
+      <% hrs.pop %>
+      <% hrs.each do |horario| %>
       <Row>
-        <Cell><Data ss:Type="String">Nombre</Data></Cell>
-        <Cell><Data ss:Type="String">Cantidad Total</Data></Cell>
-        <Cell><Data ss:Type="String">Unidad</Data></Cell>
+        <Cell ss:MergeAcross="2" ss:StyleID="ce1"><Data ss:Type="String"><%= horario[0] %></Data></Cell>
       </Row>
-    <% @ingredients.each do |ingredient| %>
       <Row>
-        <Cell><Data ss:Type="String"><%= ingredient.nombre %></Data></Cell>
-        <Cell><Data ss:Type="Number"><%= ingredient.cantidad_total %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= ingredient.unidad %></Data></Cell>
+        <Cell ss:StyleID="ce2"><Data ss:Type="String">Nombre</Data></Cell>
+        <Cell ss:StyleID="ce2"><Data ss:Type="String">Cantidad Total</Data></Cell>
+        <Cell ss:StyleID="ce2"><Data ss:Type="String">Unidad</Data></Cell>
       </Row>
-    <% end %>
+        <% while @ingredients.first and @ingredients.first.area_id == area.id and @ingredients.first.horario == horario[1] do %>
+        <% ingredient = @ingredients.shift %>
+        <Row>
+          <Cell><Data ss:Type="String"><%= ingredient.nombre %></Data></Cell>
+          <Cell><Data ss:Type="Number"><%= ingredient.cantidad_total %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= ingredient.unidad %></Data></Cell>
+        </Row>
+        <% end %>
+      <Row></Row>
+      <% end %>
     </Table>
   </Worksheet>
+  <% end %>
 </Workbook>

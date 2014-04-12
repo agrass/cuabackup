@@ -1,11 +1,30 @@
-%table.table.table-condensed
-  %tr
-    %th Nombre
-    %th Cantidad Total
-    %th Unidad
-
-    - @ingredients.each do |ingredient|
-      %tr
-        %td= ingredient.nombre
-        %td= ingredient.cantidad_total
-        %td= ingredient.unidad
+%ul#myTab.nav.nav-tabs
+  - Area.all.each do |area|
+    %li{ :class => "#{area == Area.first ? 'active' : '' }"}
+      %a{"data-toggle" => "tab", :href => "#area#{area.id}"} #{area.nombre}  
+#myTabContent.tab-content
+  - Area.all.each do |area|                    
+    .tab-pane.fade{ :id => "area#{area.id}", :class => "#{area == Area.first ? 'active in' : ''}"}
+      - hrs = Plate.horarios_nombre()
+      - hrs.pop    
+      - hrs.each do |horario|
+        .accordion-group
+          .accordion-heading
+            %a.accordion-toggle.collapsed{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "##{area.id}horario#{horario[1]}"}
+              %h4 #{horario[0]}
+          .accordion-body.collapse{ :id => "#{area.id}horario#{horario[1]}"}
+            .accordion-inner
+              %table.table
+                %tr
+                  %th Nombre
+                  %th Cantidad Total
+                  %th Unidad
+                  - while @ingredients.first and @ingredients.first.area_id == area.id and @ingredients.first.horario == horario[1] do
+                    - ingredient = @ingredients.shift
+                    %tr
+                      %td
+                        = ingredient.nombre
+                      %td
+                        = ingredient.cantidad_total
+                      %td
+                        = ingredient.unidad
