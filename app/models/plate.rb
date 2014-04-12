@@ -13,10 +13,7 @@ class Plate < ActiveRecord::Base
   has_one :areas_plates
 
 
-  has_attached_file :foto, :styles => { :small => "100x100>" },
-                  :url  => "/assets/plates/:id/:style/:basename.:extension",
-                  :path => ":rails_root/public/assets/plates/:id/:style/:basename.:extension"
-
+  has_attached_file :foto, :styles => { :small => "100x100>" }
   validates_attachment_size :foto, :less_than => 5.megabytes
   validates_attachment_content_type :foto, :content_type => ['image/jpeg', 'image/png']
 

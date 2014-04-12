@@ -64,15 +64,14 @@ class PlatesController < ApplicationController
       params[:plate][:horario].each do |x|
         count += x.to_i
       end
-    end
-
+    end    
     respond_to do |format|
       if @plate.update_attributes(params[:plate])
         @plate.horario = count
         @plate.save
-        format.html { redirect_to cuapanel_path, notice: 'Plate was successfully updated.' }
+        format.html { redirect_to cuapanel_path, notice: 'El plato fue actualizado' }
       else
-        format.html { render action: "edit" }
+        format.html { redirect_to cuapanel_path , notice: 'Error al actualizar al plato. Puede ser debido al formato de la imagen adjunta.'}
       end
     end
   end

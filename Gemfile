@@ -39,4 +39,5 @@ gem 'roo'
 gem "seed_dump"
 gem 'lazy_high_charts'
 gem "paperclip", "~> 3.0"
+gem 'aws-sdk'
 gem "seedbank"
