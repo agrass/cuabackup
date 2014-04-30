@@ -25,6 +25,30 @@ puts 'ROLES'
  user.add_role :nutricionista
  user.add_role :central
 
+  us1 = User.find_or_create_by_email :name => 'Geraldine Perret', :rut => "161398403", :email => 'gperret@clinicauandes.cl', :password => 'changeme', :password_confirmation => 'changeme'
+  us2 = User.find_or_create_by_email :name => 'Barbara Castillo', :rut => "163886057", :email => 'bcastillo@clinicauandes.cl', :password => 'changeme', :password_confirmation => 'changeme'
+  us3 = User.find_or_create_by_email :name => 'Macarena Araya', :rut => "15019976-k", :email => 'maraya@clinicauandes.cl', :password => 'changeme', :password_confirmation => 'changeme'
+  us4 = User.find_or_create_by_email :name => 'Carolina Garcia', :rut => "16589834-6", :email => 'cgarciasilva@clinicauandes.cl', :password => 'changeme', :password_confirmation => 'changeme'
+  us5 = User.find_or_create_by_email :name => 'Loreto Varas', :rut => "12846631-2", :email => 'lvaras@clinicauandes.cl', :password => 'changeme', :password_confirmation => 'changeme'
+  us6 = User.find_or_create_by_email :name => 'Marcela Contreras', :rut => "16919467-k", :email => 'mcontreras@clinicauandes.cl', :password => 'changeme', :password_confirmation => 'changeme'
+  us7 = User.find_or_create_by_email :name => 'Cristina', :rut => "12345678-9", :email => 'user@example.com', :password => 'changeme', :password_confirmation => 'changeme'
+  us8 = User.find_or_create_by_email :name => 'Evelyn Flores', :rut => "157815318", :email => 'eflores@clinicauandes.cl', :password => 'changeme', :password_confirmation => 'changeme'
+  us9 = User.find_or_create_by_email :name => 'Maria Ignacia Fillol', :rut => "162115332", :email => 'mfillol@clinicauandes.cl', :password => 'changeme', :password_confirmation => 'changeme'
+  us1.add_role :nutricionista
+  us2.add_role :nutricionista
+  us3.add_role :nutricionista
+  us4.add_role :admin
+  us4.add_role :nutricionista
+  us4.add_role :central
+  us5.add_role :nutricionista
+  us5.add_role :nutricionista
+  us6.add_role :nutricionista
+  us7.add_role :admin
+  us7.add_role :nutricionista
+  us7.add_role :central
+  us8.add_role :nutricionista
+  us9.add_role :nutricionista
+  
 # puts 'INGREDIENTS'
 # Ingredient.delete_all
 
