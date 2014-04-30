@@ -6,17 +6,17 @@ class User < ActiveRecord::Base
 	devise :database_authenticatable, :registerable,
 	:recoverable, :rememberable, :trackable, :validatable
 
-	validates :email, :uniqueness => true
+	#validates :email, :uniqueness => true
 	validates :rut, :uniqueness => true
-	validates_each :rut do |record, attr, value|
-		if not value =~ /[1-9]{8}[-][1-9k]/
-    		record.errors.add(attr, 'Rut escrito de forma incorrecta')
-    	end
-    	s = value.split("-")
-    	if User.getDigito(s[0]).to_s != s[1]
-    		record.errors.add(attr, 'Rut invalido')
-    	end
-  	end
+	# validates_each :rut do |record, attr, value|
+	# 	if not value =~ /[1-9]{8}[-][1-9k]/
+ #    		record.errors.add(attr, 'Rut escrito de forma incorrecta')
+ #    	end
+ #    	s = value.split("-")
+ #    	if User.getDigito(s[0]).to_s != s[1]
+ #    		record.errors.add(attr, 'Rut invalido')
+ #    	end
+ #  	end
 
 	# Setup accessible (or protected) attributes for your model
 	attr_accessible :role_ids, :as => :admin
