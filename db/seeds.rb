@@ -48,6 +48,15 @@ puts 'ROLES'
   us7.add_role :central
   us8.add_role :nutricionista
   us9.add_role :nutricionista
+
+  Area.create(:nombre => "Repostria" )
+  Area.create(:nombre => "Cocina Caliente" )
+  Area.create(:nombre =>  "Cocina Fria" )
+  Area.create(:nombre =>  "Dietas" )
+  Area.create(:nombre =>  "Lacteos" )
+  Area.create(:nombre =>  "Preliminares FV" )
+  Area.create(:nombre =>  "Preliminares CP" )
+
   
 # puts 'INGREDIENTS'
 # Ingredient.delete_all
