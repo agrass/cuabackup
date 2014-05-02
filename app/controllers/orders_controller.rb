@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
   # GET /orders
   # GET /orders.json
   def index
@@ -45,7 +46,6 @@ class OrdersController < ApplicationController
   # GET /orders/1/edit
   def edit
     @order = Order.find(params[:id])
-    authorize! :manage, @order
     if @order.horario != 16
       @plates = Regime.find(@order.regime_id).get_plates_by_horario_and_dia(@order.horario, OrderList.find(@order.order_list_id).dia)
     end
@@ -55,7 +55,6 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(params[:order])
-    authorize! :manage, @order    
     params[:regPlates].each do |plate|
       if(!plate[1].empty?)        
         @order.plates << Plate.find(plate[1].to_i)
@@ -74,7 +73,6 @@ class OrdersController < ApplicationController
   # PUT /orders/1.json
   def update
     @order = Order.find(params[:id])    
-    authorize! :manage, @order
     #guardar los platos antiguos para hacer la comparacion
     old = Hash.new       
     @order.plates.select('plates.id').each do |plate|
@@ -124,7 +122,6 @@ class OrdersController < ApplicationController
   def destroy
     @order = Order.find(params[:id])
     list = @order.order_list
-    authorize! :manage, @order
     if list.orders.count <= 1
       list.destroy
     end
