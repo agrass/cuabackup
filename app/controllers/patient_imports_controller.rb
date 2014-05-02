@@ -1,4 +1,6 @@
 class PatientImportsController < ApplicationController
+	before_filter :authenticate_user!
+	
 	def new
 		@patient_import = PatientImport.new
 	end

@@ -1,4 +1,6 @@
 class PlatesController < ApplicationController
+  before_filter :authenticate_user!
+  
   # GET /plates
   # GET /plates.json
   def index

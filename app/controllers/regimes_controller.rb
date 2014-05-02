@@ -1,4 +1,5 @@
 class RegimesController < ApplicationController
+  before_filter :authenticate_user!
   respond_to :html
   require "prawn"
   # GET /regimes
