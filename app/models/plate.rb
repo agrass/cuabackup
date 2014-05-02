@@ -13,9 +13,9 @@ class Plate < ActiveRecord::Base
   has_one :areas_plates
 
 
-  has_attached_file :foto, :styles => { :small => "100x100>" }
+  has_attached_file :foto, :styles => { :small => "250x250>" }
   validates_attachment_size :foto, :less_than => 5.megabytes
-  validates_attachment_content_type :foto, :content_type => ['image/jpeg', 'image/png']
+  validates_attachment_content_type :foto, :content_type => ['image/jpeg', 'image/png', 'image/jpg']
 
   def obtener_horarios
   	array = []

@@ -1,1 +1,2 @@
-Paperclip::Attachment.default_options[:s3_host_name] = 'cua.s3-website-sa-east-1.amazonaws.com'
+Paperclip::Attachment.default_options[:bucket] = 'cua'
+Paperclip::Attachment.default_options[:s3_host_name] = 's3-sa-east-1.amazonaws.com'

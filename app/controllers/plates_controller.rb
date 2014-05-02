@@ -72,9 +72,9 @@ class PlatesController < ApplicationController
       if @plate.update_attributes(params[:plate])
         @plate.horario = count
         @plate.save
-        format.html { redirect_to cuapanel_path, notice: 'El plato fue actualizado' }
+        format.html { redirect_to cuaplates_path, notice: 'El plato fue actualizado' }
       else
-        format.html { redirect_to cuapanel_path , notice: 'Error al actualizar al plato. Puede ser debido al formato de la imagen adjunta.'}
+        format.html { redirect_to cuaplates_path , notice: 'Error al actualizar al plato. Puede ser debido al formato de la imagen adjunta.'}
       end
     end
   end

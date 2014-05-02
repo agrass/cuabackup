@@ -26,6 +26,8 @@
     =f.association :areas, label_method: :nombre, value_method: :id, as: :check_boxes, label: false
     %legend Foto
     =f.file_field :foto
+    .well
+      = image_tag @plate.foto.url(:small)
 
   .form-actions
-    = f.button :submit, @plate.new_record? ? "Crear Plato" : "Actualizar Plato"
+    = f.button :submit, @plate.new_record? ? "Crear Plato" : "Actualizar Plato"  
