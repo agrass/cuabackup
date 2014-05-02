@@ -1,13 +1,23 @@
 %legend Nueva Colación
 %br
-
+%input{"data-behaviour" => "datepicker", :type => "text"}/
+:javascript
+  $(function() {
+  $('[data-behaviour~=datepicker]').datepicker({
+    format: 'dd/mm/yyyy'
+  }).on('changeDate', function(ev) {
+    url = '/colacion?date=' + $(this).val();
+    window.location = url;
+  });
+  $('[data-behaviour~=datepicker]').val("#{@date}");
+  });
 = simple_form_for(@order_list) do |f|
   = f.error_notification
 
   .form-inputs
     = hidden_field_tag 'is_colacion', 'true'
-    = hidden_field_tag 'order_list[dia]', DayRegime.getDayByDate(Date.today)
-    = hidden_field_tag 'order_list[fecha]', Date.today
+    = hidden_field_tag 'order_list[dia]', DayRegime.getDayByDate(@date)
+    = hidden_field_tag 'order_list[fecha]', @date
     = hidden_field_tag 'order[horario]', 16
     = select(:order_list, :patient_id, Patient.all.collect {|p| [ p.num_pieza, p.id ] }, {:prompt => 'Seleccione Pieza'}, { class: 'chzn-select' })
     #persona
