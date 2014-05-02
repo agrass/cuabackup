@@ -1,4 +1,8 @@
 class RegimesController < ApplicationController
+  before_filter :authenticate_user!
+  load_and_authorize_resource
+  skip_authorize_resource :only => :get_plates
+
   respond_to :html
   require "prawn"
   # GET /regimes
@@ -89,6 +93,7 @@ class RegimesController < ApplicationController
   end
 
   def get_plates
+    authorize! :manage, Order
     if params[:regime_id] != "undefined"
       @plates = Regime.find(params[:regime_id]).get_plates_by_horario_and_dia(params[:horario], params[:dia])
       @horario = params[:horario]
