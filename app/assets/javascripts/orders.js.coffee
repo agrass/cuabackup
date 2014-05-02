@@ -55,6 +55,7 @@ $ ->
 		$.get url, (data) ->
         	$('#plates').html data
         	window.set_images_event()
+        	$('.js-section').scrollSections();
         	#setTimeout(set_images_event, 1000)
 
 	window.set_images_event = () ->
