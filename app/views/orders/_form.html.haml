@@ -14,7 +14,7 @@
                   -if plate.foto_file_name
                     =image_tag(plate.foto.url(:small), :style => "width: 100px; height: 100px; margin-top: 30px")
                   -else
-                    %img{:alt => "100x100", :src => "http://www.clker.com/cliparts/d/a/1/f/11949858101575416323hotel_icon_restaurant_ge_01.svg.med.png", :style => "width: 100px; height: 100px; margin-top: 30px"}
+                    %img{:alt => "100x100", :src => "#{plate.foto.url(:small)}", :style => "width: 100px; height: 100px; margin-top: 30px" , :class => "img-rounded"}
                   .caption{:style => "padding: 0px"}
                     %h4{:style => "text-align: center"}= plate.nombre
                 %a.btn{"data-content" => "#{plate.description}", "data-original-title" => "#{plate.nombre}", "data-placement" => "top", "data-toggle" => "popover", :style => "margin-top: 10px;width: 85%;"}Descripción
@@ -24,7 +24,7 @@
                   -if plate.foto_file_name
                     =image_tag(plate.foto.url(:small), :style => "width: 100px; height: 100px; margin-top: 30px")
                   -else
-                    %img{:alt => "100x100", :src => "http://www.clker.com/cliparts/d/a/1/f/11949858101575416323hotel_icon_restaurant_ge_01.svg.med.png", :style => "width: 100px; height: 100px; margin-top: 30px"}
+                    %img{:alt => "100x100", :src => "#{plate.foto.url(:small)}", :style => "width: 100px; height: 100px; margin-top: 30px" , :class => "img-rounded"}
                   .caption{:style => "padding: 0px"}
                     %h4{:style => "text-align: center"}= plate.nombre
                 %a.btn{"data-content" => "#{plate.description}", "data-original-title" => "#{plate.nombre}", "data-placement" => "top", "data-toggle" => "popover", :style => "margin-top: 10px;width: 85%;"}Descripción
