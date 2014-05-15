@@ -31,7 +31,15 @@ CUA::Application.configure do
     password: ENV["GMAIL_PASSWORD"]
   }
 
+    config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+    :bucket => "cua",
+    :access_key_id => "AKIAJIPF2TICO2ZHQT7A",
+    :secret_access_key => "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"
+  }
 
+}
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log

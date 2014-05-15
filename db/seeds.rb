@@ -19,12 +19,45 @@ puts 'ROLES'
 
  puts 'DEFAULT USERS'
  User.delete_all
- user = User.find_or_create_by_email :name => 'Administrador', :rut => "12345678-9", :email => 'user@example.com', :password => 'changeme', :password_confirmation => 'changeme'
+ user = User.find_or_create_by_email :name => 'Administrador', :rut => "00000000-0", :email => 'user@example.com', :password => '12341234', :password_confirmation => '12341234'
  puts 'user: ' << user.name
  user.add_role :admin
  user.add_role :nutricionista
  user.add_role :central
 
+  us1 = User.find_or_create_by_email :name => 'Geraldine Perret', :rut => "16139840-3", :email => 'gperret@clinicauandes.cl', :password => '12341234', :password_confirmation => '12341234'
+  us2 = User.find_or_create_by_email :name => 'Barbara Castillo', :rut => "16388605-7", :email => 'bcastillo@clinicauandes.cl', :password => '12341234', :password_confirmation => '12341234'
+  us3 = User.find_or_create_by_email :name => 'Macarena Araya', :rut => "15019976-k", :email => 'maraya@clinicauandes.cl', :password => '12341234', :password_confirmation => '12341234'
+  us4 = User.find_or_create_by_email :name => 'Carolina Garcia', :rut => "16589834-6", :email => 'cgarciasilva@clinicauandes.cl', :password => '12341234', :password_confirmation => '12341234'
+  us5 = User.find_or_create_by_email :name => 'Loreto Varas', :rut => "12846631-2", :email => 'lvaras@clinicauandes.cl', :password => '12341234', :password_confirmation => '12341234'
+  us6 = User.find_or_create_by_email :name => 'Marcela Contreras', :rut => "16919467-k", :email => 'mcontreras@clinicauandes.cl', :password => '12341234', :password_confirmation => '12341234'
+  us7 = User.find_or_create_by_email :name => 'Cristina', :rut => "0-0", :email => 'user@example.com', :password => '12341234', :password_confirmation => '12341234'
+  us8 = User.find_or_create_by_email :name => 'Evelyn Flores', :rut => "15781531-8", :email => 'eflores@clinicauandes.cl', :password => '12341234', :password_confirmation => '12341234'
+  us9 = User.find_or_create_by_email :name => 'Maria Ignacia Fillol', :rut => "16211533-2", :email => 'mfillol@clinicauandes.cl', :password => '12341234', :password_confirmation => '12341234'
+  us1.add_role :nutricionista
+  us2.add_role :nutricionista
+  us3.add_role :nutricionista
+  us4.add_role :admin
+  us4.add_role :nutricionista
+  us4.add_role :central
+  us5.add_role :nutricionista
+  us5.add_role :nutricionista
+  us6.add_role :nutricionista
+  us7.add_role :admin
+  us7.add_role :nutricionista
+  us7.add_role :central
+  us8.add_role :nutricionista
+  us9.add_role :nutricionista
+
+  Area.create(:nombre => "Repostria" )
+  Area.create(:nombre => "Cocina Caliente" )
+  Area.create(:nombre =>  "Cocina Fria" )
+  Area.create(:nombre =>  "Dietas" )
+  Area.create(:nombre =>  "Lacteos" )
+  Area.create(:nombre =>  "Preliminares FV" )
+  Area.create(:nombre =>  "Preliminares CP" )
+
+  
 # puts 'INGREDIENTS'
 # Ingredient.delete_all
 

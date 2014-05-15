@@ -1,21 +1,30 @@
-%ul#myTab.nav.nav-tabs
+%ul#myTab.nav.nav-tabs 
+  - j = 1
   - Plate.obtener_tipos(@horario.to_i).each do |tipo|
-    %li
-      %a{href: "#tipo[0]"} #{tipo[0]}
-- Plate.obtener_tipos(@horario.to_i).each do |tipo|
-  %p
-    %h3=tipo[0]
-  - a = tipo[1].to_s
-  .row-fluid
-    %ul.thumbnails
-      - @plates.where(:tipo => tipo[1]).each do |plate|
-        %li.span2
-          .thumbnail
-            -if plate.foto_file_name
-              =image_tag(plate.foto.url(:small), :style => "width: 100px; height: 100px; margin-top: 30px")
-            -else
-              %img{:alt => "100x100", :src => "#{plate.foto.url(:small)}", :style => "width: 100px; height: 100px; margin-top: 30px", :class => "img-rounded"}
-            .caption{:style => "padding: 0px"}
-              %h4{:style => "text-align: center"}= plate.nombre
-          %a.btn{"data-content" => "#{plate.description}", "data-original-title" => "#{plate.nombre}", "data-placement" => "top", "data-toggle" => "popover", :style => "margin-top: 10px;width: 85%;"}Descripción
-          = radio_button(:regPlates, a, plate.id, :style => "visibility:hidden;")
+    %li{ :class => "#{ Plate.obtener_tipos(@horario.to_i)[0][1] == tipo[1] ? 'active' : ''}" }
+      %a{href: "#tab#{tipo[1]}", "data-toggle" => "tab", :number => "#{j}"} #{tipo[0]}
+      - j = j + 1
+    
+.tab-content.halfx
+  - Plate.obtener_tipos(@horario.to_i).each do |tipo|
+    .tab-pane{ :id => "tab#{tipo[1]}", :class => "#{Plate.obtener_tipos(@horario.to_i)[0][1] == tipo[1] ? 'active' : ''  }"}
+      %p
+        %legend=tipo[0]
+      - a = tipo[1].to_s
+      .row-fluid
+        %ul.thumbnails
+          - temp_plates = @plates.where(:tipo => tipo[1])
+          - temp_plates.each do |plate|
+            %li.span2
+              .thumbnail
+                -if plate.foto_file_name
+                  =image_tag(plate.foto.url(:small), :style => "width: 100px; height: 100px; margin-top: 30px")
+                -else
+                  %img.img-rounded{:alt => "100x100", :src => "#{plate.foto.url(:small)}", :style => "width: 100px; height: 100px; margin-top: 30px"}
+                .caption{:style => "padding: 0px"}
+                  %h4{:style => "text-align: center"}= plate.nombre
+              %a.btn{"data-content" => "#{plate.description}", "data-original-title" => "#{plate.nombre}", "data-placement" => "top", "data-toggle" => "popover", :style => "margin-top: 10px;width: 85%;"}Descripción
+              = radio_button(:regPlates, a, plate.id, :style => "visibility:hidden;")
+          - if temp_plates.count == 0
+            .alert.half
+              No existen platos asociados.

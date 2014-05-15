@@ -1,4 +1,6 @@
 class OrderListsController < ApplicationController
+  before_filter :authenticate_user!
+  load_and_authorize_resource
   # GET /order_lists
   # GET /order_lists.json
   def index
@@ -147,6 +149,12 @@ class OrderListsController < ApplicationController
   def new_colacion
     @order_list = OrderList.new
     @patients_info = Patient.patients_group_by_num_pieza.to_json
+    if params[:date]
+      date_nums = params[:date].split("/").map { |s| s.to_i }
+      @date = Date.new(date_nums[2], date_nums[1], date_nums[0])
+    else
+      @date = Date.today
+    end
 
     respond_to do |format|
       format.html # new.html.erb

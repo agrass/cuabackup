@@ -6,7 +6,6 @@ $ ->
 			$('#skip_btn').attr("href", window.skip_base + "&regime="+ $('#regime_order_id').val())
 			$( "input[name='commit']" ).removeAttr("disabled");
 
-
 	# enable chosen js
 	$('.chzn-select').chosen
 	    allow_single_deselect: true
@@ -27,6 +26,22 @@ $ ->
 		else
 			$( "input[name='commit']" ).prop( "disabled", true );
 			$('#plates').empty();
+
+	($ 'select#order_regime_id').change ->
+		if ($ 'select#order_regime_id').val()
+			get_plates_edit()
+		else
+			$('#plates').empty();
+
+	get_plates_edit = () ->
+		regime_id = ($ 'select#order_regime_id').val()
+		horario = ($ '#horario_horario').val()
+		dia = ($ '#dia_dia').val()
+		url = '/get_plates?regime_id='+regime_id+'&horario='+horario+'&dia='+dia
+		$.get url, (data) ->
+        	$('#plates').html data       	        		   	
+        	window.set_images_event()        	
+        	#setTimeout(set_images_event, 1000)
 
 	($ 'input#acompanante').change ->
 		if this.checked
@@ -54,9 +69,15 @@ $ ->
 		url = '/get_plates?regime_id='+regime_id+'&horario='+horario+'&dia='+dia
 		$.get url, (data) ->
         	$('#plates').html data
-        	window.set_images_event()
+        	$('.thumbnails .span2 .thumbnail').click ->
+        		next_tab()
+        	window.set_images_event()        	
         	#setTimeout(set_images_event, 1000)
-
+     next_tab = () -> 
+     	setTimeout ( ->
+     		$('#myTab .active a').parent().next().find('a').tab('show');
+     		), 300
+     	
 	window.set_images_event = () ->
 		$('li.span2').each ->
 			#$(this).children().last().hide()

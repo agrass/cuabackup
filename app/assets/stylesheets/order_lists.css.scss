@@ -20,3 +20,22 @@
 		color: white;
 	}
 }
+
+.detalles_float{
+	position: absolute;
+	top: 320px;
+	right: 0px;
+	width: 300px;
+	z-index: 9;	
+}
+
+.order_comments{
+	margin-top: 100px;
+	margin-bottom: 60px;
+}
+
+.order_title{
+	border-bottom: 1px solid rgb(190, 190, 190);
+	color: rgb(107, 95, 95);
+	margin-bottom: 5px;
+}

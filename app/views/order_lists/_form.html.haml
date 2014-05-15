@@ -10,21 +10,25 @@
     = hidden_field_tag 'regime_order[id]', @regime_id
     -if @horario
       -if @order_list.esPaciente
-        %div#detalles.half.right.alert
+        %div#detalles.alert.detalles_float
           %button.close{"data-dismiss" => "alert", :type => "button"} ×
           = label_tag(:nombre_paciente, 'Comentarios sobre '+@order_list.patient.nombre+':' , :id =>"nombre_paciente")
           %br
           = text_area_tag 'patient_detalles', @order_list.patient.detalles, :rows => "5"
       = f.simple_fields_for :orders, @order_list.orders.build do |orders_form|
-        %h2
-          =Plate.horarios_nombre.flatten[Plate.horarios_nombre.flatten.index(@horario.to_i) -1]
+        .order_title
+          %h3 Nueva Order: #{Plate.horarios_nombre.flatten[Plate.horarios_nombre.flatten.index(@horario.to_i) -1]}
         = hidden_field_tag 'order_list[orders_attributes][0][horario]', @horario
-        = select("regime", "", Regime.all.collect {|p| [ p.nombre, p.id ] }, {:prompt => 'Seleccione Régimen'})
+        .half.right
+          %strong Régimen:   
+          = select("regime", "", Regime.all.collect {|p| [ p.nombre, p.id ] }, {:prompt => 'Seleccione Régimen'})
         #plates
-        = orders_form.input :comentarios, as: :text, :input_html => { :rows => 5 }
+        .order_comments.halfx
+          %legend Comentarios
+          = orders_form.input :comentarios, as: :text, :input_html => { :rows => 5 }, :label => false
     -else
       = hidden_field_tag 'order_list[dia]', DayRegime.getDayByDate(@order_list.fecha)
-      = select(:order_list, :patient_id, Patient.all.collect {|p| [ p.num_pieza, p.id ] }, {:prompt => 'Seleccione Pieza'}, { class: 'chzn-select' })
+      = select(:order_list, :patient_id, Patient.all.collect {|p| [ p.num_pieza, p.id ] }, {:prompt => 'Seleccione Pieza'}, { class: 'chzn-select ' })
       #persona
         %ul#lista_persona{:style =>"display: none"}
           %li{:style => "display: inline-table; padding-right: 50px"}
