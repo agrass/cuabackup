@@ -28,6 +28,22 @@ $ ->
 			$( "input[name='commit']" ).prop( "disabled", true );
 			$('#plates').empty();
 
+	($ 'select#order_regime_id').change ->
+		if ($ 'select#order_regime_id').val()
+			get_plates_edit()
+		else
+			$('#plates').empty();
+
+	get_plates_edit = () ->
+		regime_id = ($ 'select#order_regime_id').val()
+		horario = ($ '#horario_horario').val()
+		dia = ($ '#dia_dia').val()
+		url = '/get_plates?regime_id='+regime_id+'&horario='+horario+'&dia='+dia
+		$.get url, (data) ->
+        	$('#plates').html data
+        	window.set_images_event()        	
+        	#setTimeout(set_images_event, 1000)
+
 	($ 'input#acompanante').change ->
 		if this.checked
 			($ 'input#order_list_esPaciente').attr("checked",false)
