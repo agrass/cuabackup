@@ -18,6 +18,14 @@
       = f.simple_fields_for :orders, @order_list.orders.build do |orders_form|
         .order_title
           %h3 Nueva Order: #{Plate.horarios_nombre.flatten[Plate.horarios_nombre.flatten.index(@horario.to_i) -1]}
+          .right.order_buttons
+            = f.button :submit, 'Guardar', :disabled => true, :class => "btn-success"
+            -if @horario && @horario!='8'
+              %a.btn.btn-warning{ :id => "skip_btn",:href => url_for(:controller => "order_lists", :action => "edit", :id => @order_list.id,  :horario => (@horario.to_i * 2).to_s) }
+                Saltar
+            -elsif @horario=='8'
+              %a.btn.btn-warning{ :href => "#{order_lists_path}" }
+                Saltar
         = hidden_field_tag 'order_list[orders_attributes][0][horario]', @horario
         .half.right
           %strong Régimen:   
