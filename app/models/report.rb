@@ -128,7 +128,7 @@ class Report < ActiveRecord::Base
               z = 560
               cambios.each do |cmb|
                 nombre = Plate.find(cmb.plate_id).nombre
-                text_box "#{nombre}", :at => [0, z], :width => 375, :align => :left, :size => 12
+                text_box "#{nombre.split("[")[0]}", :at => [0, z], :width => 375, :align => :left, :size => 12
                 if cmb.number.to_i < 0
                   text_box "Se han eliminado un total de # #{cmb.number.to_i*-1}.", :at => [390, z], :width => 250, :align => :left, :size => 12
                 else
