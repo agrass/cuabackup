@@ -267,7 +267,7 @@ class Report < ActiveRecord::Base
         count = count + 1
       end
     end
-    if @orders.count == 0      
+    if @orders.blank?      
       File.delete("public/pdf/" + @name)
       @name = "0"
     end
