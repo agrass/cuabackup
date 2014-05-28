@@ -64,7 +64,7 @@
 .notification-bubble {
     height: 18px;
     width: 18px;
-    background: #f56c7e url(../images/notification-bg-clear.png) no-repeat center center scroll;
+    background: #f56c7e url(../assets/images/notification-bg-clear.png) no-repeat center center scroll;
     background-image: none\9;
     position: absolute;
     right: 5px;
