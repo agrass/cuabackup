@@ -236,7 +236,7 @@ class Report < ActiveRecord::Base
     now = Time.now
     @name = now.to_s + " " + "Colacion" + ".pdf"
     order_count = 0
-    @orders = OrderList.joins(:orders).where(:fecha => fecha, :orders => { :horario => tipo, :estado => estados }).select("order_lists.patient_id, orders.horario, orders.comentarios")
+    @orders = OrderList.joins(:orders).where(:fecha => fecha, :orders => { :horario => tipo, :estado => estados }).select("order_lists.patient_id, orders.horario, orders.comentarios, orders.id as order_id")
     Prawn::Document.generate("public/pdf/"+ @name, :page_layout => :landscape ) do |pdf|      
       xin = -10
       yin = 580
@@ -251,7 +251,7 @@ class Report < ActiveRecord::Base
             pdf.text_box "PACIENTE: " + Patient.find(col.patient_id).try(:nombre)[0..30], :at => [0, 150], :width => 340, :align => :left, :size => 12,:inline_format=>true
             pdf.text_box "HABITACION: " + Patient.find(col.patient_id).try(:num_pieza), :at => [0, 135], :width => 340, :align => :left, :size => 12, :inline_format=>true
             pdf.text_box "DESCRIPCIÓN: " + col.comentarios, :at => [0, 120], :width => 340, :align => :left,  :size => 12, :inline_format=>true
-            col.set_ok             
+            Order.find(col.try(:order_id)).try(:set_ok)             
         end
         if count == 6
           pdf.start_new_page
