@@ -36,7 +36,7 @@ class Report < ActiveRecord::Base
               order.set_ok            
               @ticket.menu = []         
               order.plates.each do |plate|
-                @ticket.menu << [Plate.buscar_tipo(plate.tipo),  plate.nombre]            
+                @ticket.menu << [Plate.buscar_tipo(plate.tipo),  plate.nombre.split("[")]            
               end       
               Report.fill_template(pdf, order_count%4, @ticket)
               order_count = order_count + 1 
@@ -127,8 +127,8 @@ class Report < ActiveRecord::Base
               transparent(0.8) { stroke_line [380, 615], [380, 0] }               
               z = 560
               cambios.each do |cmb|
-                nombre = Plate.find(cmb.plate_id).nombre
-                text_box "#{nombre.split("[")[0]}", :at => [0, z], :width => 375, :align => :left, :size => 12
+                nombre = Plate.find(cmb.plate_id).nombre.split("[")
+                text_box "#{nombre}", :at => [0, z], :width => 375, :align => :left, :size => 12
                 if cmb.number.to_i < 0
                   text_box "Se han eliminado un total de # #{cmb.number.to_i*-1}.", :at => [390, z], :width => 250, :align => :left, :size => 12
                 else
