@@ -49,7 +49,7 @@ class Plate < ActiveRecord::Base
 
   def self.buscar_tipo(tipo)
     acomp = "Acompa"
-    @valores = [["Liquido",1],["Sandwich",2],["Salado", 3],["Untable",4], ["Bebida", 5], ["Reposteria", 6], ["Entrada",7], ["P. Fondo",8], [acomp.encode("UTF-8"),9], ["Postre",10]]
+    @valores = [["Liquido",1],["Sandwich",2],["Salado", 3],["Untable",4], ["Bebida", 5], ["Reposteria", 6], ["Entrada",7], ["P. Fondo",8], [acomp.encode("UTF-8"),9], ["Postre",10], ["Endulzantes", 11]]
     return @valores[tipo -1][0]
   end
 
