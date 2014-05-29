@@ -8,9 +8,11 @@ end
 class Report < ActiveRecord::Base
   attr_accessible :description, :name, :start, :tipo
 
-  def self.plates(tipo, fecha, estados)
-    #FileUtils.rm_rf("public/pdf/")   
-    Dir.mkdir("public/pdf/") unless File.exists?("public/pdf/")
+  def self.plates(tipo, fecha, estados)    
+    begin 
+      Dir.mkdir("public/pdf/") unless File.exists?("public/pdf/")
+    rescue
+    end
     now = Time.zone.now
     @name = now.to_s + " " + getHorario(tipo) + ".pdf"
     order_count = 0   
