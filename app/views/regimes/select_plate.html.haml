@@ -1,7 +1,7 @@
 .fields
   %select#regime_regime_plates_attributes_PID_plate_id{:name => "regime[regime_plates_attributes][PID][plate_id]"}
     - Plate.find_all_by_tipo(params[:tipo]).each do |plt|
-      %option{:value => "#{plt.id}"} #{plt.nombre.split("[")[0]}    
+      %option{:value => "#{plt.id}"} #{plt.nombre}    
   %input#regime_regime_plates_attributes_PID__destroy{:name => "regime[regime_plates_attributes][PID][_destroy]", :type => "hidden", :value => "false"}/
   %a.remove_nested_fields{"data-association" => "regime_plates", :href => "javascript:void(0)"} Borrar
   %input#regime_regime_plates_attributes_PID_horario.horario_val{:name => "regime[regime_plates_attributes][PID][horario]", :type => "hidden", :value => "#{params[:horario]}"}/
