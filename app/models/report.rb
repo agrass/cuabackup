@@ -28,6 +28,7 @@ class Report < ActiveRecord::Base
           @ticket = Bandeja.new
           @ticket.paciente = order_list.patient.nombre[0..22]
           @ticket.habitacion =  order_list.patient.num_pieza
+          @ticket.habitacion = "" if @ticket.habitacion.blank?
           @ticket.fecha =  "#{now.strftime('%d/%m/%y')}"
           @ticket.id = order_list.id                  
           order= order_list.orders.find_by_horario_and_estado(tipo, estados)
