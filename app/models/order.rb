@@ -1,5 +1,8 @@
 class Order < ActiveRecord::Base
   attr_accessible :comentarios, :horario, :order_list_id, :regime_id, :estado
+  validates :order_list_id, presence: true
+  validates :regime_id, presence: true
+  validates :horario, presence: true
   before_save :set_state
 
   has_and_belongs_to_many :plates

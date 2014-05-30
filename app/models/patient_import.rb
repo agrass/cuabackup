@@ -34,7 +34,7 @@ class PatientImport
   end
 
   def load_imported_patients
-    set_piezas_to_nil
+    #set_piezas_to_nil
     spreadsheet = open_spreadsheet
     patients = []
     header = spreadsheet.row(1)

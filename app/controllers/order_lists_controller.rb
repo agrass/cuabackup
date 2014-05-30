@@ -88,50 +88,46 @@ class OrderListsController < ApplicationController
   # PUT /order_lists/1.json
   def update    
     @order_list = OrderList.find(params[:id])
-    if params[:patient_detalles]
-      patient = @order_list.patient
-      patient.detalles = params[:patient_detalles]
-      patient.save
-    end
-    respond_to do |format|
-      if @order_list.update_attributes(params[:order_list])
-        if params[:order_list][:orders_attributes].nil?
-          format.html { redirect_to :controller => 'order_lists', :action => 'edit', :id => @order_list.id, :horario => '1'}
-        else
-          if !params[:order_list][:orders_attributes]['0'][:horario].empty?
-            if params[:regime_order][:id] and params[:regime_order][:id] != ""
-              order = @order_list.orders.where(:horario => params[:order_list][:orders_attributes]['0'][:horario].to_i).first
-              order.plates.destroy_all
-              order.regime_id = params[:regime_order][:id]
-              if params[:regPlates]
-                params[:regPlates].each do |plate|
-                  if(!plate[1].empty?)                  
-                    if order.check_is_today
-                      EstadoArea.create_alert(order.horario, plate[1].to_i)      
-                    end
-                    order.plates << Plate.find(plate[1].to_i)
-                  end
-                end
-              end
-              order.save
-            else
-              order = @order_list.orders.where(:horario => params[:order_list][:orders_attributes]['0'][:horario].to_i).first
+    params[:order_list][:orders_attributes]['0'][:regime_id] =  params[:regime_order][:id]
 
-              order.destroy
+    ActiveRecord::Base.transaction do
+      if params[:patient_detalles]
+        patient = @order_list.patient
+        patient.detalles = params[:patient_detalles]
+        patient.save
+      end
 
+      @order_list.update_attributes!(params[:order_list])
+
+      order = @order_list.orders.where(:horario => params[:order_list][:orders_attributes]['0'][:horario].to_i).first
+      order.plates.destroy_all
+      order.regime_id = params[:regime_order][:id]
+      if params[:regPlates]
+        params[:regPlates].each do |plate|
+          if(!plate[1].empty?)                  
+            if order.check_is_today
+              EstadoArea.create_alert(order.horario, plate[1].to_i)      
             end
-          end
-
-          if params[:order_list][:orders_attributes]['0'][:horario].empty? || params[:order_list][:orders_attributes]['0'][:horario] == '8'
-            format.html { redirect_to order_lists_path, notice: 'Las ordenes fueron ingresadas exitosamente!' }
-          else
-            format.html { redirect_to :controller => 'order_lists', :action => 'edit', :id => @order_list.id, :horario => (params[:order_list][:orders_attributes]['0'][:horario].to_i * 2).to_s, :regime => order.regime_id}
+            order.plates << Plate.find(plate[1].to_i)
           end
         end
-      else
-        format.html { render action: "edit" }
       end
+      order.save!
     end
+
+    if params[:order_list][:orders_attributes]['0'][:horario].empty? || params[:order_list][:orders_attributes]['0'][:horario] == '8'
+      redirect_to( order_lists_path, notice: 'Las ordenes fueron ingresadas exitosamente!' )
+      return
+    else
+      redirect_to( :controller => 'order_lists', :action => 'edit', :id => @order_list.id, :horario => (params[:order_list][:orders_attributes]['0'][:horario].to_i * 2).to_s, :regime => order.regime_id)
+      return
+    end
+  
+  rescue StandardError => e
+    raise ''
+    order = @order_list.orders.where(:horario => params[:order_list][:orders_attributes]['0'][:horario].to_i).first
+    order.destroy
+    redirect_to( :controller => 'order_lists', :action => 'edit', :id => @order_list.id, :horario => params[:order_list][:orders_attributes]['0'][:horario])
   end
 
   # DELETE /order_lists/1
