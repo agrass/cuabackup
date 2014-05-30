@@ -18,4 +18,5 @@ rerun.txt
 pickle-email-*.html
 .project
 /public/pdf/*
+/images_s3/*
 /config/database.yml
