@@ -124,7 +124,6 @@ class OrderListsController < ApplicationController
     end
   
   rescue StandardError => e
-    raise ''
     order = @order_list.orders.where(:horario => params[:order_list][:orders_attributes]['0'][:horario].to_i).first
     order.destroy
     redirect_to( :controller => 'order_lists', :action => 'edit', :id => @order_list.id, :horario => params[:order_list][:orders_attributes]['0'][:horario])
