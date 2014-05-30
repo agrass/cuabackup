@@ -14,38 +14,36 @@ class Report < ActiveRecord::Base
     rescue
     end
     now = Time.zone.now
-    @name = now.to_s + " " + getHorario(tipo) + ".pdf"
+    @name = now.to_s + " " + getHorario(tipo) + ".pdf"    
+
     order_count = 0   
     Prawn::Document.generate("public/pdf/"+ @name, :page_layout => :landscape ) do |pdf|            
-      @orders_list = OrderList.find_all_by_fecha(fecha) 
-      Report.page_template(pdf, 4)   
+      @orders_list = OrderList.joins(:orders).where(:fecha => fecha, orders: {:estado => estados, :horario => tipo })      
+      Report.page_template(pdf, @orders_list.count > 3 ? 4 : @orders_list.count  )   
       @orders_list.each do |order_list|
-        if order_list.orders.find_all_by_horario_and_estado(tipo, estados).count > 0
-          if order_count%4 == 0 && order_count != 0
-            pdf.start_new_page
-            Report.page_template(pdf, 4)            
-          end
-          @ticket = Bandeja.new
-          @ticket.paciente = order_list.patient.nombre[0..22]
-          @ticket.habitacion =  order_list.patient.num_pieza
-          @ticket.habitacion = "" if @ticket.habitacion.blank?
-          @ticket.fecha =  "#{now.strftime('%d/%m/%y')}"
-          @ticket.id = order_list.id                  
-          order= order_list.orders.find_by_horario_and_estado(tipo, estados)
-            if order != nil
-              @ticket.servicio = Report.getHorario(order.horario)
-              @ticket.regimen = Regime.find(order.regime_id).nombre
-              @ticket.observaciones = order.comentarios
-              order.set_ok            
-              @ticket.menu = []         
-              order.plates.each do |plate|
-                @ticket.menu << [Plate.buscar_tipo(plate.tipo),  plate.nombre.split("[")[0]]            
-              end       
-              Report.fill_template(pdf, order_count%4, @ticket)
-              order_count = order_count + 1 
-            end               
-                 
+        if order_count%4 == 0 && order_count != 0
+          pdf.start_new_page
+          Report.page_template(pdf, 4)  
         end
+        @ticket = Bandeja.new
+        @ticket.paciente = order_list.patient.nombre[0..22].split("(")[0]
+        @ticket.habitacion =  order_list.patient.num_pieza 
+        @ticket.habitacion = "" if @ticket.habitacion.blank?
+        @ticket.fecha =  "#{order_list.fecha.strftime('%d/%m/%y')}"
+        @ticket.id = order_list.id                  
+        order= order_list.orders.find_by_horario_and_estado(tipo, estados)
+          if order != nil
+            @ticket.servicio = Report.getHorario(order.horario)
+            @ticket.regimen = Regime.find(order.regime_id).nombre
+            @ticket.observaciones = order.comentarios
+            order.set_ok            
+            @ticket.menu = []         
+            order.plates.each do |plate|
+              @ticket.menu << [Plate.buscar_tipo(plate.tipo),  plate.nombre.split("[")[0]]            
+            end       
+            Report.fill_template(pdf, order_count%4, @ticket)
+            order_count = order_count + 1 
+          end    
       end
     end
     if order_count == 0      
@@ -66,7 +64,7 @@ class Report < ActiveRecord::Base
       Area.all.each do |area|
         platos_info = Array.new
         Area.get_plates_by_horario_and_area(tipo.to_i, area.id, fecha).each do |jn|
-          platos_info << [jn.regimen, jn.plato, jn.numero.to_s] 
+          platos_info << [jn.regimen, jn.plato.split("[")[0], jn.numero.to_s] 
           count_platos = count_platos + 1         
         end       
         if platos_info.count > 0
@@ -169,10 +167,10 @@ class Report < ActiveRecord::Base
   end
 
   def self.page_template(pdf, num)
-    xin =  -10
-    yin = 580
-    x = 355
-    y = 300
+    xin =  -15
+    yin = 525
+    x = 365
+    y = 240
     pdf.transparent(0.8) { pdf.stroke_line [-30, 300], [900, 300] }
     pdf.transparent(0.8) { pdf.stroke_line [350, 5], [350, 900] }
     num.times do |i|
@@ -201,10 +199,10 @@ class Report < ActiveRecord::Base
   end
 
   def self.fill_template(pdf, num, ticket)
-    xin =  -10
-    yin = 580
-    x = 355
-    y = 300
+    xin = -15
+    yin = 525
+    x = 365
+    y = 240
     if num == 1
       xin = x
     elsif num == 2
@@ -216,7 +214,7 @@ class Report < ActiveRecord::Base
     end    
     pdf.bounding_box([xin, yin], :width => x, :height => y) do     
       pdf.text_box ticket.paciente, :at => [78, 265], :width => 200, :align => :left, :size => 12,:inline_format=>true
-      pdf.text_box ticket.servicio, :at => [78, 250], :width => 200, :align => :left, :size => 12, :inline_format=>true
+      pdf.text_box ticket.servicio + " - " + ticket.fecha, :at => [78, 250], :width => 200, :align => :left, :size => 12, :inline_format=>true
       pdf.text_box ticket.habitacion, :at => [78, 235], :width => 200, :align => :left,  :size => 12, :inline_format=>true
       pdf.text_box ticket.regimen, :at => [78, 220], :width => 200, :align => :left,  :size => 12, :inline_format=>true
       pdf.transparent(0.3) { pdf.stroke_line [0, 205], [280, 205] }
@@ -232,8 +230,8 @@ class Report < ActiveRecord::Base
             end
         end
       end
-      pdf.transparent(0.4) { pdf.stroke_line [0, 55], [280, 55] }       
-      pdf.text_box "OBSERVACIONES:" + ticket.observaciones[0..111], :at => [0, 50], :width => 375, :align => :left,  :size => 12, :height => 50 ,:inline_format=>true
+      pdf.transparent(0.4) { pdf.stroke_line [0, 65], [280, 65] }       
+      pdf.text_box "OBSERVACIONES:" + ticket.observaciones[0..175], :at => [0, 64], :width => 370, :align => :left,  :size => 12, :height => 63 ,:inline_format=>true
       #pdf.transparent(0.2) { pdf.stroke_bounds }        
     end
   end
