@@ -58,8 +58,10 @@ class PatientImport
 
   def set_pieza_to_nil(num_pieza, patient)
     aux = Patient.where(:num_pieza => num_pieza).where("id <> ?", patient.id)
-    aux.num_pieza = nil
-    aux.save
+    aux.each do |temp|
+      temp.num_pieza = nil
+      temp.save
+    end
   end
 
   def set_piezas_to_nil
