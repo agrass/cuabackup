@@ -35,6 +35,7 @@ class HomeController < ApplicationController
       respond_to do |format|
         format.html { render :layout => false}
         format.xls
+        format.json { render json: @ingredients}
       end
       return
     else

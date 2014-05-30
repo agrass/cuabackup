@@ -42,3 +42,4 @@ gem "paperclip", "~> 3.0"
 gem 'aws-sdk'
 gem "seedbank"
 gem "table_print"
+gem 'unicorn'
