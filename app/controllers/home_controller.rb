@@ -30,8 +30,7 @@ class HomeController < ApplicationController
       date = params[:date].split('/')
       #@ingredients = Ingredient.joins(plates: [orders: :order_list]).where(order_lists: {fecha: date[2]+'-'+date[1]+'-'+date[0]}).select('ingredients.nombre, sum(plate_ingredients.cantidad) as cantidad_total, ingredients.unidad').group('ingredients.nombre')
       @ingredients = Ingredient.joins(plates: [:areas, orders: :order_list]).where(order_lists: {fecha: date[2]+'-'+date[1]+'-'+date[0]}).select('ingredients.nombre, sum(plate_ingredients.cantidad) as cantidad_total, ingredients.unidad, orders.horario as horario, areas.id as area_id').group('ingredients.nombre, areas.id, ingredients.unidad, orders.horario').order('areas.id, orders.horario')
-      puts date
-      puts @ingredients
+
       respond_to do |format|
         format.html { render :layout => false}
         format.xls
