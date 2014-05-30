@@ -119,7 +119,7 @@ class OrderListsController < ApplicationController
       redirect_to( order_lists_path, notice: 'Las ordenes fueron ingresadas exitosamente!' )
       return
     else
-      redirect_to( :controller => 'order_lists', :action => 'edit', :id => @order_list.id, :horario => (params[:order_list][:orders_attributes]['0'][:horario].to_i * 2).to_s, :regime => order.regime_id)
+      redirect_to( :controller => 'order_lists', :action => 'edit', :id => @order_list.id, :horario => (params[:order_list][:orders_attributes]['0'][:horario].to_i * 2).to_s, :regime => params[:regime_order][:id])
       return
     end
   
