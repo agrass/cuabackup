@@ -30,7 +30,7 @@
         <Cell ss:StyleID="ce2"><Data ss:Type="String">Cantidad Total</Data></Cell>
         <Cell ss:StyleID="ce2"><Data ss:Type="String">Unidad</Data></Cell>
       </Row>
-        <% while @ingredients.first and @ingredients.first.area_id == area.id and @ingredients.first.horario == horario[1] do %>
+        <% while @ingredients.first and @ingredients.first.area_id.to_i == area.id.to_i and @ingredients.first.horario.to_i == horario[1].to_i do %>
         <% ingredient = @ingredients.shift %>
         <Row>
           <Cell><Data ss:Type="String"><%= ingredient.nombre %></Data></Cell>
