@@ -1,5 +1,3 @@
-- puts "PRIMER INGREDIENTE ***************"
-- puts @ingredients.first
 %ul#myTab.nav.nav-tabs
   - Area.all.each do |area|
     %li{ :class => "#{area == Area.first ? 'active' : '' }"}
@@ -21,12 +19,6 @@
                   %th Nombre
                   %th Cantidad Total
                   %th Unidad
-                  - puts "AREA ID ***************" if @ingredients.first
-                  - puts @ingredients.first.area_id if @ingredients.first
-                  - puts area.id if @ingredients.first
-                  - puts "HORARIO ***************" if @ingredients.first
-                  - puts @ingredients.first.horario if @ingredients.first
-                  - puts horario[1] if @ingredients.first
                   - while @ingredients.first and @ingredients.first.area_id.to_i == area.id.to_i and @ingredients.first.horario.to_i == horario[1].to_i do
                     - ingredient = @ingredients.shift
                     %tr
