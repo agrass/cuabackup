@@ -49,9 +49,17 @@ class PatientImport
         end
         patient.num_pieza = row["Cama"].to_s
         patients << patient
+        patient.save
+        set_pieza_to_nil(row["Cama"].to_s, patient)
       end
     end
     return patients
+  end
+
+  def set_pieza_to_nil(num_pieza, patient)
+    aux = Patient.where(:num_pieza => num_pieza).where("id <> ?", patient.id)
+    aux.num_pieza = nil
+    aux.save
   end
 
   def set_piezas_to_nil

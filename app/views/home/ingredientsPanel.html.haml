@@ -19,7 +19,7 @@
                   %th Nombre
                   %th Cantidad Total
                   %th Unidad
-                  - while @ingredients.first and @ingredients.first.area_id == area.id and @ingredients.first.horario == horario[1] do
+                  - while @ingredients.first and @ingredients.first.area_id.to_i == area.id.to_i and @ingredients.first.horario.to_i == horario[1].to_i do
                     - ingredient = @ingredients.shift
                     %tr
                       %td
