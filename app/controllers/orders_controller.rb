@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
     if params[:date]
       @date = params[:date]
     else
-      @date = Time.now.strftime("%d/%m/%Y")
+      @date = Time.zone.now.strftime("%d/%m/%Y")
     end
     # @orders = Order.where(:created_at => @date)
     @orders = Order.all

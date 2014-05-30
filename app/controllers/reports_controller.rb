@@ -53,7 +53,7 @@ class ReportsController < ApplicationController
     end
     if nombre != "0"
       @report = Report.create(:name => nombre, :tipo => tipo)
-      Report.where("created_at <= ?", Time.now - 7.days).each do |report|
+      Report.where("created_at <= ?", Time.zone.now - 7.days).each do |report|
         begin
           File.delete("public/pdf/" + report.name)
           report.destroy
@@ -62,7 +62,7 @@ class ReportsController < ApplicationController
         end
       end      
       params[:source] = nombre
-       render "pdf_show", :layout => false    
+      render "pdf_show", :layout => false    
     else
       render :text => "No existen vouchers por imprimir!"
     end

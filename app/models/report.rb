@@ -8,10 +8,12 @@ end
 class Report < ActiveRecord::Base
   attr_accessible :description, :name, :start, :tipo
 
-  def self.plates(tipo, fecha, estados)
-    #FileUtils.rm_rf("public/pdf/")   
-    Dir.mkdir("public/pdf/") unless File.exists?("public/pdf/")
-    now = Time.now
+  def self.plates(tipo, fecha, estados)    
+    begin 
+      Dir.mkdir("public/pdf/") unless File.exists?("public/pdf/")
+    rescue
+    end
+    now = Time.zone.now
     @name = now.to_s + " " + getHorario(tipo) + ".pdf"
     order_count = 0   
     Prawn::Document.generate("public/pdf/"+ @name, :page_layout => :landscape ) do |pdf|            
@@ -26,6 +28,7 @@ class Report < ActiveRecord::Base
           @ticket = Bandeja.new
           @ticket.paciente = order_list.patient.nombre[0..22]
           @ticket.habitacion =  order_list.patient.num_pieza
+          @ticket.habitacion = "" if @ticket.habitacion.blank?
           @ticket.fecha =  "#{now.strftime('%d/%m/%y')}"
           @ticket.id = order_list.id                  
           order= order_list.orders.find_by_horario_and_estado(tipo, estados)
@@ -36,7 +39,7 @@ class Report < ActiveRecord::Base
               order.set_ok            
               @ticket.menu = []         
               order.plates.each do |plate|
-                @ticket.menu << [Plate.buscar_tipo(plate.tipo),  plate.nombre]            
+                @ticket.menu << [Plate.buscar_tipo(plate.tipo),  plate.nombre.split("[")[0]]            
               end       
               Report.fill_template(pdf, order_count%4, @ticket)
               order_count = order_count + 1 
@@ -54,16 +57,17 @@ class Report < ActiveRecord::Base
 
   end
 
-  def self.areas(tipo, fecha)
-    FileUtils.rm_rf("public/pdf/")   
+  def self.areas(tipo, fecha)    
     Dir.mkdir("public/pdf/") unless File.exists?("public/pdf/")
-    now = Time.now
-    @name = now.to_s + " Pedidos Area.pdf"    
+    now = Time.zone.now
+    @name = now.to_s + " Pedidos Area.pdf"
+    count_platos = 0
     Prawn::Document.generate("public/pdf/"+ @name ) do         
       Area.all.each do |area|
         platos_info = Array.new
         Area.get_plates_by_horario_and_area(tipo.to_i, area.id, fecha).each do |jn|
-          platos_info << [jn.regimen, jn.plato, jn.numero.to_s]
+          platos_info << [jn.regimen, jn.plato, jn.numero.to_s] 
+          count_platos = count_platos + 1         
         end       
         if platos_info.count > 0
           text_box "PEDIDOS POR AREA", :at => [85, 720], :width => 300, :align => :center, :size => 20
@@ -127,7 +131,8 @@ class Report < ActiveRecord::Base
               transparent(0.8) { stroke_line [380, 615], [380, 0] }               
               z = 560
               cambios.each do |cmb|
-                nombre = Plate.find(cmb.plate_id).nombre
+                count_platos = count_platos + 1
+                nombre = Plate.find(cmb.plate_id).nombre.split("[")[0]
                 text_box "#{nombre}", :at => [0, z], :width => 375, :align => :left, :size => 12
                 if cmb.number.to_i < 0
                   text_box "Se han eliminado un total de # #{cmb.number.to_i*-1}.", :at => [390, z], :width => 250, :align => :left, :size => 12
@@ -148,6 +153,8 @@ class Report < ActiveRecord::Base
           start_new_page
         end
       end
+      #si no tiene nada retorna
+      return "0" if count_platos == 0
       #borrar los estado areas y logs especificos
       EstadoArea.find_all_by_fecha_and_horario(fecha, tipo.to_i).each do |ear|
         ear.destroy
@@ -233,10 +240,10 @@ class Report < ActiveRecord::Base
 
   def self.colacion(tipo, fecha, estados)
     Dir.mkdir("public/pdf/") unless File.exists?("public/pdf/")
-    now = Time.now
+    now = Time.zone.now
     @name = now.to_s + " " + "Colacion" + ".pdf"
     order_count = 0
-    @orders = OrderList.joins(:orders).where(:fecha => fecha, :orders => { :horario => tipo, :estado => estados }).select("order_lists.patient_id, orders.horario, orders.comentarios")
+    @orders = OrderList.joins(:orders).where(:fecha => fecha, :orders => { :horario => tipo, :estado => estados }).select("order_lists.patient_id, orders.horario, orders.comentarios, orders.id as order_id")
     Prawn::Document.generate("public/pdf/"+ @name, :page_layout => :landscape ) do |pdf|      
       xin = -10
       yin = 580
@@ -248,9 +255,10 @@ class Report < ActiveRecord::Base
             pdf.text_box "Ticket Colación", :at => [30, 180], :width => 170, :align => :center, :size => 18
             pdf.transparent(0.3) { pdf.stroke_line [0, 160], [280, 160] }
             #pdf.transparent(0.6) {pdf.image "public/assets/images/logo2.jpg", :scale => 0.6, :at => [pdf.bounds.left, pdf.bounds.top - 10]}
-            pdf.text_box "PACIENTE: " + Patient.find(col.patient_id).nombre[0..30], :at => [0, 150], :width => 340, :align => :left, :size => 12,:inline_format=>true
-            pdf.text_box "HABITACION: " + Patient.find(col.patient_id).num_pieza, :at => [0, 135], :width => 340, :align => :left, :size => 12, :inline_format=>true
-            pdf.text_box "DESCRIPCIÓN: " + col.comentarios, :at => [0, 120], :width => 340, :align => :left,  :size => 12, :inline_format=>true            
+            pdf.text_box "PACIENTE: " + Patient.find(col.patient_id).try(:nombre)[0..30], :at => [0, 150], :width => 340, :align => :left, :size => 12,:inline_format=>true
+            pdf.text_box "HABITACION: " + Patient.find(col.patient_id).try(:num_pieza), :at => [0, 135], :width => 340, :align => :left, :size => 12, :inline_format=>true
+            pdf.text_box "DESCRIPCIÓN: " + col.comentarios, :at => [0, 120], :width => 340, :align => :left,  :size => 12, :inline_format=>true
+            Order.find(col.try(:order_id)).try(:set_ok)             
         end
         if count == 6
           pdf.start_new_page
@@ -266,7 +274,7 @@ class Report < ActiveRecord::Base
         count = count + 1
       end
     end
-    if @orders.count == 0      
+    if @orders.blank?      
       File.delete("public/pdf/" + @name)
       @name = "0"
     end
