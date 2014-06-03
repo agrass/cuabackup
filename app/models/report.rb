@@ -172,7 +172,7 @@ class Report < ActiveRecord::Base
     x = 365
     y = 240
     pdf.transparent(0.8) { pdf.stroke_line [-30, 300], [900, 300] }
-    pdf.transparent(0.8) { pdf.stroke_line [350, 5], [350, 900] }
+    pdf.transparent(0.8) { pdf.stroke_line [355, 5], [355, 900] }
     num.times do |i|
       pdf.bounding_box([xin, yin], :width => x, :height => y) do
           pdf.text_box "Ticket Bandeja", :at => [80, 285], :width => 170, :align => :center, :size => 18
@@ -202,7 +202,7 @@ class Report < ActiveRecord::Base
     xin = -15
     yin = 525
     x = 365
-    y = 240
+    y = 200
     if num == 1
       xin = x
     elsif num == 2
@@ -212,7 +212,7 @@ class Report < ActiveRecord::Base
       xin = x
       yin = y
     end    
-    pdf.bounding_box([xin, yin], :width => x, :height => y) do     
+    pdf.bounding_box([xin, yin], :width => 350, :height => 240) do     
       pdf.text_box ticket.paciente, :at => [78, 265], :width => 200, :align => :left, :size => 12,:inline_format=>true
       pdf.text_box ticket.servicio + " - " + ticket.fecha, :at => [78, 250], :width => 200, :align => :left, :size => 12, :inline_format=>true
       pdf.text_box ticket.habitacion, :at => [78, 235], :width => 200, :align => :left,  :size => 12, :inline_format=>true
@@ -231,7 +231,7 @@ class Report < ActiveRecord::Base
         end
       end
       pdf.transparent(0.4) { pdf.stroke_line [0, 65], [280, 65] }       
-      pdf.text_box "OBSERVACIONES:" + ticket.observaciones[0..175], :at => [0, 64], :width => 370, :align => :left,  :size => 12, :height => 63 ,:inline_format=>true
+      pdf.text_box "OBSERVACIONES:" + ticket.observaciones[0..175], :at => [0, 64], :width => 360, :align => :left,  :size => 12, :height => 63 ,:inline_format=>true
       #pdf.transparent(0.2) { pdf.stroke_bounds }        
     end
   end
@@ -245,11 +245,11 @@ class Report < ActiveRecord::Base
     Prawn::Document.generate("public/pdf/"+ @name, :page_layout => :landscape ) do |pdf|      
       xin = -10
       yin = 580
-      x = 355
-      y = 192
+      x = 360
+      y = 200
       count = 1      
       @orders.each do |col|
-        pdf.bounding_box([xin, yin], :width => x, :height => y) do
+        pdf.bounding_box([xin, yin], :width => 350, :height => 240) do
             pdf.text_box "Ticket Colación", :at => [30, 180], :width => 170, :align => :center, :size => 18
             pdf.transparent(0.3) { pdf.stroke_line [0, 160], [280, 160] }
             #pdf.transparent(0.6) {pdf.image "public/assets/images/logo2.jpg", :scale => 0.6, :at => [pdf.bounds.left, pdf.bounds.top - 10]}
