@@ -1,6 +1,7 @@
 = simple_form_for(@order) do |f|
   = f.error_notification
-  = f.select(:regime_id, Regime.all.collect {|p| [ p.nombre, p.id ] }, {:prompt => 'Seleccione Régimen'})
+  - unless @is_colacion
+    = f.select(:regime_id, Regime.all.collect {|p| [ p.nombre, p.id ] }, {:prompt => 'Seleccione Régimen'})
   = hidden_field_tag 'dia[dia]', @order.order_list.dia
   = hidden_field_tag 'horario[horario]', @order.horario
   #plates

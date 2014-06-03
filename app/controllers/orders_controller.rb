@@ -48,6 +48,8 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     if @order.horario != 16
       @plates = Regime.find(@order.regime_id).get_plates_by_horario_and_dia(@order.horario, OrderList.find(@order.order_list_id).dia)
+    else
+      @is_colacion = true
     end
   end
 

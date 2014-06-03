@@ -73,8 +73,13 @@ class OrderListsController < ApplicationController
     respond_to do |format|
       if @order_list.save
         if params[:is_colacion]
-          @order_list.orders.create(params[:order])
-          format.html { redirect_to order_lists_path, notice: 'La colacion fue ingresada exitosamente!' }
+          order = @order_list.orders.new(params[:order])
+          order.regime_id = Regime.first.id if Regime.any?
+          if order.save
+            format.html { redirect_to order_lists_path, notice: 'La colacion fue ingresada exitosamente!' }
+          else
+            format.html { render action: "new" }
+          end
         else
           format.html { redirect_to :controller => 'order_lists', :action => 'edit', :id => @order_list.id, :horario => '1'}
         end
