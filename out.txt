@@ -1,494 +1,746 @@
-z = Plate.where(id:1782 ).foto_file_name = '1782.jpg' 
+#probado
+z = Plate.where(id:1782 ).first
+z.foto_file_name = '1782.jpg' 
 z.save 
-z = Plate.where(id:970 ).foto_file_name = '970.jpg' 
+z = Plate.where(id:970 ).first 
+z.foto_file_name = '970.jpg' 
 z.save 
-z = Plate.where(id:1591 ).foto_file_name = '1591.jpg' 
+z = Plate.where(id:1591 ).first 
+z.foto_file_name = '1591.jpg' 
 z.save 
-z = Plate.where(id:442 ).foto_file_name = '442.jpg' 
+z = Plate.where(id:442 ).first
+z.foto_file_name = '442.jpg' 
 z.save 
-z = Plate.where(id:971 ).foto_file_name = '971.jpg' 
+z = Plate.where(id:971 ).first 
+z.foto_file_name = '971.jpg' 
 z.save 
-z = Plate.where(id:2263 ).foto_file_name = '2263.jpg' 
+z = Plate.where(id:2263 ).first 
+z.foto_file_name = '2263.jpg' 
 z.save 
-z = Plate.where(id:904 ).foto_file_name = '904.jpg' 
+z = Plate.where(id:904 ).first 
+z.foto_file_name = '904.jpg' 
 z.save 
-z = Plate.where(id:1448 ).foto_file_name = '1448.jpg' 
+z = Plate.where(id:1448 ).first 
+z.foto_file_name = '1448.jpg' 
 z.save 
-z = Plate.where(id:2032 ).foto_file_name = '2032.jpg' 
+z = Plate.where(id:2032 ).first 
+z.foto_file_name = '2032.jpg' 
 z.save 
-z = Plate.where(id:1877 ).foto_file_name = '1877.jpg' 
+z = Plate.where(id:1877 ).first 
+z.foto_file_name = '1877.jpg' 
 z.save 
-z = Plate.where(id:2264 ).foto_file_name = '2264.jpg' 
+z = Plate.where(id:2264 ).first 
+z.foto_file_name = '2264.jpg' 
 z.save 
-z = Plate.where(id:864 ).foto_file_name = '864.jpg' 
+z = Plate.where(id:864 ).first 
+z.foto_file_name = '864.jpg' 
 z.save 
-z = Plate.where(id:91 ).foto_file_name = '91.jpg' 
+z = Plate.where(id:91 ).first 
+z.foto_file_name = '91.jpg' 
 z.save 
-z = Plate.where(id:1888 ).foto_file_name = '1888.jpg' 
+z = Plate.where(id:1888 ).first 
+z.foto_file_name = '1888.jpg' 
 z.save 
-z = Plate.where(id:493 ).foto_file_name = '493.jpg' 
+z = Plate.where(id:493 ).first 
+z.foto_file_name = '493.jpg' 
 z.save 
-z = Plate.where(id:1509 ).foto_file_name = '1509.jpg' 
+z = Plate.where(id:1509 ).first 
+z.foto_file_name = '1509.jpg' 
 z.save 
-z = Plate.where(id:627 ).foto_file_name = '627.jpg' 
+z = Plate.where(id:627 ).first 
+z.foto_file_name = '627.jpg' 
 z.save 
-z = Plate.where(id:2155 ).foto_file_name = '2155.jpg' 
+z = Plate.where(id:2155 ).first 
+z.foto_file_name = '2155.jpg' 
 z.save 
-z = Plate.where(id:506 ).foto_file_name = '506.jpg' 
+z = Plate.where(id:506 ).first 
+z.foto_file_name = '506.jpg' 
 z.save 
-z = Plate.where(id:82 ).foto_file_name = '82.jpg' 
+z = Plate.where(id:82 ).first 
+z.foto_file_name = '82.jpg' 
 z.save 
-z = Plate.where(id:2028 ).foto_file_name = '2028.jpg' 
+z = Plate.where(id:2028 ).first 
+z.foto_file_name = '2028.jpg' 
 z.save 
-z = Plate.where(id:103 ).foto_file_name = '103.jpg' 
+z = Plate.where(id:103 ).first 
+z.foto_file_name = '103.jpg' 
 z.save 
-z = Plate.where(id:1411 ).foto_file_name = '1411.jpg' 
+z = Plate.where(id:1411 ).first 
+z.foto_file_name = '1411.jpg' 
 z.save 
-z = Plate.where(id:81 ).foto_file_name = '81.jpg' 
+z = Plate.where(id:81 ).first 
+z.foto_file_name = '81.jpg' 
 z.save 
-z = Plate.where(id:297 ).foto_file_name = '297.jpeg' 
+z = Plate.where(id:297 ).first 
+z.foto_file_name = '297.jpeg' 
 z.save 
-z = Plate.where(id:1260 ).foto_file_name = '1260.jpg' 
+z = Plate.where(id:1260 ).first 
+z.foto_file_name = '1260.jpg' 
 z.save 
-z = Plate.where(id:298 ).foto_file_name = '298.jpeg' 
+z = Plate.where(id:298 ).first 
+z.foto_file_name = '298.jpeg' 
 z.save 
-z = Plate.where(id:1255 ).foto_file_name = '1255.jpg' 
+z = Plate.where(id:1255 ).first 
+z.foto_file_name = '1255.jpg' 
 z.save 
-z = Plate.where(id:797 ).foto_file_name = '797.jpg' 
+z = Plate.where(id:797 ).first 
+z.foto_file_name = '797.jpg' 
 z.save 
-z = Plate.where(id:441 ).foto_file_name = '441.jpg' 
+z = Plate.where(id:441 ).first 
+z.foto_file_name = '441.jpg' 
 z.save 
-z = Plate.where(id:1168 ).foto_file_name = '1168.jpg' 
+z = Plate.where(id:1168 ).first 
+z.foto_file_name = '1168.jpg' 
 z.save 
-z = Plate.where(id:1080 ).foto_file_name = '1080.jpg' 
+z = Plate.where(id:1080 ).first 
+z.foto_file_name = '1080.jpg' 
 z.save 
-z = Plate.where(id:41 ).foto_file_name = '41.jpg' 
+z = Plate.where(id:41 ).first 
+z.foto_file_name = '41.jpg' 
 z.save 
-z = Plate.where(id:1783 ).foto_file_name = '1783.jpg' 
+z = Plate.where(id:1783 ).first 
+z.foto_file_name = '1783.jpg' 
 z.save 
-z = Plate.where(id:213 ).foto_file_name = '213.jpg' 
+z = Plate.where(id:213 ).first 
+z.foto_file_name = '213.jpg' 
 z.save 
-z = Plate.where(id:1220 ).foto_file_name = '1220.jpg' 
+z = Plate.where(id:1220 ).first 
+z.foto_file_name = '1220.jpg' 
 z.save 
-z = Plate.where(id:515 ).foto_file_name = '515.jpg' 
+z = Plate.where(id:515 ).first 
+z.foto_file_name = '515.jpg' 
 z.save 
-z = Plate.where(id:1420 ).foto_file_name = '1420.jpg' 
+z = Plate.where(id:1420 ).first 
+z.foto_file_name = '1420.jpg' 
 z.save 
-z = Plate.where(id:668 ).foto_file_name = '668.jpg' 
+z = Plate.where(id:668 ).first 
+z.foto_file_name = '668.jpg' 
 z.save 
-z = Plate.where(id:1387 ).foto_file_name = '1387.jpg' 
+z = Plate.where(id:1387 ).first 
+z.foto_file_name = '1387.jpg' 
 z.save 
-z = Plate.where(id:1887 ).foto_file_name = '1887.jpg' 
+z = Plate.where(id:1887 ).first 
+z.foto_file_name = '1887.jpg' 
 z.save 
-z = Plate.where(id:321 ).foto_file_name = '321.jpg' 
+z = Plate.where(id:321 ).first 
+z.foto_file_name = '321.jpg' 
 z.save 
-z = Plate.where(id:607 ).foto_file_name = '607.jpeg' 
+z = Plate.where(id:607 ).first 
+z.foto_file_name = '607.jpeg' 
 z.save 
-z = Plate.where(id:1025 ).foto_file_name = '1025.jpg' 
+z = Plate.where(id:1025 ).first 
+z.foto_file_name = '1025.jpg' 
 z.save 
-z = Plate.where(id:2344 ).foto_file_name = '2344.jpg' 
+z = Plate.where(id:2344 ).first 
+z.foto_file_name = '2344.jpg' 
 z.save 
-z = Plate.where(id:518 ).foto_file_name = '518.jpg' 
+z = Plate.where(id:518 ).first 
+z.foto_file_name = '518.jpg' 
 z.save 
-z = Plate.where(id:1767 ).foto_file_name = '1767.jpg' 
+z = Plate.where(id:1767 ).first 
+z.foto_file_name = '1767.jpg' 
 z.save 
-z = Plate.where(id:1319 ).foto_file_name = '1319.jpg' 
+z = Plate.where(id:1319 ).first 
+z.foto_file_name = '1319.jpg' 
 z.save 
-z = Plate.where(id:428 ).foto_file_name = '428.jpg' 
+z = Plate.where(id:428 ).first 
+z.foto_file_name = '428.jpg' 
 z.save 
-z = Plate.where(id:400 ).foto_file_name = '400.jpg' 
+z = Plate.where(id:400 ).first 
+z.foto_file_name = '400.jpg' 
 z.save 
-z = Plate.where(id:458 ).foto_file_name = '458.jpg' 
+z = Plate.where(id:458 ).first 
+z.foto_file_name = '458.jpg' 
 z.save 
-z = Plate.where(id:2082 ).foto_file_name = '2082.jpg' 
+z = Plate.where(id:2082 ).first 
+z.foto_file_name = '2082.jpg' 
 z.save 
-z = Plate.where(id:1348 ).foto_file_name = '1348.jpg' 
+z = Plate.where(id:1348 ).first 
+z.foto_file_name = '1348.jpg' 
 z.save 
-z = Plate.where(id:57 ).foto_file_name = '57.jpg' 
+z = Plate.where(id:57 ).first 
+z.foto_file_name = '57.jpg' 
 z.save 
-z = Plate.where(id:2213 ).foto_file_name = '2213.jpg' 
+z = Plate.where(id:2213 ).first 
+z.foto_file_name = '2213.jpg' 
 z.save 
-z = Plate.where(id:264 ).foto_file_name = '264.jpg' 
+z = Plate.where(id:264 ).first 
+z.foto_file_name = '264.jpg' 
 z.save 
-z = Plate.where(id:2083 ).foto_file_name = '2083.jpg' 
+z = Plate.where(id:2083 ).first 
+z.foto_file_name = '2083.jpg' 
 z.save 
-z = Plate.where(id:1442 ).foto_file_name = '1442.jpg' 
+z = Plate.where(id:1442 ).first 
+z.foto_file_name = '1442.jpg' 
 z.save 
-z = Plate.where(id:594 ).foto_file_name = '594.jpg' 
+z = Plate.where(id:594 ).first 
+z.foto_file_name = '594.jpg' 
 z.save 
-z = Plate.where(id:1332 ).foto_file_name = '1332.jpg' 
+z = Plate.where(id:1332 ).first 
+z.foto_file_name = '1332.jpg' 
 z.save 
-z = Plate.where(id:700 ).foto_file_name = '700.jpg' 
+z = Plate.where(id:700 ).first 
+z.foto_file_name = '700.jpg' 
 z.save 
-z = Plate.where(id:879 ).foto_file_name = '879.jpeg' 
+z = Plate.where(id:879 ).first 
+z.foto_file_name = '879.jpeg' 
 z.save 
-z = Plate.where(id:1435 ).foto_file_name = '1435.jpg' 
+z = Plate.where(id:1435 ).first 
+z.foto_file_name = '1435.jpg' 
 z.save 
-z = Plate.where(id:1373 ).foto_file_name = '1373.jpg' 
+z = Plate.where(id:1373 ).first 
+z.foto_file_name = '1373.jpg' 
 z.save 
-z = Plate.where(id:2194 ).foto_file_name = '2194.jpg' 
+z = Plate.where(id:2194 ).first 
+z.foto_file_name = '2194.jpg' 
 z.save 
-z = Plate.where(id:592 ).foto_file_name = '592.jpg' 
+z = Plate.where(id:592 ).first 
+z.foto_file_name = '592.jpg' 
 z.save 
-z = Plate.where(id:1689 ).foto_file_name = '1689.jpg' 
+z = Plate.where(id:1689 ).first 
+z.foto_file_name = '1689.jpg' 
 z.save 
-z = Plate.where(id:157 ).foto_file_name = '157.jpg' 
+z = Plate.where(id:157 ).first 
+z.foto_file_name = '157.jpg' 
 z.save 
-z = Plate.where(id:2343 ).foto_file_name = '2343.jpg' 
+z = Plate.where(id:2343 ).first 
+z.foto_file_name = '2343.jpg' 
 z.save 
-z = Plate.where(id:1175 ).foto_file_name = '1175.jpg' 
+z = Plate.where(id:1175 ).first 
+z.foto_file_name = '1175.jpg' 
 z.save 
-z = Plate.where(id:595 ).foto_file_name = '595.jpg' 
+z = Plate.where(id:595 ).first 
+z.foto_file_name = '595.jpg' 
 z.save 
-z = Plate.where(id:1727 ).foto_file_name = '1727.jpg' 
+z = Plate.where(id:1727 ).first 
+z.foto_file_name = '1727.jpg' 
 z.save 
-z = Plate.where(id:593 ).foto_file_name = '593.jpg' 
+z = Plate.where(id:593 ).first 
+z.foto_file_name = '593.jpg' 
 z.save 
-z = Plate.where(id:640 ).foto_file_name = '640.jpg' 
+z = Plate.where(id:640 ).first 
+z.foto_file_name = '640.jpg' 
 z.save 
-z = Plate.where(id:1333 ).foto_file_name = '1333.jpg' 
+z = Plate.where(id:1333 ).first 
+z.foto_file_name = '1333.jpg' 
 z.save 
-z = Plate.where(id:2306 ).foto_file_name = '2306.jpg' 
+z = Plate.where(id:2306 ).first 
+z.foto_file_name = '2306.jpg' 
 z.save 
-z = Plate.where(id:696 ).foto_file_name = '696.jpg' 
+z = Plate.where(id:696 ).first 
+z.foto_file_name = '696.jpg' 
 z.save 
-z = Plate.where(id:469 ).foto_file_name = '469.jpg' 
+z = Plate.where(id:469 ).first 
+z.foto_file_name = '469.jpg' 
 z.save 
-z = Plate.where(id:1896 ).foto_file_name = '1896.jpg' 
+z = Plate.where(id:1896 ).first 
+z.foto_file_name = '1896.jpg' 
 z.save 
-z = Plate.where(id:988 ).foto_file_name = '988.jpg' 
+z = Plate.where(id:988 ).first 
+z.foto_file_name = '988.jpg' 
 z.save 
-z = Plate.where(id:2311 ).foto_file_name = '2311.jpg' 
+z = Plate.where(id:2311 ).first 
+z.foto_file_name = '2311.jpg' 
 z.save 
-z = Plate.where(id:669 ).foto_file_name = '669.jpg' 
+z = Plate.where(id:669 ).first 
+z.foto_file_name = '669.jpg' 
 z.save 
-z = Plate.where(id:214 ).foto_file_name = '214.jpg' 
+z = Plate.where(id:214 ).first 
+z.foto_file_name = '214.jpg' 
 z.save 
-z = Plate.where(id:2041 ).foto_file_name = '2041.jpg' 
+z = Plate.where(id:2041 ).first 
+z.foto_file_name = '2041.jpg' 
 z.save 
-z = Plate.where(id:1445 ).foto_file_name = '1445.jpg' 
+z = Plate.where(id:1445 ).first 
+z.foto_file_name = '1445.jpg' 
 z.save 
-z = Plate.where(id:2018 ).foto_file_name = '2018.jpg' 
+z = Plate.where(id:2018 ).first 
+z.foto_file_name = '2018.jpg' 
 z.save 
-z = Plate.where(id:322 ).foto_file_name = '322.jpg' 
+z = Plate.where(id:322 ).first 
+z.foto_file_name = '322.jpg' 
 z.save 
-z = Plate.where(id:333 ).foto_file_name = '333.jpg' 
+z = Plate.where(id:333 ).first 
+z.foto_file_name = '333.jpg' 
 z.save 
-z = Plate.where(id:915 ).foto_file_name = '915.jpg' 
+z = Plate.where(id:915 ).first 
+z.foto_file_name = '915.jpg' 
 z.save 
-z = Plate.where(id:70 ).foto_file_name = '70.jpg' 
+z = Plate.where(id:70 ).first 
+z.foto_file_name = '70.jpg' 
 z.save 
-z = Plate.where(id:257 ).foto_file_name = '257.jpg' 
+z = Plate.where(id:257 ).first 
+z.foto_file_name = '257.jpg' 
 z.save 
-z = Plate.where(id:1508 ).foto_file_name = '1508.jpg' 
+z = Plate.where(id:1508 ).first 
+z.foto_file_name = '1508.jpg' 
 z.save 
-z = Plate.where(id:494 ).foto_file_name = '494.jpg' 
+z = Plate.where(id:494 ).first 
+z.foto_file_name = '494.jpg' 
 z.save 
-z = Plate.where(id:52 ).foto_file_name = '52.jpg' 
+z = Plate.where(id:52 ).first 
+z.foto_file_name = '52.jpg' 
 z.save 
-z = Plate.where(id:1447 ).foto_file_name = '1447.jpg' 
+z = Plate.where(id:1447 ).first 
+z.foto_file_name = '1447.jpg' 
 z.save 
-z = Plate.where(id:457 ).foto_file_name = '457.jpg' 
+z = Plate.where(id:457 ).first 
+z.foto_file_name = '457.jpg' 
 z.save 
-z = Plate.where(id:1158 ).foto_file_name = '1158.jpg' 
+z = Plate.where(id:1158 ).first 
+z.foto_file_name = '1158.jpg' 
 z.save 
-z = Plate.where(id:2047 ).foto_file_name = '2047.jpg' 
+z = Plate.where(id:2047 ).first 
+z.foto_file_name = '2047.jpg' 
 z.save 
-z = Plate.where(id:591 ).foto_file_name = '591.jpg' 
+z = Plate.where(id:591 ).first 
+z.foto_file_name = '591.jpg' 
 z.save 
-z = Plate.where(id:342 ).foto_file_name = '342.jpg' 
+z = Plate.where(id:342 ).first 
+z.foto_file_name = '342.jpg' 
 z.save 
-z = Plate.where(id:1159 ).foto_file_name = '1159.jpg' 
+z = Plate.where(id:1159 ).first 
+z.foto_file_name = '1159.jpg' 
 z.save 
-z = Plate.where(id:1014 ).foto_file_name = '1014.jpg' 
+z = Plate.where(id:1014 ).first 
+z.foto_file_name = '1014.jpg' 
 z.save 
-z = Plate.where(id:1261 ).foto_file_name = '1261.jpg' 
+z = Plate.where(id:1261 ).first 
+z.foto_file_name = '1261.jpg' 
 z.save 
-z = Plate.where(id:663 ).foto_file_name = '663.jpg' 
+z = Plate.where(id:663 ).first 
+z.foto_file_name = '663.jpg' 
 z.save 
-z = Plate.where(id:1943 ).foto_file_name = '1943.jpg' 
+z = Plate.where(id:1943 ).first 
+z.foto_file_name = '1943.jpg' 
 z.save 
-z = Plate.where(id:507 ).foto_file_name = '507.jpg' 
+z = Plate.where(id:507 ).first 
+z.foto_file_name = '507.jpg' 
 z.save 
-z = Plate.where(id:2350 ).foto_file_name = '2350.jpg' 
+z = Plate.where(id:2350 ).first 
+z.foto_file_name = '2350.jpg' 
 z.save 
-z = Plate.where(id:2177 ).foto_file_name = '2177.jpg' 
+z = Plate.where(id:2177 ).first 
+z.foto_file_name = '2177.jpg' 
 z.save 
-z = Plate.where(id:606 ).foto_file_name = '606.jpeg' 
+z = Plate.where(id:606 ).first 
+z.foto_file_name = '606.jpeg' 
 z.save 
-z = Plate.where(id:1830 ).foto_file_name = '1830.jpg' 
+z = Plate.where(id:1830 ).first 
+z.foto_file_name = '1830.jpg' 
 z.save 
-z = Plate.where(id:2042 ).foto_file_name = '2042.jpg' 
+z = Plate.where(id:2042 ).first 
+z.foto_file_name = '2042.jpg' 
 z.save 
-z = Plate.where(id:1829 ).foto_file_name = '1829.jpg' 
+z = Plate.where(id:1829 ).first 
+z.foto_file_name = '1829.jpg' 
 z.save 
-z = Plate.where(id:279 ).foto_file_name = '279.jpg' 
+z = Plate.where(id:279 ).first 
+z.foto_file_name = '279.jpg' 
 z.save 
-z = Plate.where(id:1679 ).foto_file_name = '1679.jpg' 
+z = Plate.where(id:1679 ).first 
+z.foto_file_name = '1679.jpg' 
 z.save 
-z = Plate.where(id:2364 ).foto_file_name = '2364.jpg' 
+z = Plate.where(id:2364 ).first 
+z.foto_file_name = '2364.jpg' 
 z.save 
-z = Plate.where(id:128 ).foto_file_name = '128.jpg' 
+z = Plate.where(id:128 ).first 
+z.foto_file_name = '128.jpg' 
 z.save 
-z = Plate.where(id:1015 ).foto_file_name = '1015.jpg' 
+z = Plate.where(id:1015 ).first 
+z.foto_file_name = '1015.jpg' 
 z.save 
-z = Plate.where(id:263 ).foto_file_name = '263.jpg' 
+z = Plate.where(id:263 ).first 
+z.foto_file_name = '263.jpg' 
 z.save 
-z = Plate.where(id:1840 ).foto_file_name = '1840.jpg' 
+z = Plate.where(id:1840 ).first 
+z.foto_file_name = '1840.jpg' 
 z.save 
-z = Plate.where(id:916 ).foto_file_name = '916.jpg' 
+z = Plate.where(id:916 ).first 
+z.foto_file_name = '916.jpg' 
 z.save 
-z = Plate.where(id:1401 ).foto_file_name = '1401.jpg' 
+z = Plate.where(id:1401 ).first 
+z.foto_file_name = '1401.jpg' 
 z.save 
-z = Plate.where(id:2305 ).foto_file_name = '2305.jpg' 
+z = Plate.where(id:2305 ).first 
+z.foto_file_name = '2305.jpg' 
 z.save 
-z = Plate.where(id:948 ).foto_file_name = '948.jpg' 
+z = Plate.where(id:948 ).first 
+z.foto_file_name = '948.jpg' 
 z.save 
-z = Plate.where(id:689 ).foto_file_name = '689.jpg' 
+z = Plate.where(id:689 ).first 
+z.foto_file_name = '689.jpg' 
 z.save 
-z = Plate.where(id:1878 ).foto_file_name = '1878.jpg' 
+z = Plate.where(id:1878 ).first 
+z.foto_file_name = '1878.jpg' 
 z.save 
-z = Plate.where(id:1243 ).foto_file_name = '1243.jpg' 
+z = Plate.where(id:1243 ).first 
+z.foto_file_name = '1243.jpg' 
 z.save 
-z = Plate.where(id:2363 ).foto_file_name = '2363.jpg' 
+z = Plate.where(id:2363 ).first 
+z.foto_file_name = '2363.jpg' 
 z.save 
-z = Plate.where(id:2034 ).foto_file_name = '2034.jpg' 
+z = Plate.where(id:2034 ).first 
+z.foto_file_name = '2034.jpg' 
 z.save 
-z = Plate.where(id:396 ).foto_file_name = '396.jpg' 
+z = Plate.where(id:396 ).first 
+z.foto_file_name = '396.jpg' 
 z.save 
-z = Plate.where(id:616 ).foto_file_name = '616.jpg' 
+z = Plate.where(id:616 ).first 
+z.foto_file_name = '616.jpg' 
 z.save 
-z = Plate.where(id:2130 ).foto_file_name = '2130.jpg' 
+z = Plate.where(id:2130 ).first 
+z.foto_file_name = '2130.jpg' 
 z.save 
-z = Plate.where(id:66 ).foto_file_name = '66.jpg' 
+z = Plate.where(id:66 ).first 
+z.foto_file_name = '66.jpg' 
 z.save 
-z = Plate.where(id:336 ).foto_file_name = '336.jpg' 
+z = Plate.where(id:336 ).first 
+z.foto_file_name = '336.jpg' 
 z.save 
-z = Plate.where(id:58 ).foto_file_name = '58.jpg' 
+z = Plate.where(id:58 ).first 
+z.foto_file_name = '58.jpg' 
 z.save 
-z = Plate.where(id:2202 ).foto_file_name = '2202.jpg' 
+z = Plate.where(id:2202 ).first 
+z.foto_file_name = '2202.jpg' 
 z.save 
-z = Plate.where(id:626 ).foto_file_name = '626.jpg' 
+z = Plate.where(id:626 ).first 
+z.foto_file_name = '626.jpg' 
 z.save 
-z = Plate.where(id:1254 ).foto_file_name = '1254.jpg' 
+z = Plate.where(id:1254 ).first 
+z.foto_file_name = '1254.jpg' 
 z.save 
-z = Plate.where(id:590 ).foto_file_name = '590.jpg' 
+z = Plate.where(id:590 ).first 
+z.foto_file_name = '590.jpg' 
 z.save 
-z = Plate.where(id:258 ).foto_file_name = '258.jpg' 
+#
+z = Plate.where(id:258 ).first 
+z.foto_file_name = '258.jpg' 
 z.save 
-z = Plate.where(id:1400 ).foto_file_name = '1400.jpg' 
+z = Plate.where(id:1400 ).first 
+z.foto_file_name = '1400.jpg' 
 z.save 
-z = Plate.where(id:1850 ).foto_file_name = '1850.jpg' 
+z = Plate.where(id:1850 ).first 
+z.foto_file_name = '1850.jpg' 
 z.save 
-z = Plate.where(id:2262 ).foto_file_name = '2262.jpg' 
+z = Plate.where(id:2262 ).first 
+z.foto_file_name = '2262.jpg' 
 z.save 
-z = Plate.where(id:597 ).foto_file_name = '597.jpg' 
+z = Plate.where(id:597 ).first 
+z.foto_file_name = '597.jpg' 
 z.save 
-z = Plate.where(id:1153 ).foto_file_name = '1153.jpg' 
+z = Plate.where(id:1153 ).first 
+z.foto_file_name = '1153.jpg' 
 z.save 
-z = Plate.where(id:306 ).foto_file_name = '306.jpg' 
+z = Plate.where(id:306 ).first 
+z.foto_file_name = '306.jpg' 
 z.save 
-z = Plate.where(id:1024 ).foto_file_name = '1024.jpg' 
+z = Plate.where(id:1024 ).first 
+z.foto_file_name = '1024.jpg' 
 z.save 
-z = Plate.where(id:350 ).foto_file_name = '350.jpg' 
+z = Plate.where(id:350 ).first 
+z.foto_file_name = '350.jpg' 
 z.save 
-z = Plate.where(id:585 ).foto_file_name = '585.jpg' 
+z = Plate.where(id:585 ).first 
+z.foto_file_name = '585.jpg' 
 z.save 
-z = Plate.where(id:42 ).foto_file_name = '42.jpg' 
+z = Plate.where(id:42 ).first 
+z.foto_file_name = '42.jpg' 
 z.save 
-z = Plate.where(id:69 ).foto_file_name = '69.jpg' 
+z = Plate.where(id:69 ).first 
+z.foto_file_name = '69.jpg' 
 z.save 
-z = Plate.where(id:514 ).foto_file_name = '514.jpg' 
+z = Plate.where(id:514 ).first 
+z.foto_file_name = '514.jpg' 
 z.save 
-z = Plate.where(id:2214 ).foto_file_name = '2214.jpg' 
+z = Plate.where(id:2214 ).first 
+z.foto_file_name = '2214.jpg' 
 z.save 
-z = Plate.where(id:584 ).foto_file_name = '584.jpg' 
+z = Plate.where(id:584 ).first 
+z.foto_file_name = '584.jpg' 
 z.save 
-z = Plate.where(id:1839 ).foto_file_name = '1839.jpg' 
+z = Plate.where(id:1839 ).first 
+z.foto_file_name = '1839.jpg' 
 z.save 
-z = Plate.where(id:1127 ).foto_file_name = '1127.jpg' 
+z = Plate.where(id:1127 ).first 
+z.foto_file_name = '1127.jpg' 
 z.save 
-z = Plate.where(id:1242 ).foto_file_name = '1242.jpg' 
+z = Plate.where(id:1242 ).first 
+z.foto_file_name = '1242.jpg' 
 z.save 
-z = Plate.where(id:878 ).foto_file_name = '878.jpeg' 
+z = Plate.where(id:878 ).first 
+z.foto_file_name = '878.jpeg' 
 z.save 
-z = Plate.where(id:1150 ).foto_file_name = '1150.jpg' 
+z = Plate.where(id:1150 ).first 
+z.foto_file_name = '1150.jpg' 
 z.save 
-z = Plate.where(id:282 ).foto_file_name = '282.jpg' 
+z = Plate.where(id:282 ).first 
+z.foto_file_name = '282.jpg' 
+z.save
+# 
+z = Plate.where(id:429 ).first 
+z.foto_file_name = '429.jpg' 
 z.save 
-z = Plate.where(id:429 ).foto_file_name = '429.jpg' 
+z = Plate.where(id:414 ).first 
+z.foto_file_name = '414.jpg' 
 z.save 
-z = Plate.where(id:414 ).foto_file_name = '414.jpg' 
+z = Plate.where(id:104 ).first 
+z.foto_file_name = '104.jpg' 
 z.save 
-z = Plate.where(id:104 ).foto_file_name = '104.jpg' 
+z = Plate.where(id:617 ).first 
+z.foto_file_name = '617.jpg' 
 z.save 
-z = Plate.where(id:617 ).foto_file_name = '617.jpg' 
+z = Plate.where(id:307 ).first 
+z.foto_file_name = '307.jpg' 
 z.save 
-z = Plate.where(id:307 ).foto_file_name = '307.jpg' 
+z = Plate.where(id:1592 ).first 
+z.foto_file_name = '1592.jpg' 
 z.save 
-z = Plate.where(id:1592 ).foto_file_name = '1592.jpg' 
+z = Plate.where(id:578 ).first 
+z.foto_file_name = '578.jpg' 
 z.save 
-z = Plate.where(id:578 ).foto_file_name = '578.jpg' 
+z = Plate.where(id:596 ).first 
+z.foto_file_name = '596.jpg' 
 z.save 
-z = Plate.where(id:596 ).foto_file_name = '596.jpg' 
+z = Plate.where(id:2031 ).first 
+z.foto_file_name = '2031.jpg' 
 z.save 
-z = Plate.where(id:2031 ).foto_file_name = '2031.jpg' 
+z = Plate.where(id:658 ).first 
+z.foto_file_name = '658.jpg' 
 z.save 
-z = Plate.where(id:658 ).foto_file_name = '658.jpg' 
+z = Plate.where(id:2118 ).first 
+z.foto_file_name = '2118.jpg' 
 z.save 
-z = Plate.where(id:2118 ).foto_file_name = '2118.jpg' 
+z = Plate.where(id:688 ).first 
+z.foto_file_name = '688.jpg' 
 z.save 
-z = Plate.where(id:688 ).foto_file_name = '688.jpg' 
+z = Plate.where(id:470 ).first 
+z.foto_file_name = '470.jpg' 
 z.save 
-z = Plate.where(id:470 ).foto_file_name = '470.jpg' 
+z = Plate.where(id:1374 ).first 
+z.foto_file_name = '1374.jpg' 
 z.save 
-z = Plate.where(id:1374 ).foto_file_name = '1374.jpg' 
+z = Plate.where(id:1055 ).first 
+z.foto_file_name = '1055.jpg' 
 z.save 
-z = Plate.where(id:1055 ).foto_file_name = '1055.jpg' 
+z = Plate.where(id:641 ).first 
+z.foto_file_name = '641.jpg' 
 z.save 
-z = Plate.where(id:641 ).foto_file_name = '641.jpg' 
+z = Plate.where(id:1169 ).first 
+z.foto_file_name = '1169.jpg' 
 z.save 
-z = Plate.where(id:1169 ).foto_file_name = '1169.jpg' 
+z = Plate.where(id:1690 ).first 
+z.foto_file_name = '1690.jpg' 
 z.save 
-z = Plate.where(id:1690 ).foto_file_name = '1690.jpg' 
+#
+z = Plate.where(id:798 ).first 
+z.foto_file_name = '798.jpg' 
 z.save 
-z = Plate.where(id:798 ).foto_file_name = '798.jpg' 
+z = Plate.where(id:341 ).first 
+z.foto_file_name = '341.jpg' 
 z.save 
-z = Plate.where(id:341 ).foto_file_name = '341.jpg' 
+z = Plate.where(id:2131 ).first 
+z.foto_file_name = '2131.jpg' 
 z.save 
-z = Plate.where(id:2131 ).foto_file_name = '2131.jpg' 
+z = Plate.where(id:1680 ).first 
+z.foto_file_name = '1680.jpg' 
 z.save 
-z = Plate.where(id:1680 ).foto_file_name = '1680.jpg' 
+z = Plate.where(id:334 ).first 
+z.foto_file_name = '334.jpg' 
 z.save 
-z = Plate.where(id:334 ).foto_file_name = '334.jpg' 
+z = Plate.where(id:1713 ).first 
+z.foto_file_name = '1713.jpg' 
 z.save 
-z = Plate.where(id:1713 ).foto_file_name = '1713.jpg' 
+z = Plate.where(id:335 ).first 
+z.foto_file_name = '335.jpg' 
 z.save 
-z = Plate.where(id:335 ).foto_file_name = '335.jpg' 
+z = Plate.where(id:905 ).first 
+z.foto_file_name = '905.jpg' 
 z.save 
-z = Plate.where(id:905 ).foto_file_name = '905.jpg' 
+z = Plate.where(id:2203 ).first 
+z.foto_file_name = '2203.jpg' 
 z.save 
-z = Plate.where(id:2203 ).foto_file_name = '2203.jpg' 
+z = Plate.where(id:1079 ).first 
+z.foto_file_name = '1079.jpg' 
 z.save 
-z = Plate.where(id:1079 ).foto_file_name = '1079.jpg' 
+z = Plate.where(id:1441 ).first 
+z.foto_file_name = '1441.jpg' 
 z.save 
-z = Plate.where(id:1441 ).foto_file_name = '1441.jpg' 
+z = Plate.where(id:1588 ).first 
+z.foto_file_name = '1588.jpg' 
 z.save 
-z = Plate.where(id:1588 ).foto_file_name = '1588.jpg' 
+z = Plate.where(id:1849 ).first 
+z.foto_file_name = '1849.jpg' 
 z.save 
-z = Plate.where(id:1849 ).foto_file_name = '1849.jpg' 
+z = Plate.where(id:863 ).first 
+z.foto_file_name = '863.jpg' 
 z.save 
-z = Plate.where(id:863 ).foto_file_name = '863.jpg' 
+z = Plate.where(id:1803 ).first 
+z.foto_file_name = '1803.jpg' 
 z.save 
-z = Plate.where(id:1803 ).foto_file_name = '1803.jpg' 
+z = Plate.where(id:1221 ).first 
+z.foto_file_name = '1221.jpg' 
 z.save 
-z = Plate.where(id:1221 ).foto_file_name = '1221.jpg' 
+z = Plate.where(id:2016 ).first 
+z.foto_file_name = '2016.jpg' 
+z.save
+# 
+z = Plate.where(id:1128 ).first 
+z.foto_file_name = '1128.jpg' 
 z.save 
-z = Plate.where(id:2016 ).foto_file_name = '2016.jpg' 
+z = Plate.where(id:415 ).first 
+z.foto_file_name = '415.jpg' 
 z.save 
-z = Plate.where(id:1128 ).foto_file_name = '1128.jpg' 
+z = Plate.where(id:2015 ).first 
+z.foto_file_name = '2015.jpg' 
 z.save 
-z = Plate.where(id:415 ).foto_file_name = '415.jpg' 
+z = Plate.where(id:1404 ).first 
+z.foto_file_name = '1404.jpg' 
 z.save 
-z = Plate.where(id:2015 ).foto_file_name = '2015.jpg' 
+z = Plate.where(id:1386 ).first 
+z.foto_file_name = '1386.jpg' 
 z.save 
-z = Plate.where(id:1404 ).foto_file_name = '1404.jpg' 
+z = Plate.where(id:399 ).first 
+z.foto_file_name = '399.jpg' 
 z.save 
-z = Plate.where(id:1386 ).foto_file_name = '1386.jpg' 
+z = Plate.where(id:51 ).first 
+z.foto_file_name = '51.jpg' 
 z.save 
-z = Plate.where(id:399 ).foto_file_name = '399.jpg' 
+z = Plate.where(id:889 ).first 
+z.foto_file_name = '889.jpg' 
 z.save 
-z = Plate.where(id:51 ).foto_file_name = '51.jpg' 
+z = Plate.where(id:890 ).first 
+z.foto_file_name = '890.jpg' 
 z.save 
-z = Plate.where(id:889 ).foto_file_name = '889.jpg' 
+z = Plate.where(id:395 ).first 
+z.foto_file_name = '395.jpg' 
 z.save 
-z = Plate.where(id:890 ).foto_file_name = '890.jpg' 
+z = Plate.where(id:1318 ).first 
+z.foto_file_name = '1318.jpg' 
 z.save 
-z = Plate.where(id:395 ).foto_file_name = '395.jpg' 
+z = Plate.where(id:1238 ).first 
+z.foto_file_name = '1238.jpg' 
 z.save 
-z = Plate.where(id:1318 ).foto_file_name = '1318.jpg' 
+z = Plate.where(id:1712 ).first 
+z.foto_file_name = '1712.jpg' 
 z.save 
-z = Plate.where(id:1238 ).foto_file_name = '1238.jpg' 
+z = Plate.where(id:697 ).first 
+z.foto_file_name = '697.jpg' 
 z.save 
-z = Plate.where(id:1712 ).foto_file_name = '1712.jpg' 
+z = Plate.where(id:1728 ).first 
+z.foto_file_name = '1728.jpg' 
 z.save 
-z = Plate.where(id:697 ).foto_file_name = '697.jpg' 
+z = Plate.where(id:1239 ).first 
+z.foto_file_name = '1239.jpg' 
 z.save 
-z = Plate.where(id:1728 ).foto_file_name = '1728.jpg' 
+z = Plate.where(id:2027 ).first 
+z.foto_file_name = '2027.jpg' 
 z.save 
-z = Plate.where(id:1239 ).foto_file_name = '1239.jpg' 
+z = Plate.where(id:1347 ).first 
+z.foto_file_name = '1347.jpg' 
 z.save 
-z = Plate.where(id:2027 ).foto_file_name = '2027.jpg' 
+z = Plate.where(id:2048 ).first 
+z.foto_file_name = '2048.jpg' 
 z.save 
-z = Plate.where(id:1347 ).foto_file_name = '1347.jpg' 
+z = Plate.where(id:1174 ).first 
+z.foto_file_name = '1174.jpg' 
 z.save 
-z = Plate.where(id:2048 ).foto_file_name = '2048.jpg' 
+z = Plate.where(id:659 ).first 
+z.foto_file_name = '659.jpg' 
 z.save 
-z = Plate.where(id:1174 ).foto_file_name = '1174.jpg' 
+z = Plate.where(id:127 ).first 
+z.foto_file_name = '127.jpg' 
 z.save 
-z = Plate.where(id:659 ).foto_file_name = '659.jpg' 
+z = Plate.where(id:1944 ).first 
+z.foto_file_name = '1944.jpg' 
 z.save 
-z = Plate.where(id:127 ).foto_file_name = '127.jpg' 
+z = Plate.where(id:1421 ).first 
+z.foto_file_name = '1421.jpg' 
 z.save 
-z = Plate.where(id:1944 ).foto_file_name = '1944.jpg' 
+z = Plate.where(id:701 ).first 
+z.foto_file_name = '701.jpg' 
 z.save 
-z = Plate.where(id:1421 ).foto_file_name = '1421.jpg' 
+z = Plate.where(id:349 ).first 
+z.foto_file_name = '349.jpg' 
 z.save 
-z = Plate.where(id:701 ).foto_file_name = '701.jpg' 
+z = Plate.where(id:320 ).first 
+z.foto_file_name = '320.jpg' 
 z.save 
-z = Plate.where(id:349 ).foto_file_name = '349.jpg' 
+z = Plate.where(id:1405 ).first 
+z.foto_file_name = '1405.jpg' 
 z.save 
-z = Plate.where(id:320 ).foto_file_name = '320.jpg' 
+z = Plate.where(id:947 ).first 
+z.foto_file_name = '947.jpg' 
 z.save 
-z = Plate.where(id:1405 ).foto_file_name = '1405.jpg' 
+z = Plate.where(id:1200 ).first 
+z.foto_file_name = '1200.jpg' 
 z.save 
-z = Plate.where(id:947 ).foto_file_name = '947.jpg' 
+z = Plate.where(id:2017 ).first 
+z.foto_file_name = '2017.jpg' 
 z.save 
-z = Plate.where(id:1200 ).foto_file_name = '1200.jpg' 
+z = Plate.where(id:92 ).first 
+z.foto_file_name = '92.jpg' 
 z.save 
-z = Plate.where(id:2017 ).foto_file_name = '2017.jpg' 
+z = Plate.where(id:136 ).first 
+z.foto_file_name = '136.jpg' 
 z.save 
-z = Plate.where(id:92 ).foto_file_name = '92.jpg' 
+z = Plate.where(id:579 ).first 
+z.foto_file_name = '579.jpg' 
 z.save 
-z = Plate.where(id:136 ).foto_file_name = '136.jpg' 
+z = Plate.where(id:1054 ).first 
+z.foto_file_name = '1054.jpg' 
 z.save 
-z = Plate.where(id:579 ).foto_file_name = '579.jpg' 
+z = Plate.where(id:1804 ).first 
+z.foto_file_name = '1804.jpg' 
 z.save 
-z = Plate.where(id:1054 ).foto_file_name = '1054.jpg' 
+z = Plate.where(id:1766 ).first 
+z.foto_file_name = '1766.jpg' 
 z.save 
-z = Plate.where(id:1804 ).foto_file_name = '1804.jpg' 
+z = Plate.where(id:1895 ).first 
+z.foto_file_name = '1895.jpg' 
 z.save 
-z = Plate.where(id:1766 ).foto_file_name = '1766.jpg' 
+z = Plate.where(id:2261 ).first 
+z.foto_file_name = '2261.jpg' 
 z.save 
-z = Plate.where(id:1895 ).foto_file_name = '1895.jpg' 
+z = Plate.where(id:65 ).first 
+z.foto_file_name = '65.jpg' 
 z.save 
-z = Plate.where(id:2261 ).foto_file_name = '2261.jpg' 
+z = Plate.where(id:1199 ).first 
+z.foto_file_name = '1199.jpg' 
 z.save 
-z = Plate.where(id:65 ).foto_file_name = '65.jpg' 
+z = Plate.where(id:2312 ).first 
+z.foto_file_name = '2312.jpg' 
 z.save 
-z = Plate.where(id:1199 ).foto_file_name = '1199.jpg' 
+z = Plate.where(id:2193 ).first 
+z.foto_file_name = '2193.jpg' 
 z.save 
-z = Plate.where(id:2312 ).foto_file_name = '2312.jpg' 
+z = Plate.where(id:2349 ).first 
+z.foto_file_name = '2349.jpg' 
 z.save 
-z = Plate.where(id:2193 ).foto_file_name = '2193.jpg' 
+z = Plate.where(id:281 ).first 
+z.foto_file_name = '281.jpg' 
 z.save 
-z = Plate.where(id:2349 ).foto_file_name = '2349.jpg' 
+z = Plate.where(id:135 ).first 
+z.foto_file_name = '135.jpg' 
 z.save 
-z = Plate.where(id:281 ).foto_file_name = '281.jpg' 
+z = Plate.where(id:2119 ).first 
+z.foto_file_name = '2119.jpg' 
 z.save 
-z = Plate.where(id:135 ).foto_file_name = '135.jpg' 
+z = Plate.where(id:989 ).first 
+z.foto_file_name = '989.jpg' 
 z.save 
-z = Plate.where(id:2119 ).foto_file_name = '2119.jpg' 
+z = Plate.where(id:2178 ).first 
+z.foto_file_name = '2178.jpg' 
 z.save 
-z = Plate.where(id:989 ).foto_file_name = '989.jpg' 
+z = Plate.where(id:280 ).first 
+z.foto_file_name = '280.jpg' 
 z.save 
-z = Plate.where(id:2178 ).foto_file_name = '2178.jpg' 
+z = Plate.where(id:1410 ).first 
+z.foto_file_name = '1410.jpg' 
 z.save 
-z = Plate.where(id:280 ).foto_file_name = '280.jpg' 
+z = Plate.where(id:1436 ).first 
+z.foto_file_name = '1436.jpg' 
 z.save 
-z = Plate.where(id:1410 ).foto_file_name = '1410.jpg' 
-z.save 
-z = Plate.where(id:1436 ).foto_file_name = '1436.jpg' 
-z.save 
-z = Plate.where(id:319 ).foto_file_name = '319.jpg' 
+z = Plate.where(id:319 ).first 
+z.foto_file_name = '319.jpg' 
 z.save 

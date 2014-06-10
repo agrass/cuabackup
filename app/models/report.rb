@@ -254,9 +254,9 @@ class Report < ActiveRecord::Base
             pdf.text_box "Ticket Colación " + (col.fecha.strftime('%d/%m/%y') || ""), :at => [30, 180], :width => 220, :align => :center, :size => 18
             pdf.transparent(0.3) { pdf.stroke_line [0, 160], [280, 160] }
             #pdf.transparent(0.6) {pdf.image "public/assets/images/logo2.jpg", :scale => 0.6, :at => [pdf.bounds.left, pdf.bounds.top - 10]}
-            pdf.text_box "PACIENTE: " + (Patient.find(col.patient_id).try(:nombre)[0..22].split("(")[0]  || ""), :at => [0, 150], :width => 340, :align => :left, :size => 12,:inline_format=>true
+            pdf.text_box "PACIENTE: " + ((Patient.find(col.patient_id).try(:nombre)|| "")[0..22].split("(")[0]  || ""), :at => [0, 150], :width => 340, :align => :left, :size => 12,:inline_format=>true
             pdf.text_box "HABITACION: " + (Patient.find(col.patient_id).try(:num_pieza) || "") + (col.esPaciente ? '' : ' [ACOMP]'), :at => [0, 135], :width => 340, :align => :left, :size => 12, :inline_format=>true
-            pdf.text_box "DESCRIPCIÓN: " + col.comentarios, :at => [0, 120], :width => 340, :align => :left,  :size => 12, :inline_format=>true
+            pdf.text_box "DESCRIPCIÓN: " + (col.comentarios || ""), :at => [0, 120], :width => 340, :align => :left,  :size => 12, :inline_format=>true
             Order.find(col.try(:order_id)).try(:set_ok)             
         end
         if count == 6
