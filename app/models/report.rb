@@ -26,8 +26,7 @@ class Report < ActiveRecord::Base
           Report.page_template(pdf, 4)  
         end
         @ticket = Bandeja.new
-        @ticket.paciente = order_list.patient.nombre[0..22].split("(")[0] 
-        @ticket.paciente = @ticket.paciente
+        @ticket.paciente = order_list.patient.nombre[0..22].split("(")[0]         
         @ticket.habitacion =  order_list.patient.num_pieza
         @ticket.habitacion = @ticket.habitacion + " [ACOMP]" if !order_list.esPaciente && !@ticket.habitacion.blank?
         @ticket.habitacion = "" if @ticket.habitacion.blank?
