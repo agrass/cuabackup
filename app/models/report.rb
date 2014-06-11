@@ -203,7 +203,7 @@ class Report < ActiveRecord::Base
     xin = -15
     yin = 525
     x = 365
-    y = 200
+    y = 240
     if num == 1
       xin = x
     elsif num == 2
