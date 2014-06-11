@@ -41,11 +41,11 @@ class PatientImport
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
       if !row["Paciente"].to_s.empty?
-        patient = Patient.find_by_rut(row["Número de paciente"].hash.to_s)
+        patient = Patient.find_by_rut(row["Número de paciente"])
         if patient.nil?
             patient = Patient.new
             patient.nombre = row["Paciente"].to_s
-            patient.rut = row["Número de paciente"].hash.to_s
+            patient.rut = row["Número de paciente"]
         end
         patient.num_pieza = row["Cama"].to_s
         patients << patient
