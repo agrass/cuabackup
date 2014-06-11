@@ -20,7 +20,7 @@ License
 
 #upload plates
 out_file = File.new("out.txt", "w")
-out_file.puts("probado")
+out_file.puts("#probado")
 Dir.glob("images_s3/*").entries.each do |e|
   id = e.split("/")[1].split(".")[0]
   plate = Plate.find(id)
@@ -29,6 +29,7 @@ Dir.glob("images_s3/*").entries.each do |e|
 	  plate.foto = File.open(e)
 	  plate.save
   end
-  out_file.puts("z = Plate.where(id:" + id + " ).foto_file_name = '" + plate.foto_file_name + "' \n" )
+  out_file.puts("z = Plate.where(id:" + id + " ) \n" )
+  out_file.puts("z.foto_file_name = '" + plate.foto_file_name + "' \n")
   out_file.puts("z.save \n")
 end

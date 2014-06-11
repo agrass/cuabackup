@@ -26,8 +26,9 @@ class Report < ActiveRecord::Base
           Report.page_template(pdf, 4)  
         end
         @ticket = Bandeja.new
-        @ticket.paciente = order_list.patient.nombre[0..22].split("(")[0]
-        @ticket.habitacion =  order_list.patient.num_pieza 
+        @ticket.paciente = order_list.patient.nombre[0..22].split("(")[0]         
+        @ticket.habitacion =  order_list.patient.num_pieza
+        @ticket.habitacion = @ticket.habitacion + " [ACOMP]" if !order_list.esPaciente && !@ticket.habitacion.blank?
         @ticket.habitacion = "" if @ticket.habitacion.blank?
         @ticket.fecha =  "#{order_list.fecha.strftime('%d/%m/%y')}"
         @ticket.id = order_list.id                  
@@ -241,7 +242,7 @@ class Report < ActiveRecord::Base
     now = Time.zone.now
     @name = now.to_s + " " + "Colacion" + ".pdf"
     order_count = 0
-    @orders = OrderList.joins(:orders).where(:fecha => fecha, :orders => { :horario => tipo, :estado => estados }).select("order_lists.patient_id, orders.horario, orders.comentarios, orders.id as order_id")
+    @orders = OrderList.joins(:orders).where(:fecha => fecha, :orders => { :horario => tipo, :estado => estados }).select("order_lists.patient_id, order_lists.esPaciente, order_lists.fecha, orders.horario, orders.comentarios, orders.id as order_id")
     Prawn::Document.generate("public/pdf/"+ @name, :page_layout => :landscape ) do |pdf|      
       xin = -10
       yin = 580
@@ -250,12 +251,12 @@ class Report < ActiveRecord::Base
       count = 1      
       @orders.each do |col|
         pdf.bounding_box([xin, yin], :width => 350, :height => 240) do
-            pdf.text_box "Ticket Colación", :at => [30, 180], :width => 170, :align => :center, :size => 18
+            pdf.text_box "Ticket Colación " + (col.fecha.strftime('%d/%m/%y') || ""), :at => [30, 180], :width => 220, :align => :center, :size => 18
             pdf.transparent(0.3) { pdf.stroke_line [0, 160], [280, 160] }
             #pdf.transparent(0.6) {pdf.image "public/assets/images/logo2.jpg", :scale => 0.6, :at => [pdf.bounds.left, pdf.bounds.top - 10]}
-            pdf.text_box "PACIENTE: " + Patient.find(col.patient_id).try(:nombre)[0..30], :at => [0, 150], :width => 340, :align => :left, :size => 12,:inline_format=>true
-            pdf.text_box "HABITACION: " + Patient.find(col.patient_id).try(:num_pieza), :at => [0, 135], :width => 340, :align => :left, :size => 12, :inline_format=>true
-            pdf.text_box "DESCRIPCIÓN: " + col.comentarios, :at => [0, 120], :width => 340, :align => :left,  :size => 12, :inline_format=>true
+            pdf.text_box "PACIENTE: " + ((Patient.find(col.patient_id).try(:nombre)|| "")[0..22].split("(")[0]  || ""), :at => [0, 150], :width => 340, :align => :left, :size => 12,:inline_format=>true
+            pdf.text_box "HABITACION: " + (Patient.find(col.patient_id).try(:num_pieza) || "") + (col.esPaciente ? '' : ' [ACOMP]'), :at => [0, 135], :width => 340, :align => :left, :size => 12, :inline_format=>true
+            pdf.text_box "DESCRIPCIÓN: " + (col.comentarios || ""), :at => [0, 120], :width => 340, :align => :left,  :size => 12, :inline_format=>true
             Order.find(col.try(:order_id)).try(:set_ok)             
         end
         if count == 6

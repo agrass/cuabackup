@@ -88,7 +88,7 @@
               %td= order_list.patient.num_pieza
 
               %td= order_list.esPaciente ? order_list.patient.nombre : 'Acompañante'
-              %td= @regimes[order.regime_id]
+              %td= horario[1] != 16 ? @regimes[order.regime_id] : '-'
               %td= order.estado == 2 ? image_tag('images/notification-bg.png') : ''
               %td
                 = link_to(edit_order_path(order), "data-toggle" => "tooltip", :title => "Editar") do
