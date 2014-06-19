@@ -242,7 +242,7 @@ class Report < ActiveRecord::Base
     now = Time.zone.now
     @name = now.to_s + " " + "Colacion" + ".pdf"
     order_count = 0
-    @orders = OrderList.joins(:orders).where(:fecha => fecha, :orders => { :horario => tipo, :estado => estados }).select("order_lists.patient_id, order_lists.esPaciente, order_lists.fecha, orders.horario, orders.comentarios, orders.id as order_id")
+    @orders = OrderList.joins(:orders).where(:fecha => fecha, :orders => { :horario => tipo, :estado => estados }).select('order_lists.patient_id, order_lists."esPaciente", order_lists.fecha, orders.horario, orders.comentarios, orders.id as order_id')
     Prawn::Document.generate("public/pdf/"+ @name, :page_layout => :landscape ) do |pdf|      
       xin = -10
       yin = 580
