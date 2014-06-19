@@ -7,10 +7,11 @@ class UploadManager
 		begin
 			self.login
 			obj = @@bucket.objects[name]
-			obj.write(file)
+			obj.write(file, :acl => :public_read)
 		rescue
 			puts "\n Error UPLOADING FILE \n"
 		end
+
 	end
 
 	def self.login
