@@ -3,7 +3,7 @@
   %legend Platos
   %a.btn.btn-success.right{ :href => "#{new_plate_path}" }
     %i.icon-plus
-    Nuevo Plato
+    Nuevo Plato  
   %table.table.table-condensed
     %tr
       %th Nombre
@@ -19,10 +19,18 @@
             %i.icon-pencil
           = link_to(plate, :method => :delete, :data => { :confirm => '¿Seguro que desea eliminar al paciente?' },:class => 'btn btn-mini', "data-toggle" => "tooltip", :title => "Eliminar") do
             %i.icon-trash
+  = will_paginate @plates
 :javascript
   $(function() {
   $('table').filterTable({ 
   placeholder: "Buscar por nombre en la lista..", 
   label: ""
   });
+
+  $('.filter-table input').keypress(function(e) {
+    if (e.keyCode == 13 && $('.filter-table input').is(":focus")) {
+      window.location = '?query='+ $('.filter-table input').val();
+    }
+  });
+
   });

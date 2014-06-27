@@ -33,7 +33,7 @@
         #plates
         .order_comments.halfx
           %legend Comentarios
-          = orders_form.input :comentarios, as: :text, :input_html => { :rows => 5 }, :label => false
+          = orders_form.input :comentarios, as: :text, :input_html => { :rows => 5, :maxlength => 290 }, :label => false
     -else
       = hidden_field_tag 'order_list[dia]', DayRegime.getDayByDate(@order_list.fecha)
       = select(:order_list, :patient_id, Patient.all.collect {|p| [ p.num_pieza, p.id ] }, {:prompt => 'Seleccione Pieza'}, { class: 'chzn-select ' })

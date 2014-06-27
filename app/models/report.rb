@@ -36,7 +36,7 @@ class Report < ActiveRecord::Base
           if order != nil
             @ticket.servicio = Report.getHorario(order.horario)
             @ticket.regimen = Regime.find(order.regime_id).nombre
-            @ticket.observaciones = order.comentarios
+            @ticket.observaciones = order.comentarios.downcase 
             order.set_ok            
             @ticket.menu = []         
             order.plates.each do |plate|
@@ -231,8 +231,8 @@ class Report < ActiveRecord::Base
             end
         end
       end
-      pdf.transparent(0.4) { pdf.stroke_line [0, 65], [280, 65] }       
-      pdf.text_box "OBSERVACIONES:" + ticket.observaciones[0..175], :at => [0, 64], :width => 360, :align => :left,  :size => 12, :height => 63 ,:inline_format=>true
+      pdf.transparent(0.4) { pdf.stroke_line [0, 75], [280, 75] }       
+      pdf.text_box "OBSERVACIONES:" + ticket.observaciones[0..290], :at => [0, 73], :width => 360, :size => 10, :height => 70 
       #pdf.transparent(0.2) { pdf.stroke_bounds }        
     end
   end
