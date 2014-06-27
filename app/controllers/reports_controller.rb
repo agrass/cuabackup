@@ -53,14 +53,9 @@ class ReportsController < ApplicationController
     end
     if nombre != "0"
       @report = Report.create(:name => nombre, :tipo => tipo)
-      Report.where("created_at <= ?", Time.zone.now - 7.days).each do |report|
-        begin
-          File.delete("public/pdf/" + report.name)
-          report.destroy
-        rescue
-          report.destroy
-        end
-      end      
+      @file = File.open("public/pdf/" + nombre)
+      UploadManager.upload(@file, "pdf/"+ nombre)
+           
       params[:source] = nombre
       render "pdf_show", :layout => false    
     else
