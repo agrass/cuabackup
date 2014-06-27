@@ -14,7 +14,11 @@ class HomeController < ApplicationController
   end
 
   def plates
-    @plates = Plate.find(:all, :order => "nombre ASC")
+    if !params[:query].blank?
+      @plates = Plate.where("nombre LIKE ?", "%" + params[:query] + "%").paginate(:page => params[:page], :per_page => 30).order("nombre ASC") 
+    else
+      @plates = Plate.paginate(:page => params[:page], :per_page => 30).order("nombre ASC")
+    end
     render "platos"
   end
   def ingredients

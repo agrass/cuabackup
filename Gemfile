@@ -43,3 +43,4 @@ gem 'aws-sdk'
 gem "seedbank"
 gem "table_print"
 gem 'unicorn'
+gem 'will_paginate', '~> 3.0'
