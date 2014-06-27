@@ -34,7 +34,7 @@ class Plate < ActiveRecord::Base
     acomp = "Acompa"
     case horario
     when 1
-      tipos = [["Liquido",1],["Sandwich",2],["Salado", 3],["Untable",4], ["Bebida", 5], ["Reposteria", 6], ["Saborizantes", 11], ["Extra", 12]]
+      tipos = [["Liquido",1],["Sandwich",2],["Salado", 3],["Untable",4], ["Reposteria", 6], ["Saborizantes", 11], ["Extra", 12]]
     when 2
       tipos = [["Entrada",7], ["Plato de Fondo",8], [acomp.encode("UTF-8"),9], ["Postre",10], ["Extra", 12]]
     when 4

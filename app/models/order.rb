@@ -3,6 +3,7 @@ class Order < ActiveRecord::Base
   validates :order_list_id, presence: true
   validates :regime_id, presence: true
   validates :horario, presence: true
+  validates_length_of :comentarios, :maximum => 290, :allow_blank => true
   before_save :set_state
 
   has_and_belongs_to_many :plates
