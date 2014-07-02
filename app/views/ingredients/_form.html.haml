@@ -7,7 +7,7 @@
     %legend Precio
     = f.input :precio, label: false
     %legend Unidad
-    = f.input :unidad, as: :radio_buttons, collection: [["gramos","gr"],["ml","ml"]], label: false
+    = f.input :unidad, as: :radio_buttons, collection: [["Gramos","GR"],["Ml","ML"], ["Kilogramo", "KG"],["Unidad", "UN"] ], label: false
 
   .form-actions
     = f.button :submit, @ingredient.new_record? ? "Crear Ingrediente" : "Actualizar Ingrediente"
