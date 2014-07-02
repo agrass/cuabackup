@@ -18,7 +18,7 @@
     = f.input :tipo, as: :radio_buttons, collection: Plate.obtener_tipos(0), label: false
     %legend Ingredientes
     =f.fields_for :plate_ingredients do |plate_ingredients_form|
-      = plate_ingredients_form.select :ingredient_id, Ingredient.all.map {|i| [i.nombre + " (" + i.unidad + ")", i.id]}
+      = plate_ingredients_form.select :ingredient_id, Ingredient.all.map {|i| [i.nombre + " (" + (i.unidad || "UN") + ")", i.id]}
       = plate_ingredients_form.input :cantidad
       = plate_ingredients_form.link_to_remove "Borrar ingrediente"
     =f.link_to_add "Agregar Ingrediente", :plate_ingredients
